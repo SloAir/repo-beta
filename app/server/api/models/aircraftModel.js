@@ -24,8 +24,10 @@ const aircraftSchema = new Schema({
     },
     images: [
         {
-            type: Schema.Types.ObjectId,
-            required: true
+            src: {
+                type: String,
+                required: true
+            }
         }
     ]
 }, {timestamps : true});

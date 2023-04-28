@@ -37,6 +37,14 @@ const airlineSchema = new Schema({
             ref: 'Flight',
             required: true
         }
+    ],
+    images: [
+        {
+            src: {
+                type: String,
+                required: true
+            }
+        }
     ]
 }, {timestamps : true});
 

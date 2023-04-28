@@ -1,7 +1,7 @@
 const AirportModel = require('../models/airportModel.js');
  
  
-module.exports = new class AirportModel {
+module.exports = new class AirportController {
    list(req , res) {
        AirportModel.find({} , (err, airports) => {
            if (err) {

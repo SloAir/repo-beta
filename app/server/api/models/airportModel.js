@@ -51,6 +51,74 @@ const airportSchema = new Schema({
         type: String,
         required: true
     },
+    departures: [
+        {
+            date: {
+                type: String,
+                required: true
+            },
+            time: {
+                planned: {
+                    type: String,
+                    required: true
+                },
+                estimated: {
+                    type: String,
+                    required: true
+                }
+            },
+            destination: {
+                type: String,
+                required: true
+            },
+            flightId: {
+                type: String,
+                required: true
+            },
+            exit: {
+                type: String,
+                required: true
+            },
+            checkIn: {
+                type: String,
+                required: true
+            },
+            status: {
+                type: String,
+                required: true
+            }
+        }
+    ],
+    arrivals: [
+        {
+            date: {
+                type: String,
+                required: true
+            },
+            time: {
+                planned: {
+                    type: String,
+                    required: true
+                },
+                estimated: {
+                    type: String,
+                    required: true
+                }
+            },
+            destination: {
+                type: String,
+                required: true
+            },
+            flightId: {
+                type: String,
+                required: true
+            },
+            status: {
+                type: String,
+                required: true
+            }
+        }
+    ],
     // TODO: stats lastnost?
     // polje vseh letalskih združb, ki trenutno letijo na/iz letališča
     airlines: [
@@ -72,6 +140,14 @@ const airportSchema = new Schema({
             type: Schema.Types.ObjectId,
             ref: 'Flight',
             required: true
+        }
+    ],
+    images: [
+        {
+            src: {
+                type: String,
+                required: true
+            }
         }
     ]
 }, {timestamps : true});

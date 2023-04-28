@@ -1,7 +1,7 @@
 const FlightModel = require('../models/flightModel.js');
  
  
-module.exports = new class FlightModel {
+module.exports = new class FlightController {
    list(req , res) {
        FlightModel.find({} , (err, flights) => {
            if (err) {

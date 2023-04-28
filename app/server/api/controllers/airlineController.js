@@ -1,7 +1,7 @@
 const AirlineModel = require('../models/airlineModel.js');
  
  
-module.exports = new class AirlineModel {
+module.exports = new class AirlineController {
    list(req , res) {
        AirlineModel.find({} , (err, airlines) => {
            if (err) {

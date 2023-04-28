@@ -1,18 +1,17 @@
 const AircraftModel = require('../models/aircraftModel.js');
- 
- 
-module.exports = new class AircraftModel {
-   list(req , res) {
-       AircraftModel.find({} , (err, aircrafts) => {
-           if (err) {
-               return res.status(500).json({
-                   message: 'Error when getting aircraft.',
-                   error: err
-               });
-           }
-           return res.status(200).json(aircrafts);
-       });
+
+module.exports = new class AircraftController {
+   async list() {
+       try {
+           return await AircraftModel
+               .find()
+               .exec();
+       }
+       catch(e) {
+           console.log(e.message);
+       }
    };
+
    show(req , res) {
        AircraftModel.findById(req.params.id,  (err, aircraft) => {
            if (err) {
@@ -29,6 +28,7 @@ module.exports = new class AircraftModel {
            return res.status(200).json(aircraft);
        });
    };
+
    create(req , res) {
        let aircraft = new AircraftModel({
 
@@ -44,6 +44,7 @@ module.exports = new class AircraftModel {
            return res.status(201).json(aircraft);
        });
    };
+
    update(req , res) {
        AircraftModel.findById(req.params.id ,  (err, aircraft) =>  {
            if (err) {
@@ -69,6 +70,7 @@ module.exports = new class AircraftModel {
            });
        });
    };
+
    remove(req , res) {
        AircraftModel.findByIdAndRemove(req.params.id,  (err, aircraft) =>  {
            if (err) {
