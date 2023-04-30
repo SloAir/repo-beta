@@ -19,3 +19,8 @@ Za namestitev vseh potrebnih odvisnosti na virtualno okolje poženite ukaz:
 ```
 pip install -r dependencies.txt
 ```
+
+Za zagon strežnika poženite ukaz:
+```
+python manage.py runserver
+```
