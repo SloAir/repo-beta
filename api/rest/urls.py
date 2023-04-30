@@ -22,5 +22,7 @@ from django.urls import path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('hello-world/', test.hello_world, name='hello-world')
+    path('hello-world/', test.hello_world, name='hello-world'),
+
+    # aircraft routes
 ]
