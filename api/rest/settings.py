@@ -78,11 +78,12 @@ WSGI_APPLICATION = 'rest.wsgi.application'
 
 load_dotenv()
 
-mongoengine.connect(
-    db=os.environ.get('DB_NAME'),
+mongo = mongoengine.connect(
     host=os.environ.get('DB_HOST'),
     port=int(os.environ.get('DB_PORT'))
 )
+
+db = mongo['SloAir']
 
 print('Connected to the database!')
 
