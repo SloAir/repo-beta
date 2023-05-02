@@ -1,24 +1,30 @@
-from djongo import models
+from mongoengine import *
 
 
-class AircraftModel(models.Model):
-    code = models.CharField(max_length=255, blank=False)
-    name = models.CharField(max_length=255, blank=False)
+# Name and abbreviation of the aircraft model
+class AircraftModel(EmbeddedDocument):
+    code = StringField(required=True)
+    name = StringField(required=True)
 
 
-class Image(models.Model):
-    src = models.CharField(max_length=255, blank=False)
-    link = models.CharField(max_length=255, blank=False)
-    copyright = models.CharField(max_length=255, blank=False)
-    source = models.CharField(max_length=255, blank=False)
+# Images of the aircraft
+class AircraftImages(EmbeddedDocument):
+    img_src = StringField(required=True)
+    link = StringField(required=True)
+    copyright = StringField(required=True)
+    source = StringField(required=True)
 
 
-class Aircraft(models.Model):
-    model = models.EmbeddedModelField(
-        model_container=AircraftModel
-    )
-    registration = models.CharField(max_length=255, blank=False)
-    airline = models.ForeignKey('Airline', blank=False, on_delete=models.CASCADE)
-    images = models.ArrayModelField(
-        model_container=Image
-    )
+# ID's of previous flights of the aircraft
+class FlightHistory(EmbeddedDocument):
+    flight = ObjectIdField(required=True)
+
+
+# Main aircraft schema
+class Aircraft(Document):
+    aircraft_model = EmbeddedDocumentField(AircraftModel)
+    registration = StringField(required=True)
+    age = IntField(required=True)
+    images = EmbeddedDocumentListField(AircraftImages)
+    # array of previous flights' ID's
+    flight_history = EmbeddedDocumentListField(FlightHistory)
