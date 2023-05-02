@@ -1,6 +1,12 @@
+import os
+from dotenv import load_dotenv
 from rest.settings import db
 from django.http import *
-from rest.flight_radar_api import radar
+from .radar import *
+
+load_dotenv()
+
+SERVER_URL = 'http://' + os.environ.get('SERVER_HOST') + ':' + os.environ.get('SERVER_PORT')
 
 
 # function returns a processed JSON object of an aircraft as a dictionary
@@ -19,6 +25,8 @@ def process_aircraft_data(data):
     images = aircraft_data['aircraft']['images']['large']
     del aircraft_data['aircraft']['images']['large']
     aircraft_data['aircraft']['images'] = images
+
+    aircraft_data['flightHistory'] = []
 
     return aircraft_data['aircraft']
 
@@ -52,8 +60,10 @@ def process_flight_data(data):
     del flight_data['status']['ambiguous']
     del flight_data['status']['generic']
 
+    # remove unnecessary airport data
     del flight_data['airport']
 
+    # remove more unnecessary data
     del flight_data['level']
     del flight_data['promote']
 
@@ -63,10 +73,9 @@ def process_flight_data(data):
     # remove flight history
     del flight_data['flightHistory']
 
+    # remove more unnecessary data
     del flight_data['ems']
     del flight_data['availability']
-
-    del flight_data['trail']
 
     del flight_data['s']
 
@@ -75,42 +84,29 @@ def process_flight_data(data):
 
 # function saves data to a specified collection
 # returns true if successful
-def save_data(data, collection):
+def insert_data(data, collection):
     collection = db[collection]
     return collection.insert_one(data)
 
 
-# function returns JSON data of all of the flights above Slovenian airspace
-def get_all(request):
+# function returns JSON data of all the flights above Slovenian airspace
+def get_data(request):
     if request.method != 'GET':
         return JsonResponse({'error': 'Unsupported request method.'})
 
-    data = radar.fr.get_flight_details('301962bc')
+    data = fr.get_flight_details('301962bc')
 
+    # process all of the data
     aircraft_data = process_aircraft_data(data)
-
     origin_airport_data = process_origin_airport_data(data)
-
     destination_airport_data = process_destination_airport_data(data)
-
     airline_data = process_airline_data(data)
-
     flight_data = process_flight_data(data)
-    # flight_data_json = json.dumps(flight_data, indent=4)
 
-    # if an error occurs when saving to the database
-    if (
-        not save_data(aircraft_data, collection='aircrafts') or
-        not save_data(origin_airport_data, collection='airports') or
-        not save_data(destination_airport_data, collection='airports') or
-        not save_data(airline_data, collection='airlines') or
-        not save_data(flight_data, collection='flights')
-    ):
-        return JsonResponse({'message': 'Error when saving to the "{collection}" collection in the database!'})
-
-    return JsonResponse({'message': 'Data saved successfully!'})
-
-
-def post(request):
-    j = get_all(request)
-    print(j)
+    return JsonResponse({
+        'aircraft': aircraft_data,
+        'originAirport': origin_airport_data,
+        'destinationAirport': destination_airport_data,
+        'airline': airline_data,
+        'flight': flight_data
+    })
