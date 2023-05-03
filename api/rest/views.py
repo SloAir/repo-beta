@@ -166,8 +166,8 @@ def get_data(request):
             # updated_flight = collection.find_one(filter)
             # si_flight_details.append(updated_flight)
 
+        # if flight does not exist
         else:
-            # if flight does not exist
             valid_trail = []
 
             # cumulative diff -> if diff < time_interval
