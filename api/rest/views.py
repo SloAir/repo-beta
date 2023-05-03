@@ -302,6 +302,4 @@ def update_flight(request):
 
     updated_flight = db.flights.find_one(filter)
 
-    print('cigan')
-
     return JsonResponse(updated_flight)
