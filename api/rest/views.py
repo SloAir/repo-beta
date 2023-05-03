@@ -1,12 +1,13 @@
 import os
+import requests
 from dotenv import load_dotenv
 from rest.settings import db
 from django.http import *
 from .radar import *
+from django.middleware.csrf import CsrfViewMiddleware
+from django.views.decorators.csrf import csrf_exempt
 
 load_dotenv()
-
-SERVER_URL = 'http://' + os.environ.get('SERVER_HOST') + ':' + os.environ.get('SERVER_PORT')
 
 
 # function returns a processed JSON object of an aircraft as a dictionary
@@ -26,7 +27,7 @@ def process_aircraft_data(data):
     del aircraft_data['aircraft']['images']['large']
     aircraft_data['aircraft']['images'] = images
 
-    aircraft_data['flightHistory'] = []
+    aircraft_data['flightId'] = data['identification']['id']
 
     return aircraft_data['aircraft']
 
@@ -41,6 +42,7 @@ def process_destination_airport_data(data):
     return data['airport']['destination']
 
 
+# function returns a processed JSON object of an airline as a dictionary
 def process_airline_data(data):
     return data['airline']
 
@@ -103,6 +105,14 @@ def get_data(request):
     airline_data = process_airline_data(data)
     flight_data = process_flight_data(data)
 
+    csrf_token = request.COOKIES.get('csrftoken')
+
+    headers = {
+        'X-CSRFToken': csrf_token
+    }
+
+    response = requests.post(os.environ.get('SERVER_URL') + '/api/aircraft/post/', json=aircraft_data, headers=headers)
+
     return JsonResponse({
         'aircraft': aircraft_data,
         'originAirport': origin_airport_data,
@@ -110,3 +120,42 @@ def get_data(request):
         'airline': airline_data,
         'flight': flight_data
     })
+
+
+# function gets all of the aircraft data from the database
+@csrf_exempt
+def get_aircraft(request):
+    if request.method != 'GET':
+        return JsonResponse({'error': 'Unsupported request method.'})
+
+
+# function inserts the aircraft into the database
+@csrf_exempt
+def insert_aircraft(request):
+    if request.method != 'POST':
+        return JsonResponse({'error': 'Unsupported request method.'})
+
+    data = json.loads(request.body)
+    registration_number = data['registration']
+
+    # if the aircraft already exists, redirect to PUT URL
+    if db.aircrafts.find_one({'registration': registration_number}):
+        return requests.put(os.environ.get('SERVER_URL') + '/api/aircraft/put', json=data)
+    else:
+        db.aircrafts.insert_one(data)
+
+    return JsonResponse({'message': 'Aircraft inserted successfully.'})
+
+
+# function updates the aircraft in the database
+@csrf_exempt
+def update_aircraft(request):
+    if request.method != 'PUT':
+        return JsonResponse({'error': 'Unsupported request method.'})
+
+    data = json.loads(request.body)
+    flight_id = data['flightId']
+
+    db.aircrafts.update_one({})
+
+    return JsonResponse({'message': 'Aircraft updated successfully.'})

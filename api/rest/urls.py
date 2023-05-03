@@ -20,5 +20,16 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     # route for getting all of the data
-    path('api/get/', views.get_data, name='get_data')
+    path('api/get/', views.get_data, name='get_data'),
+
+    # aircraft routes
+    path('api/aircraft/get/', views.get_aircraft, name='get_aircraft'),
+    path('api/aircraft/post/', views.insert_aircraft, name='post_aircraft'),
+    path('api/aircraft/put/', views.update_aircraft, name='put_aircraft')
+
+    # airport routes
+
+    # airline routes
+
+    # flight routes
 ]
