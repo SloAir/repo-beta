@@ -171,33 +171,34 @@ def get_data(request):
             si_flight_details.append(updated_flight)
 
         ## if flight does not exist
-        valid_trail = []
+        else:
+            valid_trail = []
 
-        # cumulative diff -> if diff < time_interval
-        cum_diff = 0
+            # cumulative diff -> if diff < time_interval
+            cum_diff = 0
 
-        for i in range(trail_len):
-            if lat_min <= details["trail"][i]['lat'] <= lat_max and lon_min <= details["trail"][i]['lng'] <= lon_max:
-                if i == 0:
-                    valid_trail.append(details["trail"][i])
-                else:
-                    diff = details["trail"][i-1]['ts']-details["trail"][i]['ts']
-                    if diff >= time_interval:
-                            if cum_diff + diff >= cum_interval:
-                                valid_trail.append(details["trail"][i-1])
-                            else:
-                                valid_trail.append(details["trail"][i])
-                            cum_diff = 0
+            for i in range(trail_len):
+                if lat_min <= details["trail"][i]['lat'] <= lat_max and lon_min <= details["trail"][i]['lng'] <= lon_max:
+                    if i == 0:
+                        valid_trail.append(details["trail"][i])
                     else:
-                            cum_diff += diff
-                            if cum_diff >= time_interval:
-                                valid_trail.append(details["trail"][i])
+                        diff = details["trail"][i-1]['ts']-details["trail"][i]['ts']
+                        if diff >= time_interval:
+                                if cum_diff + diff >= cum_interval:
+                                    valid_trail.append(details["trail"][i-1])
+                                else:
+                                    valid_trail.append(details["trail"][i])
                                 cum_diff = 0
-            else:
-                break
+                        else:
+                                cum_diff += diff
+                                if cum_diff >= time_interval:
+                                    valid_trail.append(details["trail"][i])
+                                    cum_diff = 0
+                else:
+                    break
 
-        details["trail"] = valid_trail
-    si_flight_details.append(details)
+            details["trail"] = valid_trail
+            si_flight_details.append(details)
 
     # token
     csrf_token = request.COOKIES.get('csrftoken')
