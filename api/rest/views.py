@@ -96,8 +96,8 @@ def get_data(request):
         return JsonResponse({'error': 'Unsupported request method.'})
     
     # get all existing flight_id from the DB
-    collection = db["Flight"]
-    projection = { "flight_id" : 1}
+    collection = db["flights"]
+    projection = {"flight_id": 1}
     db_flights = collection.find({}, projection)
 
     # get all predefined zones -> extract Central Europe
@@ -109,7 +109,7 @@ def get_data(request):
     lat_max, lon_min, lat_min, lon_max = map(float, si_bounds.split(','))
 
     # get Central Europe flights
-    ceur_flights = fr.get_flights(bounds = ceur_bounds)
+    ceur_flights = fr.get_flights(bounds=ceur_bounds)
 
     # get flight_id for flights in SLO airspace ATM
     si_flights = []
@@ -126,10 +126,11 @@ def get_data(request):
 
     for si_flight_id in si_flights:
         # get_flight_details
+        # details = fr.get_flight_details(si_flight_id)
         details = fr.get_flight_details(si_flight_id)
-        
+
         # "aircraft" is a GROUND vehicle -> ignore
-        if details["aircraft"]["model"]["code"]=='GRND':
+        if details["aircraft"]["model"]["code"] == 'GRND':
             continue
         
         # adjust time intervals to the amount of data inside the trail -> COULD CHANGE!
@@ -151,7 +152,7 @@ def get_data(request):
         else:
             details["trail"] = details["trail"][i:]
 
-        ## if flight exists; updated trail and add to si_flight_details
+        # if flight exists; updated trail and add to si_flight_details
         if si_flight_id in db_flights:
             trail_len = len(details["trail"])
 
@@ -161,43 +162,39 @@ def get_data(request):
                 if lat_min <= details["trail"][i]['lat'] <= lat_max and lon_min <= details["trail"][i]['lng'] <= lon_max:
                     new_trail = details["trail"][i]
                     break
-            
-            collection = db['Flight']
-            filter = { 'flight_id' : si_flight_id}
-            update = { '$push' : {"trail": {"$each": [new_trail], "$position": 0}}}
-            update_result = collection.update_one(filter, update)
 
-            updated_flight = collection.find_one(filter)
-            si_flight_details.append(updated_flight)
+            # updated_flight = collection.find_one(filter)
+            # si_flight_details.append(updated_flight)
 
-        ## if flight does not exist
-        valid_trail = []
+        else:
+            # if flight does not exist
+            valid_trail = []
 
-        # cumulative diff -> if diff < time_interval
-        cum_diff = 0
+            # cumulative diff -> if diff < time_interval
+            cum_diff = 0
 
-        for i in range(trail_len):
-            if lat_min <= details["trail"][i]['lat'] <= lat_max and lon_min <= details["trail"][i]['lng'] <= lon_max:
-                if i == 0:
-                    valid_trail.append(details["trail"][i])
-                else:
-                    diff = details["trail"][i-1]['ts']-details["trail"][i]['ts']
-                    if diff >= time_interval:
-                            if cum_diff + diff >= cum_interval:
-                                valid_trail.append(details["trail"][i-1])
-                            else:
-                                valid_trail.append(details["trail"][i])
-                            cum_diff = 0
+            for i in range(trail_len):
+                if lat_min <= details["trail"][i]['lat'] <= lat_max and lon_min <= details["trail"][i]['lng'] <= lon_max:
+                    if i == 0:
+                        valid_trail.append(details["trail"][i])
                     else:
-                            cum_diff += diff
-                            if cum_diff >= time_interval:
-                                valid_trail.append(details["trail"][i])
+                        diff = details["trail"][i-1]['ts']-details["trail"][i]['ts']
+                        if diff >= time_interval:
+                                if cum_diff + diff >= cum_interval:
+                                    valid_trail.append(details["trail"][i-1])
+                                else:
+                                    valid_trail.append(details["trail"][i])
                                 cum_diff = 0
-            else:
-                break
+                        else:
+                                cum_diff += diff
+                                if cum_diff >= time_interval:
+                                    valid_trail.append(details["trail"][i])
+                                    cum_diff = 0
+                else:
+                    break
 
-        details["trail"] = valid_trail
-    si_flight_details.append(details)
+            details["trail"] = valid_trail
+            si_flight_details.append(details)
 
     # token
     csrf_token = request.COOKIES.get('csrftoken')
@@ -227,10 +224,12 @@ def get_data(request):
 
         data_array.append(data_json)
 
-        response = requests.post(os.environ.get('SERVER_URL') + '/api/aircraft/post/', json=aircraft_data, headers=headers)
-    
-    #safe=false -> data is NOT a dictionary
+        requests.post(os.environ.get('SERVER_URL') + 'api/aircraft/post/', json=aircraft_data, headers=headers)
+        requests.post(os.environ.get('SERVER_URL') + 'api/flight/post/', json=flight_data, headers=headers)
+
+    # safe=false -> data is NOT a dictionary
     return JsonResponse(data_array, safe=False)
+
 
 # function gets all of the aircraft data from the database
 @csrf_exempt
@@ -250,7 +249,8 @@ def insert_aircraft(request):
 
     # if the aircraft already exists, redirect to PUT URL
     if db.aircrafts.find_one({'registration': registration_number}):
-        return requests.put(os.environ.get('SERVER_URL') + '/api/aircraft/put', json=data)
+        # return requests.put(os.environ.get('SERVER_URL') + 'api/aircraft/put/', json=data)
+        print()
     else:
         db.aircrafts.insert_one(data)
 
@@ -269,3 +269,39 @@ def update_aircraft(request):
     db.aircrafts.update_one({})
 
     return JsonResponse({'message': 'Aircraft updated successfully.'})
+
+
+@csrf_exempt
+def insert_flight(request):
+    if request.method != 'POST':
+        return JsonResponse({'error': 'Unsupported request method.'})
+
+    data = json.loads(request.body)
+    flight_id = data['identification']['id']
+
+    if db.flights.find_one({'identification.id': flight_id}):
+        return requests.put(os.environ.get('SERVER_URL') + 'api/flight/put/', json=data)
+    else:
+        db.flights.insert_one(data)
+
+    return JsonResponse({'message': 'Flight inserted successfully.'})
+
+
+@csrf_exempt
+def update_flight(request):
+    if request.method != 'PUT':
+        return JsonResponse({'error': 'Unsupported request method.'})
+
+    data = json.loads(request.body)
+    flight_id = data['identification']['id']
+    trail = data['trail'][0]
+
+    filter = {'flightId': flight_id}
+    update = {"$push": {"trail": {"$each": [trail], "$position": 0}}}
+    db.flights.update_one(filter, update)
+
+    updated_flight = db.flights.find_one(filter)
+
+    print('cigan')
+
+    return JsonResponse(updated_flight)

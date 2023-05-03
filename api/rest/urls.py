@@ -25,11 +25,13 @@ urlpatterns = [
     # aircraft routes
     path('api/aircraft/get/', views.get_aircraft, name='get_aircraft'),
     path('api/aircraft/post/', views.insert_aircraft, name='post_aircraft'),
-    path('api/aircraft/put/', views.update_aircraft, name='put_aircraft')
+    path('api/aircraft/put/', views.update_aircraft, name='put_aircraft'),
 
     # airport routes
 
     # airline routes
 
     # flight routes
+    path('api/flight/post/', views.insert_flight, name='post_flight'),
+    path('api/flight/put/', views.update_flight, name='put_flight'),
 ]
