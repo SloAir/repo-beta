@@ -78,11 +78,12 @@ WSGI_APPLICATION = 'rest.wsgi.application'
 
 load_dotenv()
 
-mongoengine.connect(
-    db=os.environ.get('DB_NAME'),
+mongo = mongoengine.connect(
     host=os.environ.get('DB_HOST'),
     port=int(os.environ.get('DB_PORT'))
 )
+
+db = mongo['SloAir']
 
 print('Connected to the database!')
 
@@ -129,3 +130,7 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Cookie setup
+CSRF_COOKIE_NAME = 'csrftoken'

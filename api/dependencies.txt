@@ -6,3 +6,4 @@ MongoEngine==0.27.0
 Django==4.2
 DjangoRESTFramework==3.14.0
 Django-CORS-Headers==3.14.0
+FlightRadarAPI

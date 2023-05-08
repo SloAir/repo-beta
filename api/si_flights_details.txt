@@ -1,0 +1,4715 @@
+[
+    {
+        "identification": {
+            "id": "3023c17f",
+            "row": 5353995070,
+            "number": {
+                "default": "LX253",
+                "alternative": null
+            },
+            "callsign": "SWR253"
+        },
+        "status": {
+            "live": true,
+            "text": "Delayed 22:05",
+            "icon": "yellow",
+            "estimated": null,
+            "ambiguous": false,
+            "generic": {
+                "status": {
+                    "text": "delayed",
+                    "color": "yellow",
+                    "type": "arrival"
+                },
+                "eventTime": {
+                    "utc": 1683144320,
+                    "local": 1683151520
+                }
+            }
+        },
+        "level": "limited",
+        "promote": false,
+        "aircraft": {
+            "model": {
+                "code": "A20N",
+                "text": "Airbus A320-271N"
+            },
+            "countryId": 216,
+            "registration": "HB-JDF",
+            "age": null,
+            "msn": null,
+            "images": {
+                "thumbnails": [
+                    {
+                        "src": "https://cdn.jetphotos.com/200/6/1349586_1680617955_tb.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10929234",
+                        "copyright": "J.M.Carballo",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/200/6/333534_1679992387_tb.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10922790",
+                        "copyright": "mmcwalter",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/200/5/990908_1676912108_tb.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10886458",
+                        "copyright": "Rebecca Kloss",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/200/5/971930_1679909922_tb.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10921779",
+                        "copyright": "Mateo Le\u00f3n",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/200/5/861363_1677087440_tb.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10888348",
+                        "copyright": "Mateo Le\u00f3n",
+                        "source": "Jetphotos"
+                    }
+                ],
+                "medium": [
+                    {
+                        "src": "https://cdn.jetphotos.com/400/6/1349586_1680617955.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10929234",
+                        "copyright": "J.M.Carballo",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/400/6/333534_1679992387.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10922790",
+                        "copyright": "mmcwalter",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/400/5/990908_1676912108.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10886458",
+                        "copyright": "Rebecca Kloss",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/400/5/971930_1679909922.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10921779",
+                        "copyright": "Mateo Le\u00f3n",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/400/5/861363_1677087440.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10888348",
+                        "copyright": "Mateo Le\u00f3n",
+                        "source": "Jetphotos"
+                    }
+                ],
+                "large": [
+                    {
+                        "src": "https://cdn.jetphotos.com/640cb/6/1349586_1680617955.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10929234",
+                        "copyright": "J.M.Carballo",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/640cb/6/333534_1679992387.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10922790",
+                        "copyright": "mmcwalter",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/640cb/5/990908_1676912108.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10886458",
+                        "copyright": "Rebecca Kloss",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/640cb/5/971930_1679909922.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10921779",
+                        "copyright": "Mateo Le\u00f3n",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/640cb/5/861363_1677087440.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10888348",
+                        "copyright": "Mateo Le\u00f3n",
+                        "source": "Jetphotos"
+                    }
+                ]
+            },
+            "hex": "4b1817"
+        },
+        "airline": {
+            "name": "Swiss",
+            "short": "Swiss",
+            "code": {
+                "iata": "LX",
+                "icao": "SWR"
+            },
+            "url": "swiss-swr"
+        },
+        "owner": null,
+        "airspace": null,
+        "airport": {
+            "origin": {
+                "name": "Tel Aviv Ben Gurion International Airport",
+                "code": {
+                    "iata": "TLV",
+                    "icao": "LLBG"
+                },
+                "position": {
+                    "latitude": 32.011379,
+                    "longitude": 34.886662,
+                    "altitude": 135,
+                    "country": {
+                        "id": 108,
+                        "name": "Israel",
+                        "code": "IL",
+                        "codeLong": "ISR"
+                    },
+                    "region": {
+                        "city": "Tel Aviv"
+                    }
+                },
+                "timezone": {
+                    "name": "Asia/Jerusalem",
+                    "offset": 10800,
+                    "offsetHours": "3:00",
+                    "abbr": "IDT",
+                    "abbrName": "Israel Daylight Time",
+                    "isDst": true
+                },
+                "visible": true,
+                "website": "http://www.iaa.gov.il/Rashat/en-US/Airports/BenGurion/",
+                "info": {
+                    "terminal": "3",
+                    "baggage": null,
+                    "gate": "E03"
+                }
+            },
+            "destination": {
+                "name": "Zurich Airport",
+                "code": {
+                    "iata": "ZRH",
+                    "icao": "LSZH"
+                },
+                "position": {
+                    "latitude": 47.464722,
+                    "longitude": 8.549167,
+                    "altitude": 1416,
+                    "country": {
+                        "id": 216,
+                        "name": "Switzerland",
+                        "code": "CH",
+                        "codeLong": "CHE"
+                    },
+                    "region": {
+                        "city": "Zurich"
+                    }
+                },
+                "timezone": {
+                    "name": "Europe/Zurich",
+                    "offset": 7200,
+                    "offsetHours": "2:00",
+                    "abbr": "CEST",
+                    "abbrName": "Central European Summer Time",
+                    "isDst": true
+                },
+                "visible": true,
+                "website": "http://www.zurich-airport.com/",
+                "info": {
+                    "terminal": "2",
+                    "baggage": null,
+                    "gate": null
+                }
+            },
+            "real": null
+        },
+        "flightHistory": {
+            "aircraft": [
+                {
+                    "identification": {
+                        "id": "3022b30d",
+                        "number": {
+                            "default": "LX252"
+                        }
+                    },
+                    "airport": {
+                        "origin": {
+                            "name": "Zurich Airport",
+                            "code": {
+                                "iata": "ZRH",
+                                "icao": "LSZH"
+                            },
+                            "position": {
+                                "latitude": 47.464722,
+                                "longitude": 8.549167,
+                                "altitude": 1416,
+                                "country": {
+                                    "id": 216,
+                                    "name": "Switzerland",
+                                    "code": "CH",
+                                    "codeLong": "CHE"
+                                },
+                                "region": {
+                                    "city": "Zurich"
+                                }
+                            },
+                            "timezone": {
+                                "name": "Europe/Zurich",
+                                "offset": 7200,
+                                "offsetHours": "2:00",
+                                "abbr": "CEST",
+                                "abbrName": "Central European Summer Time",
+                                "isDst": true
+                            },
+                            "visible": true,
+                            "website": "http://www.zurich-airport.com/"
+                        },
+                        "destination": {
+                            "name": "Tel Aviv Ben Gurion International Airport",
+                            "code": {
+                                "iata": "TLV",
+                                "icao": "LLBG"
+                            },
+                            "position": {
+                                "latitude": 32.011379,
+                                "longitude": 34.886662,
+                                "altitude": 135,
+                                "country": {
+                                    "id": 108,
+                                    "name": "Israel",
+                                    "code": "IL",
+                                    "codeLong": "ISR"
+                                },
+                                "region": {
+                                    "city": "Tel Aviv"
+                                }
+                            },
+                            "timezone": {
+                                "name": "Asia/Jerusalem",
+                                "offset": 10800,
+                                "offsetHours": "3:00",
+                                "abbr": "IDT",
+                                "abbrName": "Israel Daylight Time",
+                                "isDst": true
+                            },
+                            "visible": true,
+                            "website": "http://www.iaa.gov.il/Rashat/en-US/Airports/BenGurion/"
+                        }
+                    },
+                    "time": {
+                        "real": {
+                            "departure": 1683112373
+                        }
+                    }
+                },
+                {
+                    "identification": {
+                        "id": "302259a5",
+                        "number": {
+                            "default": null
+                        }
+                    },
+                    "airport": {
+                        "origin": {
+                            "name": "Geneva International Airport",
+                            "code": {
+                                "iata": "GVA",
+                                "icao": "LSGG"
+                            },
+                            "position": {
+                                "latitude": 46.23806,
+                                "longitude": 6.10895,
+                                "altitude": 1411,
+                                "country": {
+                                    "id": 216,
+                                    "name": "Switzerland",
+                                    "code": "CH",
+                                    "codeLong": "CHE"
+                                },
+                                "region": {
+                                    "city": "Geneva"
+                                }
+                            },
+                            "timezone": {
+                                "name": "Europe/Zurich",
+                                "offset": 7200,
+                                "offsetHours": "2:00",
+                                "abbr": "CEST",
+                                "abbrName": "Central European Summer Time",
+                                "isDst": true
+                            },
+                            "visible": true,
+                            "website": "http://www.gva.ch/en/desktopdefault.aspx"
+                        },
+                        "destination": {
+                            "name": "Zurich Airport",
+                            "code": {
+                                "iata": "ZRH",
+                                "icao": "LSZH"
+                            },
+                            "position": {
+                                "latitude": 47.464722,
+                                "longitude": 8.549167,
+                                "altitude": 1416,
+                                "country": {
+                                    "id": 216,
+                                    "name": "Switzerland",
+                                    "code": "CH",
+                                    "codeLong": "CHE"
+                                },
+                                "region": {
+                                    "city": "Zurich"
+                                }
+                            },
+                            "timezone": {
+                                "name": "Europe/Zurich",
+                                "offset": 7200,
+                                "offsetHours": "2:00",
+                                "abbr": "CEST",
+                                "abbrName": "Central European Summer Time",
+                                "isDst": true
+                            },
+                            "visible": true,
+                            "website": "http://www.zurich-airport.com/"
+                        }
+                    },
+                    "time": {
+                        "real": {
+                            "departure": 1683101675
+                        }
+                    }
+                },
+                {
+                    "identification": {
+                        "id": "30221472",
+                        "number": {
+                            "default": "LX2802"
+                        }
+                    },
+                    "airport": {
+                        "origin": {
+                            "name": "Zurich Airport",
+                            "code": {
+                                "iata": "ZRH",
+                                "icao": "LSZH"
+                            },
+                            "position": {
+                                "latitude": 47.464722,
+                                "longitude": 8.549167,
+                                "altitude": 1416,
+                                "country": {
+                                    "id": 216,
+                                    "name": "Switzerland",
+                                    "code": "CH",
+                                    "codeLong": "CHE"
+                                },
+                                "region": {
+                                    "city": "Zurich"
+                                }
+                            },
+                            "timezone": {
+                                "name": "Europe/Zurich",
+                                "offset": 7200,
+                                "offsetHours": "2:00",
+                                "abbr": "CEST",
+                                "abbrName": "Central European Summer Time",
+                                "isDst": true
+                            },
+                            "visible": true,
+                            "website": "http://www.zurich-airport.com/"
+                        },
+                        "destination": {
+                            "name": "Geneva International Airport",
+                            "code": {
+                                "iata": "GVA",
+                                "icao": "LSGG"
+                            },
+                            "position": {
+                                "latitude": 46.23806,
+                                "longitude": 6.10895,
+                                "altitude": 1411,
+                                "country": {
+                                    "id": 216,
+                                    "name": "Switzerland",
+                                    "code": "CH",
+                                    "codeLong": "CHE"
+                                },
+                                "region": {
+                                    "city": "Geneva"
+                                }
+                            },
+                            "timezone": {
+                                "name": "Europe/Zurich",
+                                "offset": 7200,
+                                "offsetHours": "2:00",
+                                "abbr": "CEST",
+                                "abbrName": "Central European Summer Time",
+                                "isDst": true
+                            },
+                            "visible": true,
+                            "website": "http://www.gva.ch/en/desktopdefault.aspx"
+                        }
+                    },
+                    "time": {
+                        "real": {
+                            "departure": 1683093076
+                        }
+                    }
+                },
+                {
+                    "identification": {
+                        "id": "3020b8b8",
+                        "number": {
+                            "default": "LX1419"
+                        }
+                    },
+                    "airport": {
+                        "origin": {
+                            "name": "Belgrade Nikola Tesla Airport",
+                            "code": {
+                                "iata": "BEG",
+                                "icao": "LYBE"
+                            },
+                            "position": {
+                                "latitude": 44.818439,
+                                "longitude": 20.30913,
+                                "altitude": 335,
+                                "country": {
+                                    "id": 196,
+                                    "name": "Serbia",
+                                    "code": "RS",
+                                    "codeLong": "SRB"
+                                },
+                                "region": {
+                                    "city": "Belgrade"
+                                }
+                            },
+                            "timezone": {
+                                "name": "Europe/Belgrade",
+                                "offset": 7200,
+                                "offsetHours": "2:00",
+                                "abbr": "CEST",
+                                "abbrName": "Central European Summer Time",
+                                "isDst": true
+                            },
+                            "visible": true,
+                            "website": "http://www.beg.aero/code/navigate.php?Id=54"
+                        },
+                        "destination": {
+                            "name": "Zurich Airport",
+                            "code": {
+                                "iata": "ZRH",
+                                "icao": "LSZH"
+                            },
+                            "position": {
+                                "latitude": 47.464722,
+                                "longitude": 8.549167,
+                                "altitude": 1416,
+                                "country": {
+                                    "id": 216,
+                                    "name": "Switzerland",
+                                    "code": "CH",
+                                    "codeLong": "CHE"
+                                },
+                                "region": {
+                                    "city": "Zurich"
+                                }
+                            },
+                            "timezone": {
+                                "name": "Europe/Zurich",
+                                "offset": 7200,
+                                "offsetHours": "2:00",
+                                "abbr": "CEST",
+                                "abbrName": "Central European Summer Time",
+                                "isDst": true
+                            },
+                            "visible": true,
+                            "website": "http://www.zurich-airport.com/"
+                        }
+                    },
+                    "time": {
+                        "real": {
+                            "departure": 1683052706
+                        }
+                    }
+                }
+            ]
+        },
+        "ems": null,
+        "availability": [
+            "AGE",
+            "MSN"
+        ],
+        "time": {
+            "scheduled": {
+                "departure": 1683126900,
+                "arrival": 1683142500
+            },
+            "real": {
+                "departure": 1683130670,
+                "arrival": null
+            },
+            "estimated": {
+                "departure": null,
+                "arrival": 1683144320
+            },
+            "other": {
+                "eta": 1683144320,
+                "updated": 1683136845
+            },
+            "historical": {
+                "flighttime": "13793",
+                "delay": "961"
+            }
+        },
+        "trail": [
+            {
+                "lat": 46.528961,
+                "lng": 13.970627,
+                "alt": 37975,
+                "spd": 434,
+                "ts": 1683141605,
+                "hd": 307
+            },
+            {
+                "lat": 46.297878,
+                "lng": 14.400879,
+                "alt": 38050,
+                "spd": 436,
+                "ts": 1683141418,
+                "hd": 307
+            },
+            {
+                "lat": 46.065163,
+                "lng": 14.827011,
+                "alt": 37950,
+                "spd": 430,
+                "ts": 1683141230,
+                "hd": 308
+            },
+            {
+                "lat": 45.83147,
+                "lng": 15.249229,
+                "alt": 38050,
+                "spd": 442,
+                "ts": 1683141043,
+                "hd": 308
+            }
+        ],
+        "firstTimestamp": 1683129857,
+        "s": "EnDDPmXngo8c-UwTQkD7WJXlEiTdzH65BK7nOzbOOci3WOMz75LAc7ZCeEJ3BGdb"
+    },
+    {
+        "identification": {
+            "id": "302422a7",
+            "row": 5353884026,
+            "number": {
+                "default": "A3623",
+                "alternative": null
+            },
+            "callsign": "AEE6BR"
+        },
+        "status": {
+            "live": true,
+            "text": "Delayed 23:56",
+            "icon": "yellow",
+            "estimated": null,
+            "ambiguous": false,
+            "generic": {
+                "status": {
+                    "text": "delayed",
+                    "color": "yellow",
+                    "type": "arrival"
+                },
+                "eventTime": {
+                    "utc": 1683147392,
+                    "local": 1683158192
+                }
+            }
+        },
+        "level": "limited",
+        "promote": false,
+        "aircraft": {
+            "model": {
+                "code": "A20N",
+                "text": "Airbus A320-271N"
+            },
+            "countryId": 86,
+            "registration": "SX-NEB",
+            "age": null,
+            "msn": null,
+            "images": {
+                "thumbnails": [
+                    {
+                        "src": "https://cdn.jetphotos.com/200/6/358794_1681155259_tb.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10935772",
+                        "copyright": "Lorenzo Bottaro",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/200/5/420046_1680039485_tb.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10923449",
+                        "copyright": "Pier Francesco Baglivo",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/200/6/1114293_1677868840_tb.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10898232",
+                        "copyright": "Michael Baumert",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/200/6/945024_1678081125_tb.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10901178",
+                        "copyright": "Eddie Heisterkamp",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/200/6/1873367_1679680298_tb.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10918972",
+                        "copyright": "Marcel Rudolf",
+                        "source": "Jetphotos"
+                    }
+                ],
+                "medium": [
+                    {
+                        "src": "https://cdn.jetphotos.com/400/6/358794_1681155259.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10935772",
+                        "copyright": "Lorenzo Bottaro",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/400/5/420046_1680039485.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10923449",
+                        "copyright": "Pier Francesco Baglivo",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/400/6/1114293_1677868840.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10898232",
+                        "copyright": "Michael Baumert",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/400/6/945024_1678081125.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10901178",
+                        "copyright": "Eddie Heisterkamp",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/400/6/1873367_1679680298.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10918972",
+                        "copyright": "Marcel Rudolf",
+                        "source": "Jetphotos"
+                    }
+                ],
+                "large": [
+                    {
+                        "src": "https://cdn.jetphotos.com/640cb/6/358794_1681155259.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10935772",
+                        "copyright": "Lorenzo Bottaro",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/640cb/5/420046_1680039485.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10923449",
+                        "copyright": "Pier Francesco Baglivo",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/640cb/6/1114293_1677868840.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10898232",
+                        "copyright": "Michael Baumert",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/640cb/6/945024_1678081125.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10901178",
+                        "copyright": "Eddie Heisterkamp",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/640cb/6/1873367_1679680298.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10918972",
+                        "copyright": "Marcel Rudolf",
+                        "source": "Jetphotos"
+                    }
+                ]
+            },
+            "hex": "46b8a2"
+        },
+        "airline": {
+            "name": "Aegean Airlines",
+            "short": "Aegean Airlines",
+            "code": {
+                "iata": "A3",
+                "icao": "AEE"
+            },
+            "url": "aegean-airlines-aee"
+        },
+        "owner": null,
+        "airspace": null,
+        "airport": {
+            "origin": {
+                "name": "Brussels Airport",
+                "code": {
+                    "iata": "BRU",
+                    "icao": "EBBR"
+                },
+                "position": {
+                    "latitude": 50.901379,
+                    "longitude": 4.484444,
+                    "altitude": 184,
+                    "country": {
+                        "id": 22,
+                        "name": "Belgium",
+                        "code": "BE",
+                        "codeLong": "BEL"
+                    },
+                    "region": {
+                        "city": "Brussels"
+                    }
+                },
+                "timezone": {
+                    "name": "Europe/Brussels",
+                    "offset": 7200,
+                    "offsetHours": "2:00",
+                    "abbr": "CEST",
+                    "abbrName": "Central European Summer Time",
+                    "isDst": true
+                },
+                "visible": true,
+                "website": "http://www.brusselsairport.be/en/",
+                "info": {
+                    "terminal": null,
+                    "baggage": null,
+                    "gate": "2"
+                }
+            },
+            "destination": {
+                "name": "Athens Eleftherios Venizelos",
+                "code": {
+                    "iata": "ATH",
+                    "icao": "LGAV"
+                },
+                "position": {
+                    "latitude": 37.936352,
+                    "longitude": 23.94446,
+                    "altitude": 308,
+                    "country": {
+                        "id": 86,
+                        "name": "Greece",
+                        "code": "GR",
+                        "codeLong": "GRC"
+                    },
+                    "region": {
+                        "city": "Athens"
+                    }
+                },
+                "timezone": {
+                    "name": "Europe/Athens",
+                    "offset": 10800,
+                    "offsetHours": "3:00",
+                    "abbr": "EEST",
+                    "abbrName": "Eastern European Summer Time",
+                    "isDst": true
+                },
+                "visible": true,
+                "website": "http://www.aia.gr/default.asp?langid=2",
+                "info": {
+                    "terminal": null,
+                    "baggage": null,
+                    "gate": null
+                }
+            },
+            "real": null
+        },
+        "flightHistory": {
+            "aircraft": [
+                {
+                    "identification": {
+                        "id": "30231fb0",
+                        "number": {
+                            "default": "A3622"
+                        }
+                    },
+                    "airport": {
+                        "origin": {
+                            "name": "Athens Eleftherios Venizelos",
+                            "code": {
+                                "iata": "ATH",
+                                "icao": "LGAV"
+                            },
+                            "position": {
+                                "latitude": 37.936352,
+                                "longitude": 23.94446,
+                                "altitude": 308,
+                                "country": {
+                                    "id": 86,
+                                    "name": "Greece",
+                                    "code": "GR",
+                                    "codeLong": "GRC"
+                                },
+                                "region": {
+                                    "city": "Athens"
+                                }
+                            },
+                            "timezone": {
+                                "name": "Europe/Athens",
+                                "offset": 10800,
+                                "offsetHours": "3:00",
+                                "abbr": "EEST",
+                                "abbrName": "Eastern European Summer Time",
+                                "isDst": true
+                            },
+                            "visible": true,
+                            "website": "http://www.aia.gr/default.asp?langid=2"
+                        },
+                        "destination": {
+                            "name": "Brussels Airport",
+                            "code": {
+                                "iata": "BRU",
+                                "icao": "EBBR"
+                            },
+                            "position": {
+                                "latitude": 50.901379,
+                                "longitude": 4.484444,
+                                "altitude": 184,
+                                "country": {
+                                    "id": 22,
+                                    "name": "Belgium",
+                                    "code": "BE",
+                                    "codeLong": "BEL"
+                                },
+                                "region": {
+                                    "city": "Brussels"
+                                }
+                            },
+                            "timezone": {
+                                "name": "Europe/Brussels",
+                                "offset": 7200,
+                                "offsetHours": "2:00",
+                                "abbr": "CEST",
+                                "abbrName": "Central European Summer Time",
+                                "isDst": true
+                            },
+                            "visible": true,
+                            "website": "http://www.brusselsairport.be/en/"
+                        }
+                    },
+                    "time": {
+                        "real": {
+                            "departure": 1683120218
+                        }
+                    }
+                },
+                {
+                    "identification": {
+                        "id": "3022984c",
+                        "number": {
+                            "default": "A3115"
+                        }
+                    },
+                    "airport": {
+                        "origin": {
+                            "name": "Thessaloniki International Airport",
+                            "code": {
+                                "iata": "SKG",
+                                "icao": "LGTS"
+                            },
+                            "position": {
+                                "latitude": 40.519718,
+                                "longitude": 22.970949,
+                                "altitude": 22,
+                                "country": {
+                                    "id": null,
+                                    "name": "Greece",
+                                    "code": "GRC"
+                                },
+                                "region": {
+                                    "city": "Thessaloniki"
+                                }
+                            },
+                            "timezone": {
+                                "name": "Europe/Athens",
+                                "offset": 10800,
+                                "offsetHours": "3:00",
+                                "abbr": "EEST",
+                                "abbrName": "Eastern European Summer Time",
+                                "isDst": true
+                            },
+                            "visible": true,
+                            "website": "http://www.hcaa.gr/content/index.asp?tid=121&lang=2"
+                        },
+                        "destination": {
+                            "name": "Athens Eleftherios Venizelos",
+                            "code": {
+                                "iata": "ATH",
+                                "icao": "LGAV"
+                            },
+                            "position": {
+                                "latitude": 37.936352,
+                                "longitude": 23.94446,
+                                "altitude": 308,
+                                "country": {
+                                    "id": 86,
+                                    "name": "Greece",
+                                    "code": "GR",
+                                    "codeLong": "GRC"
+                                },
+                                "region": {
+                                    "city": "Athens"
+                                }
+                            },
+                            "timezone": {
+                                "name": "Europe/Athens",
+                                "offset": 10800,
+                                "offsetHours": "3:00",
+                                "abbr": "EEST",
+                                "abbrName": "Eastern European Summer Time",
+                                "isDst": true
+                            },
+                            "visible": true,
+                            "website": "http://www.aia.gr/default.asp?langid=2"
+                        }
+                    },
+                    "time": {
+                        "real": {
+                            "departure": 1683108302
+                        }
+                    }
+                },
+                {
+                    "identification": {
+                        "id": "30226497",
+                        "number": {
+                            "default": null
+                        }
+                    },
+                    "airport": {
+                        "origin": {
+                            "name": "Athens Eleftherios Venizelos",
+                            "code": {
+                                "iata": "ATH",
+                                "icao": "LGAV"
+                            },
+                            "position": {
+                                "latitude": 37.936352,
+                                "longitude": 23.94446,
+                                "altitude": 308,
+                                "country": {
+                                    "id": 86,
+                                    "name": "Greece",
+                                    "code": "GR",
+                                    "codeLong": "GRC"
+                                },
+                                "region": {
+                                    "city": "Athens"
+                                }
+                            },
+                            "timezone": {
+                                "name": "Europe/Athens",
+                                "offset": 10800,
+                                "offsetHours": "3:00",
+                                "abbr": "EEST",
+                                "abbrName": "Eastern European Summer Time",
+                                "isDst": true
+                            },
+                            "visible": true,
+                            "website": "http://www.aia.gr/default.asp?langid=2"
+                        },
+                        "destination": {
+                            "name": "Thessaloniki International Airport",
+                            "code": {
+                                "iata": "SKG",
+                                "icao": "LGTS"
+                            },
+                            "position": {
+                                "latitude": 40.519718,
+                                "longitude": 22.970949,
+                                "altitude": 22,
+                                "country": {
+                                    "id": null,
+                                    "name": "Greece",
+                                    "code": "GRC"
+                                },
+                                "region": {
+                                    "city": "Thessaloniki"
+                                }
+                            },
+                            "timezone": {
+                                "name": "Europe/Athens",
+                                "offset": 10800,
+                                "offsetHours": "3:00",
+                                "abbr": "EEST",
+                                "abbrName": "Eastern European Summer Time",
+                                "isDst": true
+                            },
+                            "visible": true,
+                            "website": "http://www.hcaa.gr/content/index.asp?tid=121&lang=2"
+                        }
+                    },
+                    "time": {
+                        "real": {
+                            "departure": 1683102538
+                        }
+                    }
+                },
+                {
+                    "identification": {
+                        "id": "30222fd1",
+                        "number": {
+                            "default": "A3203"
+                        }
+                    },
+                    "airport": {
+                        "origin": {
+                            "name": "Rhodes International Airport",
+                            "code": {
+                                "iata": "RHO",
+                                "icao": "LGRP"
+                            },
+                            "position": {
+                                "latitude": 36.405411,
+                                "longitude": 28.086189,
+                                "altitude": 17,
+                                "country": {
+                                    "id": null,
+                                    "name": "Greece",
+                                    "code": "GRC"
+                                },
+                                "region": {
+                                    "city": "Rhodes"
+                                }
+                            },
+                            "timezone": {
+                                "name": "Europe/Athens",
+                                "offset": 10800,
+                                "offsetHours": "3:00",
+                                "abbr": "EEST",
+                                "abbrName": "Eastern European Summer Time",
+                                "isDst": true
+                            },
+                            "visible": true,
+                            "website": "http://www.hcaa-eleng.gr/rhod.htm"
+                        },
+                        "destination": {
+                            "name": "Athens Eleftherios Venizelos",
+                            "code": {
+                                "iata": "ATH",
+                                "icao": "LGAV"
+                            },
+                            "position": {
+                                "latitude": 37.936352,
+                                "longitude": 23.94446,
+                                "altitude": 308,
+                                "country": {
+                                    "id": 86,
+                                    "name": "Greece",
+                                    "code": "GR",
+                                    "codeLong": "GRC"
+                                },
+                                "region": {
+                                    "city": "Athens"
+                                }
+                            },
+                            "timezone": {
+                                "name": "Europe/Athens",
+                                "offset": 10800,
+                                "offsetHours": "3:00",
+                                "abbr": "EEST",
+                                "abbrName": "Eastern European Summer Time",
+                                "isDst": true
+                            },
+                            "visible": true,
+                            "website": "http://www.aia.gr/default.asp?langid=2"
+                        }
+                    },
+                    "time": {
+                        "real": {
+                            "departure": 1683096439
+                        }
+                    }
+                }
+            ]
+        },
+        "ems": null,
+        "availability": [
+            "AGE",
+            "MSN"
+        ],
+        "time": {
+            "scheduled": {
+                "departure": 1683134100,
+                "arrival": 1683144900
+            },
+            "real": {
+                "departure": 1683137800,
+                "arrival": null
+            },
+            "estimated": {
+                "departure": null,
+                "arrival": 1683147392
+            },
+            "other": {
+                "eta": 1683147392,
+                "updated": 1683139964
+            },
+            "historical": {
+                "flighttime": "9580",
+                "delay": "634"
+            }
+        },
+        "trail": [
+            {
+                "lat": 46.40937,
+                "lng": 14.142426,
+                "alt": 34950,
+                "spd": 458,
+                "ts": 1683141564,
+                "hd": 135
+            }
+        ],
+        "firstTimestamp": 1683137085,
+        "s": "UAqRkegUrBOcQu4yhKwT4xd_0QAc4yMfCOeJ70ETmDQ_SxDC2Ce0Ti3yVSowzHmV"
+    },
+    {
+        "identification": {
+            "id": "30242904",
+            "row": 5354164490,
+            "number": {
+                "default": "JU194",
+                "alternative": null
+            },
+            "callsign": "ASL41H"
+        },
+        "status": {
+            "live": true,
+            "text": "Delayed 21:21",
+            "icon": "red",
+            "estimated": null,
+            "ambiguous": false,
+            "generic": {
+                "status": {
+                    "text": "delayed",
+                    "color": "red",
+                    "type": "arrival"
+                },
+                "eventTime": {
+                    "utc": 1683141677,
+                    "local": 1683148877
+                }
+            }
+        },
+        "level": "limited",
+        "promote": false,
+        "aircraft": {
+            "model": {
+                "code": "AT76",
+                "text": "ATR 72-600"
+            },
+            "countryId": 196,
+            "registration": "YU-ALX",
+            "age": null,
+            "msn": null,
+            "images": {
+                "thumbnails": [
+                    {
+                        "src": "https://cdn.jetphotos.com/200/5/1025525_1680373291_tb.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10926374",
+                        "copyright": "Daniel Nagy",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/200/6/61232_1673796136_tb.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10851150",
+                        "copyright": "Markus Schwab",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/200/6/83347_1674268280_tb.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10856683",
+                        "copyright": "Aleksa Vladisavljevic",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/200/5/61934_1670957123_tb.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10813159",
+                        "copyright": "Mehmed Bekir Cakmak",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/200/5/37546_1668203690_tb.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10777739",
+                        "copyright": "Marin Ghe.",
+                        "source": "Jetphotos"
+                    }
+                ],
+                "medium": [
+                    {
+                        "src": "https://cdn.jetphotos.com/400/5/1025525_1680373291.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10926374",
+                        "copyright": "Daniel Nagy",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/400/6/61232_1673796136.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10851150",
+                        "copyright": "Markus Schwab",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/400/6/83347_1674268280.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10856683",
+                        "copyright": "Aleksa Vladisavljevic",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/400/5/61934_1670957123.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10813159",
+                        "copyright": "Mehmed Bekir Cakmak",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/400/5/37546_1668203690.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10777739",
+                        "copyright": "Marin Ghe.",
+                        "source": "Jetphotos"
+                    }
+                ],
+                "large": [
+                    {
+                        "src": "https://cdn.jetphotos.com/640cb/5/1025525_1680373291.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10926374",
+                        "copyright": "Daniel Nagy",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/640cb/6/61232_1673796136.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10851150",
+                        "copyright": "Markus Schwab",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/640cb/6/83347_1674268280.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10856683",
+                        "copyright": "Aleksa Vladisavljevic",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/640cb/5/61934_1670957123.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10813159",
+                        "copyright": "Mehmed Bekir Cakmak",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/640cb/5/37546_1668203690.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10777739",
+                        "copyright": "Marin Ghe.",
+                        "source": "Jetphotos"
+                    }
+                ]
+            },
+            "hex": "4c0177"
+        },
+        "airline": {
+            "name": "Air Serbia",
+            "short": "AirSERBIA",
+            "code": {
+                "iata": "JU",
+                "icao": "ASL"
+            },
+            "url": "airserbia-asl"
+        },
+        "owner": null,
+        "airspace": null,
+        "airport": {
+            "origin": {
+                "name": "Belgrade Nikola Tesla Airport",
+                "code": {
+                    "iata": "BEG",
+                    "icao": "LYBE"
+                },
+                "position": {
+                    "latitude": 44.818439,
+                    "longitude": 20.30913,
+                    "altitude": 335,
+                    "country": {
+                        "id": 196,
+                        "name": "Serbia",
+                        "code": "RS",
+                        "codeLong": "SRB"
+                    },
+                    "region": {
+                        "city": "Belgrade"
+                    }
+                },
+                "timezone": {
+                    "name": "Europe/Belgrade",
+                    "offset": 7200,
+                    "offsetHours": "2:00",
+                    "abbr": "CEST",
+                    "abbrName": "Central European Summer Time",
+                    "isDst": true
+                },
+                "visible": true,
+                "website": "http://www.beg.aero/code/navigate.php?Id=54",
+                "info": {
+                    "terminal": "2",
+                    "baggage": null,
+                    "gate": "A01"
+                }
+            },
+            "destination": {
+                "name": "Ljubljana Joze Pucnik Airport",
+                "code": {
+                    "iata": "LJU",
+                    "icao": "LJLJ"
+                },
+                "position": {
+                    "latitude": 46.223679,
+                    "longitude": 14.45761,
+                    "altitude": 1273,
+                    "country": {
+                        "id": null,
+                        "name": "Slovenia",
+                        "code": "SVN"
+                    },
+                    "region": {
+                        "city": "Ljubljana"
+                    }
+                },
+                "timezone": {
+                    "name": "Europe/Ljubljana",
+                    "offset": 7200,
+                    "offsetHours": "2:00",
+                    "abbr": "CEST",
+                    "abbrName": "Central European Summer Time",
+                    "isDst": true
+                },
+                "visible": true,
+                "website": "http://www.lju-airport.si/eng",
+                "info": {
+                    "terminal": null,
+                    "baggage": null,
+                    "gate": null
+                }
+            },
+            "real": null
+        },
+        "flightHistory": {
+            "aircraft": [
+                {
+                    "identification": {
+                        "id": "3023dc95",
+                        "number": {
+                            "default": "JU113"
+                        }
+                    },
+                    "airport": {
+                        "origin": {
+                            "name": "Sarajevo International Airport",
+                            "code": {
+                                "iata": "SJJ",
+                                "icao": "LQSA"
+                            },
+                            "position": {
+                                "latitude": 43.824581,
+                                "longitude": 18.331461,
+                                "altitude": 1708,
+                                "country": {
+                                    "id": null,
+                                    "name": "Bosnia And Herzegovina",
+                                    "code": "BIH"
+                                },
+                                "region": {
+                                    "city": "Sarajevo"
+                                }
+                            },
+                            "timezone": {
+                                "name": "Europe/Sarajevo",
+                                "offset": 7200,
+                                "offsetHours": "2:00",
+                                "abbr": "CEST",
+                                "abbrName": "Central European Summer Time",
+                                "isDst": true
+                            },
+                            "visible": true,
+                            "website": "http://www.sarajevo-airport.ba/?lang=eng"
+                        },
+                        "destination": {
+                            "name": "Belgrade Nikola Tesla Airport",
+                            "code": {
+                                "iata": "BEG",
+                                "icao": "LYBE"
+                            },
+                            "position": {
+                                "latitude": 44.818439,
+                                "longitude": 20.30913,
+                                "altitude": 335,
+                                "country": {
+                                    "id": 196,
+                                    "name": "Serbia",
+                                    "code": "RS",
+                                    "codeLong": "SRB"
+                                },
+                                "region": {
+                                    "city": "Belgrade"
+                                }
+                            },
+                            "timezone": {
+                                "name": "Europe/Belgrade",
+                                "offset": 7200,
+                                "offsetHours": "2:00",
+                                "abbr": "CEST",
+                                "abbrName": "Central European Summer Time",
+                                "isDst": true
+                            },
+                            "visible": true,
+                            "website": "http://www.beg.aero/code/navigate.php?Id=54"
+                        }
+                    },
+                    "time": {
+                        "real": {
+                            "departure": 1683132188
+                        }
+                    }
+                },
+                {
+                    "identification": {
+                        "id": "30239dcb",
+                        "number": {
+                            "default": "JU112"
+                        }
+                    },
+                    "airport": {
+                        "origin": {
+                            "name": "Belgrade Nikola Tesla Airport",
+                            "code": {
+                                "iata": "BEG",
+                                "icao": "LYBE"
+                            },
+                            "position": {
+                                "latitude": 44.818439,
+                                "longitude": 20.30913,
+                                "altitude": 335,
+                                "country": {
+                                    "id": 196,
+                                    "name": "Serbia",
+                                    "code": "RS",
+                                    "codeLong": "SRB"
+                                },
+                                "region": {
+                                    "city": "Belgrade"
+                                }
+                            },
+                            "timezone": {
+                                "name": "Europe/Belgrade",
+                                "offset": 7200,
+                                "offsetHours": "2:00",
+                                "abbr": "CEST",
+                                "abbrName": "Central European Summer Time",
+                                "isDst": true
+                            },
+                            "visible": true,
+                            "website": "http://www.beg.aero/code/navigate.php?Id=54"
+                        },
+                        "destination": {
+                            "name": "Sarajevo International Airport",
+                            "code": {
+                                "iata": "SJJ",
+                                "icao": "LQSA"
+                            },
+                            "position": {
+                                "latitude": 43.824581,
+                                "longitude": 18.331461,
+                                "altitude": 1708,
+                                "country": {
+                                    "id": null,
+                                    "name": "Bosnia And Herzegovina",
+                                    "code": "BIH"
+                                },
+                                "region": {
+                                    "city": "Sarajevo"
+                                }
+                            },
+                            "timezone": {
+                                "name": "Europe/Sarajevo",
+                                "offset": 7200,
+                                "offsetHours": "2:00",
+                                "abbr": "CEST",
+                                "abbrName": "Central European Summer Time",
+                                "isDst": true
+                            },
+                            "visible": true,
+                            "website": "http://www.sarajevo-airport.ba/?lang=eng"
+                        }
+                    },
+                    "time": {
+                        "real": {
+                            "departure": 1683127442
+                        }
+                    }
+                },
+                {
+                    "identification": {
+                        "id": "302305c8",
+                        "number": {
+                            "default": "JU603"
+                        }
+                    },
+                    "airport": {
+                        "origin": {
+                            "name": "Vienna International Airport",
+                            "code": {
+                                "iata": "VIE",
+                                "icao": "LOWW"
+                            },
+                            "position": {
+                                "latitude": 48.110271,
+                                "longitude": 16.569719,
+                                "altitude": 600,
+                                "country": {
+                                    "id": 15,
+                                    "name": "Austria",
+                                    "code": "AT",
+                                    "codeLong": "AUT"
+                                },
+                                "region": {
+                                    "city": "Vienna"
+                                }
+                            },
+                            "timezone": {
+                                "name": "Europe/Vienna",
+                                "offset": 7200,
+                                "offsetHours": "2:00",
+                                "abbr": "CEST",
+                                "abbrName": "Central European Summer Time",
+                                "isDst": true
+                            },
+                            "visible": true,
+                            "website": "http://www.viennaairport.com/jart/prj3/va/main.jart?rel=en&content-id=1249344074214&reserve-mode=active"
+                        },
+                        "destination": {
+                            "name": "Belgrade Nikola Tesla Airport",
+                            "code": {
+                                "iata": "BEG",
+                                "icao": "LYBE"
+                            },
+                            "position": {
+                                "latitude": 44.818439,
+                                "longitude": 20.30913,
+                                "altitude": 335,
+                                "country": {
+                                    "id": 196,
+                                    "name": "Serbia",
+                                    "code": "RS",
+                                    "codeLong": "SRB"
+                                },
+                                "region": {
+                                    "city": "Belgrade"
+                                }
+                            },
+                            "timezone": {
+                                "name": "Europe/Belgrade",
+                                "offset": 7200,
+                                "offsetHours": "2:00",
+                                "abbr": "CEST",
+                                "abbrName": "Central European Summer Time",
+                                "isDst": true
+                            },
+                            "visible": true,
+                            "website": "http://www.beg.aero/code/navigate.php?Id=54"
+                        }
+                    },
+                    "time": {
+                        "real": {
+                            "departure": 1683117723
+                        }
+                    }
+                },
+                {
+                    "identification": {
+                        "id": "3022b2dd",
+                        "number": {
+                            "default": "JU602"
+                        }
+                    },
+                    "airport": {
+                        "origin": {
+                            "name": "Belgrade Nikola Tesla Airport",
+                            "code": {
+                                "iata": "BEG",
+                                "icao": "LYBE"
+                            },
+                            "position": {
+                                "latitude": 44.818439,
+                                "longitude": 20.30913,
+                                "altitude": 335,
+                                "country": {
+                                    "id": 196,
+                                    "name": "Serbia",
+                                    "code": "RS",
+                                    "codeLong": "SRB"
+                                },
+                                "region": {
+                                    "city": "Belgrade"
+                                }
+                            },
+                            "timezone": {
+                                "name": "Europe/Belgrade",
+                                "offset": 7200,
+                                "offsetHours": "2:00",
+                                "abbr": "CEST",
+                                "abbrName": "Central European Summer Time",
+                                "isDst": true
+                            },
+                            "visible": true,
+                            "website": "http://www.beg.aero/code/navigate.php?Id=54"
+                        },
+                        "destination": {
+                            "name": "Vienna International Airport",
+                            "code": {
+                                "iata": "VIE",
+                                "icao": "LOWW"
+                            },
+                            "position": {
+                                "latitude": 48.110271,
+                                "longitude": 16.569719,
+                                "altitude": 600,
+                                "country": {
+                                    "id": 15,
+                                    "name": "Austria",
+                                    "code": "AT",
+                                    "codeLong": "AUT"
+                                },
+                                "region": {
+                                    "city": "Vienna"
+                                }
+                            },
+                            "timezone": {
+                                "name": "Europe/Vienna",
+                                "offset": 7200,
+                                "offsetHours": "2:00",
+                                "abbr": "CEST",
+                                "abbrName": "Central European Summer Time",
+                                "isDst": true
+                            },
+                            "visible": true,
+                            "website": "http://www.viennaairport.com/jart/prj3/va/main.jart?rel=en&content-id=1249344074214&reserve-mode=active"
+                        }
+                    },
+                    "time": {
+                        "real": {
+                            "departure": 1683110637
+                        }
+                    }
+                }
+            ]
+        },
+        "ems": null,
+        "availability": [
+            "AGE",
+            "MSN"
+        ],
+        "time": {
+            "scheduled": {
+                "departure": 1683131700,
+                "arrival": 1683136800
+            },
+            "real": {
+                "departure": 1683137586,
+                "arrival": null
+            },
+            "estimated": {
+                "departure": null,
+                "arrival": 1683141677
+            },
+            "other": {
+                "eta": 1683141677,
+                "updated": 1683139981
+            },
+            "historical": {
+                "flighttime": "4147",
+                "delay": "209"
+            }
+        },
+        "trail": [
+            {
+                "lat": 46.207993,
+                "lng": 14.488287,
+                "alt": 1200,
+                "spd": 123,
+                "ts": 1683141617,
+                "hd": 306
+            },
+            {
+                "lat": 46.140018,
+                "lng": 14.62088,
+                "alt": 3400,
+                "spd": 170,
+                "ts": 1683141436,
+                "hd": 306
+            },
+            {
+                "lat": 46.070004,
+                "lng": 14.863335,
+                "alt": 6425,
+                "spd": 259,
+                "ts": 1683141249,
+                "hd": 279
+            },
+            {
+                "lat": 46.025917,
+                "lng": 15.172256,
+                "alt": 10250,
+                "spd": 270,
+                "ts": 1683141068,
+                "hd": 282
+            },
+            {
+                "lat": 45.975586,
+                "lng": 15.503718,
+                "alt": 14175,
+                "spd": 297,
+                "ts": 1683140888,
+                "hd": 282
+            },
+            {
+                "lat": 45.916847,
+                "lng": 15.883003,
+                "alt": 17425,
+                "spd": 305,
+                "ts": 1683140695,
+                "hd": 282
+            }
+        ],
+        "firstTimestamp": 1683137588,
+        "s": "T3La_CNDdX9lFOiJfr9aPgvqK0Tjs89xHwjNjf0F7aq_qU9d6oX9mpBoGWCt3Q-p"
+    },
+    {
+        "identification": {
+            "id": "30240029",
+            "row": 5354204561,
+            "number": {
+                "default": "BY2370",
+                "alternative": null
+            },
+            "callsign": "TOM76H"
+        },
+        "status": {
+            "live": true,
+            "text": "Estimated- 00:15",
+            "icon": "green",
+            "estimated": null,
+            "ambiguous": false,
+            "generic": {
+                "status": {
+                    "text": "estimated",
+                    "color": "green",
+                    "type": "arrival"
+                },
+                "eventTime": {
+                    "utc": 1683148544,
+                    "local": 1683159344
+                }
+            }
+        },
+        "level": "limited",
+        "promote": false,
+        "aircraft": {
+            "model": {
+                "code": "B38M",
+                "text": "Boeing 737 MAX 8"
+            },
+            "countryId": 235,
+            "registration": "G-TUMC",
+            "age": null,
+            "msn": null,
+            "images": {
+                "thumbnails": [
+                    {
+                        "src": "https://cdn.jetphotos.com/200/6/769543_1678207327_tb.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10903005",
+                        "copyright": "Evxn_Aviadict spotters",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/200/5/754424_1680282980_tb.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10925507",
+                        "copyright": "Gian Pietro Bardizza",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/200/5/93876_1672987984_tb.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10840318",
+                        "copyright": "Alberto Cucini",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/200/5/19762_1672867646_tb.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10839038",
+                        "copyright": "Lukas Henrique",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/200/6/25599_1672334225_tb.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10830684",
+                        "copyright": "DAYDREAMER",
+                        "source": "Jetphotos"
+                    }
+                ],
+                "medium": [
+                    {
+                        "src": "https://cdn.jetphotos.com/400/6/769543_1678207327.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10903005",
+                        "copyright": "Evxn_Aviadict spotters",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/400/5/754424_1680282980.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10925507",
+                        "copyright": "Gian Pietro Bardizza",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/400/5/93876_1672987984.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10840318",
+                        "copyright": "Alberto Cucini",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/400/5/19762_1672867646.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10839038",
+                        "copyright": "Lukas Henrique",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/400/6/25599_1672334225.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10830684",
+                        "copyright": "DAYDREAMER",
+                        "source": "Jetphotos"
+                    }
+                ],
+                "large": [
+                    {
+                        "src": "https://cdn.jetphotos.com/640cb/6/769543_1678207327.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10903005",
+                        "copyright": "Evxn_Aviadict spotters",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/640cb/5/754424_1680282980.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10925507",
+                        "copyright": "Gian Pietro Bardizza",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/640cb/5/93876_1672987984.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10840318",
+                        "copyright": "Alberto Cucini",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/640cb/5/19762_1672867646.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10839038",
+                        "copyright": "Lukas Henrique",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/640cb/6/25599_1672334225.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10830684",
+                        "copyright": "DAYDREAMER",
+                        "source": "Jetphotos"
+                    }
+                ]
+            },
+            "hex": "4075f4"
+        },
+        "airline": {
+            "name": "TUI",
+            "short": "TUI fly",
+            "code": {
+                "iata": "X3",
+                "icao": "TUI"
+            },
+            "url": "tui-fly-tui"
+        },
+        "owner": {
+            "name": "TUI Airways",
+            "code": {
+                "iata": "BY",
+                "icao": "TOM"
+            },
+            "url": "tui-airways-tom"
+        },
+        "airspace": null,
+        "airport": {
+            "origin": {
+                "name": "Manchester Airport",
+                "code": {
+                    "iata": "MAN",
+                    "icao": "EGCC"
+                },
+                "position": {
+                    "latitude": 53.353741,
+                    "longitude": -2.27495,
+                    "altitude": 257,
+                    "country": {
+                        "id": 235,
+                        "name": "United Kingdom",
+                        "code": "GB",
+                        "codeLong": "GBR"
+                    },
+                    "region": {
+                        "city": "Manchester"
+                    }
+                },
+                "timezone": {
+                    "name": "Europe/London",
+                    "offset": 3600,
+                    "offsetHours": "1:00",
+                    "abbr": "BST",
+                    "abbrName": "British Summer Time",
+                    "isDst": true
+                },
+                "visible": true,
+                "website": "http://www.manchesterairport.co.uk",
+                "info": {
+                    "terminal": "2",
+                    "baggage": null,
+                    "gate": "A7"
+                }
+            },
+            "destination": {
+                "name": "Kos Island International Airport",
+                "code": {
+                    "iata": "KGS",
+                    "icao": "LGKO"
+                },
+                "position": {
+                    "latitude": 36.793331,
+                    "longitude": 27.09166,
+                    "altitude": 412,
+                    "country": {
+                        "id": null,
+                        "name": "Greece",
+                        "code": "GRC"
+                    },
+                    "region": {
+                        "city": "Kos"
+                    }
+                },
+                "timezone": {
+                    "name": "Europe/Athens",
+                    "offset": 10800,
+                    "offsetHours": "3:00",
+                    "abbr": "EEST",
+                    "abbrName": "Eastern European Summer Time",
+                    "isDst": true
+                },
+                "visible": true,
+                "website": "http://www.kos-airport.com/",
+                "info": {
+                    "terminal": null,
+                    "baggage": null,
+                    "gate": null
+                }
+            },
+            "real": null
+        },
+        "flightHistory": {
+            "aircraft": [
+                {
+                    "identification": {
+                        "id": "3022cd9f",
+                        "number": {
+                            "default": "BY2333"
+                        }
+                    },
+                    "airport": {
+                        "origin": {
+                            "name": "Rhodes International Airport",
+                            "code": {
+                                "iata": "RHO",
+                                "icao": "LGRP"
+                            },
+                            "position": {
+                                "latitude": 36.405411,
+                                "longitude": 28.086189,
+                                "altitude": 17,
+                                "country": {
+                                    "id": null,
+                                    "name": "Greece",
+                                    "code": "GRC"
+                                },
+                                "region": {
+                                    "city": "Rhodes"
+                                }
+                            },
+                            "timezone": {
+                                "name": "Europe/Athens",
+                                "offset": 10800,
+                                "offsetHours": "3:00",
+                                "abbr": "EEST",
+                                "abbrName": "Eastern European Summer Time",
+                                "isDst": true
+                            },
+                            "visible": true,
+                            "website": "http://www.hcaa-eleng.gr/rhod.htm"
+                        },
+                        "destination": {
+                            "name": "Manchester Airport",
+                            "code": {
+                                "iata": "MAN",
+                                "icao": "EGCC"
+                            },
+                            "position": {
+                                "latitude": 53.353741,
+                                "longitude": -2.27495,
+                                "altitude": 257,
+                                "country": {
+                                    "id": 235,
+                                    "name": "United Kingdom",
+                                    "code": "GB",
+                                    "codeLong": "GBR"
+                                },
+                                "region": {
+                                    "city": "Manchester"
+                                }
+                            },
+                            "timezone": {
+                                "name": "Europe/London",
+                                "offset": 3600,
+                                "offsetHours": "1:00",
+                                "abbr": "BST",
+                                "abbrName": "British Summer Time",
+                                "isDst": true
+                            },
+                            "visible": true,
+                            "website": "http://www.manchesterairport.co.uk"
+                        }
+                    },
+                    "time": {
+                        "real": {
+                            "departure": 1683114187
+                        }
+                    }
+                },
+                {
+                    "identification": {
+                        "id": "30222083",
+                        "number": {
+                            "default": "BY2332"
+                        }
+                    },
+                    "airport": {
+                        "origin": {
+                            "name": "Manchester Airport",
+                            "code": {
+                                "iata": "MAN",
+                                "icao": "EGCC"
+                            },
+                            "position": {
+                                "latitude": 53.353741,
+                                "longitude": -2.27495,
+                                "altitude": 257,
+                                "country": {
+                                    "id": 235,
+                                    "name": "United Kingdom",
+                                    "code": "GB",
+                                    "codeLong": "GBR"
+                                },
+                                "region": {
+                                    "city": "Manchester"
+                                }
+                            },
+                            "timezone": {
+                                "name": "Europe/London",
+                                "offset": 3600,
+                                "offsetHours": "1:00",
+                                "abbr": "BST",
+                                "abbrName": "British Summer Time",
+                                "isDst": true
+                            },
+                            "visible": true,
+                            "website": "http://www.manchesterairport.co.uk"
+                        },
+                        "destination": {
+                            "name": "Rhodes International Airport",
+                            "code": {
+                                "iata": "RHO",
+                                "icao": "LGRP"
+                            },
+                            "position": {
+                                "latitude": 36.405411,
+                                "longitude": 28.086189,
+                                "altitude": 17,
+                                "country": {
+                                    "id": null,
+                                    "name": "Greece",
+                                    "code": "GRC"
+                                },
+                                "region": {
+                                    "city": "Rhodes"
+                                }
+                            },
+                            "timezone": {
+                                "name": "Europe/Athens",
+                                "offset": 10800,
+                                "offsetHours": "3:00",
+                                "abbr": "EEST",
+                                "abbrName": "Eastern European Summer Time",
+                                "isDst": true
+                            },
+                            "visible": true,
+                            "website": "http://www.hcaa-eleng.gr/rhod.htm"
+                        }
+                    },
+                    "time": {
+                        "real": {
+                            "departure": 1683094866
+                        }
+                    }
+                },
+                {
+                    "identification": {
+                        "id": "3020fef3",
+                        "number": {
+                            "default": "BY789"
+                        }
+                    },
+                    "airport": {
+                        "origin": {
+                            "name": "Hurghada International Airport",
+                            "code": {
+                                "iata": "HRG",
+                                "icao": "HEGN"
+                            },
+                            "position": {
+                                "latitude": 27.17831,
+                                "longitude": 33.799431,
+                                "altitude": 52,
+                                "country": {
+                                    "id": null,
+                                    "name": "Egypt",
+                                    "code": "EGY"
+                                },
+                                "region": {
+                                    "city": "Hurghada"
+                                }
+                            },
+                            "timezone": {
+                                "name": "Africa/Cairo",
+                                "offset": 10800,
+                                "offsetHours": "3:00",
+                                "abbr": "EEST",
+                                "abbrName": "Eastern European Summer Time",
+                                "isDst": true
+                            },
+                            "visible": true,
+                            "website": null
+                        },
+                        "destination": {
+                            "name": "Manchester Airport",
+                            "code": {
+                                "iata": "MAN",
+                                "icao": "EGCC"
+                            },
+                            "position": {
+                                "latitude": 53.353741,
+                                "longitude": -2.27495,
+                                "altitude": 257,
+                                "country": {
+                                    "id": 235,
+                                    "name": "United Kingdom",
+                                    "code": "GB",
+                                    "codeLong": "GBR"
+                                },
+                                "region": {
+                                    "city": "Manchester"
+                                }
+                            },
+                            "timezone": {
+                                "name": "Europe/London",
+                                "offset": 3600,
+                                "offsetHours": "1:00",
+                                "abbr": "BST",
+                                "abbrName": "British Summer Time",
+                                "isDst": true
+                            },
+                            "visible": true,
+                            "website": "http://www.manchesterairport.co.uk"
+                        }
+                    },
+                    "time": {
+                        "real": {
+                            "departure": 1683059374
+                        }
+                    }
+                },
+                {
+                    "identification": {
+                        "id": "301fef2e",
+                        "number": {
+                            "default": "BY788"
+                        }
+                    },
+                    "airport": {
+                        "origin": {
+                            "name": "Manchester Airport",
+                            "code": {
+                                "iata": "MAN",
+                                "icao": "EGCC"
+                            },
+                            "position": {
+                                "latitude": 53.353741,
+                                "longitude": -2.27495,
+                                "altitude": 257,
+                                "country": {
+                                    "id": 235,
+                                    "name": "United Kingdom",
+                                    "code": "GB",
+                                    "codeLong": "GBR"
+                                },
+                                "region": {
+                                    "city": "Manchester"
+                                }
+                            },
+                            "timezone": {
+                                "name": "Europe/London",
+                                "offset": 3600,
+                                "offsetHours": "1:00",
+                                "abbr": "BST",
+                                "abbrName": "British Summer Time",
+                                "isDst": true
+                            },
+                            "visible": true,
+                            "website": "http://www.manchesterairport.co.uk"
+                        },
+                        "destination": {
+                            "name": "Hurghada International Airport",
+                            "code": {
+                                "iata": "HRG",
+                                "icao": "HEGN"
+                            },
+                            "position": {
+                                "latitude": 27.17831,
+                                "longitude": 33.799431,
+                                "altitude": 52,
+                                "country": {
+                                    "id": null,
+                                    "name": "Egypt",
+                                    "code": "EGY"
+                                },
+                                "region": {
+                                    "city": "Hurghada"
+                                }
+                            },
+                            "timezone": {
+                                "name": "Africa/Cairo",
+                                "offset": 10800,
+                                "offsetHours": "3:00",
+                                "abbr": "EEST",
+                                "abbrName": "Eastern European Summer Time",
+                                "isDst": true
+                            },
+                            "visible": true,
+                            "website": null
+                        }
+                    },
+                    "time": {
+                        "real": {
+                            "departure": 1683036934
+                        }
+                    }
+                }
+            ]
+        },
+        "ems": null,
+        "availability": [
+            "AGE",
+            "MSN"
+        ],
+        "time": {
+            "scheduled": {
+                "departure": 1683134400,
+                "arrival": 1683149400
+            },
+            "real": {
+                "departure": 1683135454,
+                "arrival": null
+            },
+            "estimated": {
+                "departure": null,
+                "arrival": 1683148544
+            },
+            "other": {
+                "eta": 1683148544,
+                "updated": 1683139953
+            },
+            "historical": {
+                "flighttime": "13159",
+                "delay": "-597"
+            }
+        },
+        "trail": [
+            {
+                "lat": 46.324505,
+                "lng": 14.485062,
+                "alt": 37000,
+                "spd": 468,
+                "ts": 1683141602,
+                "hd": 139
+            },
+            {
+                "lat": 46.625473,
+                "lng": 14.108455,
+                "alt": 37000,
+                "spd": 468,
+                "ts": 1683141418,
+                "hd": 137
+            }
+        ],
+        "firstTimestamp": 1683134477,
+        "s": "55X8KVgM9m1qH8z4jWHo4oNCuxsR6XXJcdTk1-BigDvSdtlip3RaZ6bQ9SFYl2cr"
+    },
+    {
+        "identification": {
+            "id": "30242e9b",
+            "row": 5353991034,
+            "number": {
+                "default": "LH1460",
+                "alternative": "CL1460"
+            },
+            "callsign": "DLH6VR"
+        },
+        "status": {
+            "live": true,
+            "text": "Estimated- 21:24",
+            "icon": "green",
+            "estimated": null,
+            "ambiguous": false,
+            "generic": {
+                "status": {
+                    "text": "estimated",
+                    "color": "green",
+                    "type": "arrival"
+                },
+                "eventTime": {
+                    "utc": 1683141867,
+                    "local": 1683149067
+                }
+            }
+        },
+        "level": "limited",
+        "promote": false,
+        "aircraft": {
+            "model": {
+                "code": "CRJ9",
+                "text": "Mitsubishi CRJ-900LR"
+            },
+            "countryId": 83,
+            "registration": "D-ACKJ",
+            "age": null,
+            "msn": null,
+            "images": {
+                "thumbnails": [
+                    {
+                        "src": "https://cdn.jetphotos.com/200/6/1012938_1679305503_tb.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10915150",
+                        "copyright": "Dave Potter",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/200/6/98576_1672691800_tb.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10836127",
+                        "copyright": "Sven_EDDN",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/200/6/28275_1669143547_tb.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10789435",
+                        "copyright": "Alessi Riccardo F.",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/200/6/39705_1667950888_tb.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10774667",
+                        "copyright": "TJDarmstadt",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/200/5/844987_1676542518_tb.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10881513",
+                        "copyright": "Marco Macca",
+                        "source": "Jetphotos"
+                    }
+                ],
+                "medium": [
+                    {
+                        "src": "https://cdn.jetphotos.com/400/6/1012938_1679305503.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10915150",
+                        "copyright": "Dave Potter",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/400/6/98576_1672691800.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10836127",
+                        "copyright": "Sven_EDDN",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/400/6/28275_1669143547.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10789435",
+                        "copyright": "Alessi Riccardo F.",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/400/6/39705_1667950888.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10774667",
+                        "copyright": "TJDarmstadt",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/400/5/844987_1676542518.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10881513",
+                        "copyright": "Marco Macca",
+                        "source": "Jetphotos"
+                    }
+                ],
+                "large": [
+                    {
+                        "src": "https://cdn.jetphotos.com/640cb/6/1012938_1679305503.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10915150",
+                        "copyright": "Dave Potter",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/640cb/6/98576_1672691800.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10836127",
+                        "copyright": "Sven_EDDN",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/640cb/6/28275_1669143547.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10789435",
+                        "copyright": "Alessi Riccardo F.",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/640cb/6/39705_1667950888.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10774667",
+                        "copyright": "TJDarmstadt",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/640cb/5/844987_1676542518.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10881513",
+                        "copyright": "Marco Macca",
+                        "source": "Jetphotos"
+                    }
+                ]
+            },
+            "hex": "3c4d6a"
+        },
+        "airline": {
+            "name": "Lufthansa",
+            "short": "Lufthansa",
+            "code": {
+                "iata": "LH",
+                "icao": "DLH"
+            },
+            "url": "lufthansa-dlh"
+        },
+        "owner": {
+            "name": "Lufthansa CityLine",
+            "code": {
+                "iata": "CL",
+                "icao": "CLH"
+            },
+            "url": "lufthansa-cityline-clh"
+        },
+        "airspace": null,
+        "airport": {
+            "origin": {
+                "name": "Frankfurt Airport",
+                "code": {
+                    "iata": "FRA",
+                    "icao": "EDDF"
+                },
+                "position": {
+                    "latitude": 50.037796,
+                    "longitude": 8.555783,
+                    "altitude": 364,
+                    "country": {
+                        "id": 83,
+                        "name": "Germany",
+                        "code": "DE",
+                        "codeLong": "DEU"
+                    },
+                    "region": {
+                        "city": "Frankfurt"
+                    }
+                },
+                "timezone": {
+                    "name": "Europe/Berlin",
+                    "offset": 7200,
+                    "offsetHours": "2:00",
+                    "abbr": "CEST",
+                    "abbrName": "Central European Summer Time",
+                    "isDst": true
+                },
+                "visible": true,
+                "website": "https://www.frankfurt-airport.com/en.html",
+                "info": {
+                    "terminal": "1",
+                    "baggage": null,
+                    "gate": "B11"
+                }
+            },
+            "destination": {
+                "name": "Ljubljana Joze Pucnik Airport",
+                "code": {
+                    "iata": "LJU",
+                    "icao": "LJLJ"
+                },
+                "position": {
+                    "latitude": 46.223679,
+                    "longitude": 14.45761,
+                    "altitude": 1273,
+                    "country": {
+                        "id": null,
+                        "name": "Slovenia",
+                        "code": "SVN"
+                    },
+                    "region": {
+                        "city": "Ljubljana"
+                    }
+                },
+                "timezone": {
+                    "name": "Europe/Ljubljana",
+                    "offset": 7200,
+                    "offsetHours": "2:00",
+                    "abbr": "CEST",
+                    "abbrName": "Central European Summer Time",
+                    "isDst": true
+                },
+                "visible": true,
+                "website": "http://www.lju-airport.si/eng",
+                "info": {
+                    "terminal": null,
+                    "baggage": null,
+                    "gate": null
+                }
+            },
+            "real": null
+        },
+        "flightHistory": {
+            "aircraft": [
+                {
+                    "identification": {
+                        "id": "3023ddad",
+                        "number": {
+                            "default": "LH1207"
+                        }
+                    },
+                    "airport": {
+                        "origin": {
+                            "name": "Basel Mulhouse-Freiburg EuroAirport",
+                            "code": {
+                                "iata": "BSL",
+                                "icao": "LFSB"
+                            },
+                            "position": {
+                                "latitude": 47.5989,
+                                "longitude": 7.5283,
+                                "altitude": 885,
+                                "country": {
+                                    "id": null,
+                                    "name": "France",
+                                    "code": "FRA"
+                                },
+                                "region": {
+                                    "city": "Basel"
+                                }
+                            },
+                            "timezone": {
+                                "name": "Europe/Paris",
+                                "offset": 7200,
+                                "offsetHours": "2:00",
+                                "abbr": "CEST",
+                                "abbrName": "Central European Summer Time",
+                                "isDst": true
+                            },
+                            "visible": true,
+                            "website": "http://www.euroairport.com/EN/accueil.php"
+                        },
+                        "destination": {
+                            "name": "Frankfurt Airport",
+                            "code": {
+                                "iata": "FRA",
+                                "icao": "EDDF"
+                            },
+                            "position": {
+                                "latitude": 50.037796,
+                                "longitude": 8.555783,
+                                "altitude": 364,
+                                "country": {
+                                    "id": 83,
+                                    "name": "Germany",
+                                    "code": "DE",
+                                    "codeLong": "DEU"
+                                },
+                                "region": {
+                                    "city": "Frankfurt"
+                                }
+                            },
+                            "timezone": {
+                                "name": "Europe/Berlin",
+                                "offset": 7200,
+                                "offsetHours": "2:00",
+                                "abbr": "CEST",
+                                "abbrName": "Central European Summer Time",
+                                "isDst": true
+                            },
+                            "visible": true,
+                            "website": "https://www.frankfurt-airport.com/en.html"
+                        }
+                    },
+                    "time": {
+                        "real": {
+                            "departure": 1683132698
+                        }
+                    }
+                },
+                {
+                    "identification": {
+                        "id": "30238705",
+                        "number": {
+                            "default": "LH1206"
+                        }
+                    },
+                    "airport": {
+                        "origin": {
+                            "name": "Frankfurt Airport",
+                            "code": {
+                                "iata": "FRA",
+                                "icao": "EDDF"
+                            },
+                            "position": {
+                                "latitude": 50.037796,
+                                "longitude": 8.555783,
+                                "altitude": 364,
+                                "country": {
+                                    "id": 83,
+                                    "name": "Germany",
+                                    "code": "DE",
+                                    "codeLong": "DEU"
+                                },
+                                "region": {
+                                    "city": "Frankfurt"
+                                }
+                            },
+                            "timezone": {
+                                "name": "Europe/Berlin",
+                                "offset": 7200,
+                                "offsetHours": "2:00",
+                                "abbr": "CEST",
+                                "abbrName": "Central European Summer Time",
+                                "isDst": true
+                            },
+                            "visible": true,
+                            "website": "https://www.frankfurt-airport.com/en.html"
+                        },
+                        "destination": {
+                            "name": "Basel Mulhouse-Freiburg EuroAirport",
+                            "code": {
+                                "iata": "BSL",
+                                "icao": "LFSB"
+                            },
+                            "position": {
+                                "latitude": 47.5989,
+                                "longitude": 7.5283,
+                                "altitude": 885,
+                                "country": {
+                                    "id": null,
+                                    "name": "France",
+                                    "code": "FRA"
+                                },
+                                "region": {
+                                    "city": "Basel"
+                                }
+                            },
+                            "timezone": {
+                                "name": "Europe/Paris",
+                                "offset": 7200,
+                                "offsetHours": "2:00",
+                                "abbr": "CEST",
+                                "abbrName": "Central European Summer Time",
+                                "isDst": true
+                            },
+                            "visible": true,
+                            "website": "http://www.euroairport.com/EN/accueil.php"
+                        }
+                    },
+                    "time": {
+                        "real": {
+                            "departure": 1683126471
+                        }
+                    }
+                },
+                {
+                    "identification": {
+                        "id": "302318af",
+                        "number": {
+                            "default": "LH1391"
+                        }
+                    },
+                    "airport": {
+                        "origin": {
+                            "name": "Poznan Lawica Airport",
+                            "code": {
+                                "iata": "POZ",
+                                "icao": "EPPO"
+                            },
+                            "position": {
+                                "latitude": 52.421028,
+                                "longitude": 16.826321,
+                                "altitude": 308,
+                                "country": {
+                                    "id": null,
+                                    "name": "Poland",
+                                    "code": "POL"
+                                },
+                                "region": {
+                                    "city": "Poznan"
+                                }
+                            },
+                            "timezone": {
+                                "name": "Europe/Warsaw",
+                                "offset": 7200,
+                                "offsetHours": "2:00",
+                                "abbr": "CEST",
+                                "abbrName": "Central European Summer Time",
+                                "isDst": true
+                            },
+                            "visible": true,
+                            "website": "http://www.airport-poznan.com.pl/en/"
+                        },
+                        "destination": {
+                            "name": "Frankfurt Airport",
+                            "code": {
+                                "iata": "FRA",
+                                "icao": "EDDF"
+                            },
+                            "position": {
+                                "latitude": 50.037796,
+                                "longitude": 8.555783,
+                                "altitude": 364,
+                                "country": {
+                                    "id": 83,
+                                    "name": "Germany",
+                                    "code": "DE",
+                                    "codeLong": "DEU"
+                                },
+                                "region": {
+                                    "city": "Frankfurt"
+                                }
+                            },
+                            "timezone": {
+                                "name": "Europe/Berlin",
+                                "offset": 7200,
+                                "offsetHours": "2:00",
+                                "abbr": "CEST",
+                                "abbrName": "Central European Summer Time",
+                                "isDst": true
+                            },
+                            "visible": true,
+                            "website": "https://www.frankfurt-airport.com/en.html"
+                        }
+                    },
+                    "time": {
+                        "real": {
+                            "departure": 1683119193
+                        }
+                    }
+                },
+                {
+                    "identification": {
+                        "id": "3022c492",
+                        "number": {
+                            "default": "LH1390"
+                        }
+                    },
+                    "airport": {
+                        "origin": {
+                            "name": "Frankfurt Airport",
+                            "code": {
+                                "iata": "FRA",
+                                "icao": "EDDF"
+                            },
+                            "position": {
+                                "latitude": 50.037796,
+                                "longitude": 8.555783,
+                                "altitude": 364,
+                                "country": {
+                                    "id": 83,
+                                    "name": "Germany",
+                                    "code": "DE",
+                                    "codeLong": "DEU"
+                                },
+                                "region": {
+                                    "city": "Frankfurt"
+                                }
+                            },
+                            "timezone": {
+                                "name": "Europe/Berlin",
+                                "offset": 7200,
+                                "offsetHours": "2:00",
+                                "abbr": "CEST",
+                                "abbrName": "Central European Summer Time",
+                                "isDst": true
+                            },
+                            "visible": true,
+                            "website": "https://www.frankfurt-airport.com/en.html"
+                        },
+                        "destination": {
+                            "name": "Poznan Lawica Airport",
+                            "code": {
+                                "iata": "POZ",
+                                "icao": "EPPO"
+                            },
+                            "position": {
+                                "latitude": 52.421028,
+                                "longitude": 16.826321,
+                                "altitude": 308,
+                                "country": {
+                                    "id": null,
+                                    "name": "Poland",
+                                    "code": "POL"
+                                },
+                                "region": {
+                                    "city": "Poznan"
+                                }
+                            },
+                            "timezone": {
+                                "name": "Europe/Warsaw",
+                                "offset": 7200,
+                                "offsetHours": "2:00",
+                                "abbr": "CEST",
+                                "abbrName": "Central European Summer Time",
+                                "isDst": true
+                            },
+                            "visible": true,
+                            "website": "http://www.airport-poznan.com.pl/en/"
+                        }
+                    },
+                    "time": {
+                        "real": {
+                            "departure": 1683112611
+                        }
+                    }
+                }
+            ]
+        },
+        "ems": null,
+        "availability": [
+            "AGE",
+            "MSN"
+        ],
+        "time": {
+            "scheduled": {
+                "departure": 1683138000,
+                "arrival": 1683142200
+            },
+            "real": {
+                "departure": 1683138501,
+                "arrival": null
+            },
+            "estimated": {
+                "departure": null,
+                "arrival": 1683141867
+            },
+            "other": {
+                "eta": 1683141867,
+                "updated": 1683140264
+            },
+            "historical": {
+                "flighttime": "3532",
+                "delay": "210"
+            }
+        },
+        "trail": [
+            {
+                "lat": 46.042027,
+                "lng": 14.6548,
+                "alt": 3900,
+                "spd": 236,
+                "ts": 1683141622,
+                "hd": 96
+            },
+            {
+                "lat": 46.193115,
+                "lng": 14.420426,
+                "alt": 9075,
+                "spd": 275,
+                "ts": 1683141432,
+                "hd": 143
+            },
+            {
+                "lat": 46.440979,
+                "lng": 14.238625,
+                "alt": 13800,
+                "spd": 354,
+                "ts": 1683141233,
+                "hd": 158
+            }
+        ],
+        "firstTimestamp": 1683138040,
+        "s": "7cSW4t02cDn-A36ok9nDejVUmc_-7MB3O7DgDhzsPCfpZgtcBt60ZIKBPEgDLl7g"
+    },
+    {
+        "identification": {
+            "id": "302428b1",
+            "row": 5354196165,
+            "number": {
+                "default": "SM2945",
+                "alternative": "AP2945"
+            },
+            "callsign": "MSC2945"
+        },
+        "status": {
+            "live": true,
+            "text": "Estimated- 01:28",
+            "icon": "green",
+            "estimated": null,
+            "ambiguous": false,
+            "generic": {
+                "status": {
+                    "text": "estimated",
+                    "color": "green",
+                    "type": "arrival"
+                },
+                "eventTime": {
+                    "utc": 1683152896,
+                    "local": 1683163696
+                }
+            }
+        },
+        "level": "limited",
+        "promote": false,
+        "aircraft": {
+            "model": {
+                "code": "B738",
+                "text": "Boeing 737-809"
+            },
+            "countryId": 209,
+            "registration": "EC-NGC",
+            "age": null,
+            "msn": null,
+            "images": {
+                "thumbnails": [
+                    {
+                        "src": "https://cdn.jetphotos.com/200/5/1147269_1678044373_tb.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10900817",
+                        "copyright": "Mattia De Bon",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/200/6/712601_1676723645_tb.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10883755",
+                        "copyright": "Gabriele Fontana - Tuscan Aviation",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/200/6/1067181_1677513861_tb.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10893366",
+                        "copyright": "Giorgio Adamo",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/200/5/79978_1674717318_tb.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10861799",
+                        "copyright": "Marcello Montagna spotter_napoli",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/200/5/97275_1668948497_tb.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10787268",
+                        "copyright": "Karl Dittlbacher",
+                        "source": "Jetphotos"
+                    }
+                ],
+                "medium": [
+                    {
+                        "src": "https://cdn.jetphotos.com/400/5/1147269_1678044373.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10900817",
+                        "copyright": "Mattia De Bon",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/400/6/712601_1676723645.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10883755",
+                        "copyright": "Gabriele Fontana - Tuscan Aviation",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/400/6/1067181_1677513861.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10893366",
+                        "copyright": "Giorgio Adamo",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/400/5/79978_1674717318.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10861799",
+                        "copyright": "Marcello Montagna spotter_napoli",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/400/5/97275_1668948497.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10787268",
+                        "copyright": "Karl Dittlbacher",
+                        "source": "Jetphotos"
+                    }
+                ],
+                "large": [
+                    {
+                        "src": "https://cdn.jetphotos.com/640cb/5/1147269_1678044373.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10900817",
+                        "copyright": "Mattia De Bon",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/640cb/6/712601_1676723645.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10883755",
+                        "copyright": "Gabriele Fontana - Tuscan Aviation",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/640cb/6/1067181_1677513861.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10893366",
+                        "copyright": "Giorgio Adamo",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/640cb/5/79978_1674717318.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10861799",
+                        "copyright": "Marcello Montagna spotter_napoli",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/640cb/5/97275_1668948497.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10787268",
+                        "copyright": "Karl Dittlbacher",
+                        "source": "Jetphotos"
+                    }
+                ]
+            },
+            "hex": "346317"
+        },
+        "airline": {
+            "name": "AlbaStar",
+            "short": "AlbaStar",
+            "code": {
+                "iata": "AP",
+                "icao": "LAV"
+            },
+            "url": "albastar-lav"
+        },
+        "owner": null,
+        "airspace": null,
+        "airport": {
+            "origin": {
+                "name": "Frankfurt Airport",
+                "code": {
+                    "iata": "FRA",
+                    "icao": "EDDF"
+                },
+                "position": {
+                    "latitude": 50.037796,
+                    "longitude": 8.555783,
+                    "altitude": 364,
+                    "country": {
+                        "id": 83,
+                        "name": "Germany",
+                        "code": "DE",
+                        "codeLong": "DEU"
+                    },
+                    "region": {
+                        "city": "Frankfurt"
+                    }
+                },
+                "timezone": {
+                    "name": "Europe/Berlin",
+                    "offset": 7200,
+                    "offsetHours": "2:00",
+                    "abbr": "CEST",
+                    "abbrName": "Central European Summer Time",
+                    "isDst": true
+                },
+                "visible": true,
+                "website": "https://www.frankfurt-airport.com/en.html",
+                "info": {
+                    "terminal": "2",
+                    "baggage": null,
+                    "gate": "D5"
+                }
+            },
+            "destination": {
+                "name": "Sharm el-Sheikh International Airport",
+                "code": {
+                    "iata": "SSH",
+                    "icao": "HESH"
+                },
+                "position": {
+                    "latitude": 27.97728,
+                    "longitude": 34.394951,
+                    "altitude": 143,
+                    "country": {
+                        "id": null,
+                        "name": "Egypt",
+                        "code": "EGY"
+                    },
+                    "region": {
+                        "city": "Sharm el-Sheikh"
+                    }
+                },
+                "timezone": {
+                    "name": "Africa/Cairo",
+                    "offset": 10800,
+                    "offsetHours": "3:00",
+                    "abbr": "EEST",
+                    "abbrName": "Eastern European Summer Time",
+                    "isDst": true
+                },
+                "visible": true,
+                "website": null,
+                "info": {
+                    "terminal": "2",
+                    "baggage": null,
+                    "gate": null
+                }
+            },
+            "real": null
+        },
+        "flightHistory": {
+            "aircraft": [
+                {
+                    "identification": {
+                        "id": "3022f616",
+                        "number": {
+                            "default": "SM2944"
+                        }
+                    },
+                    "airport": {
+                        "origin": {
+                            "name": "Sharm el-Sheikh International Airport",
+                            "code": {
+                                "iata": "SSH",
+                                "icao": "HESH"
+                            },
+                            "position": {
+                                "latitude": 27.97728,
+                                "longitude": 34.394951,
+                                "altitude": 143,
+                                "country": {
+                                    "id": null,
+                                    "name": "Egypt",
+                                    "code": "EGY"
+                                },
+                                "region": {
+                                    "city": "Sharm el-Sheikh"
+                                }
+                            },
+                            "timezone": {
+                                "name": "Africa/Cairo",
+                                "offset": 10800,
+                                "offsetHours": "3:00",
+                                "abbr": "EEST",
+                                "abbrName": "Eastern European Summer Time",
+                                "isDst": true
+                            },
+                            "visible": true,
+                            "website": null
+                        },
+                        "destination": {
+                            "name": "Frankfurt Airport",
+                            "code": {
+                                "iata": "FRA",
+                                "icao": "EDDF"
+                            },
+                            "position": {
+                                "latitude": 50.037796,
+                                "longitude": 8.555783,
+                                "altitude": 364,
+                                "country": {
+                                    "id": 83,
+                                    "name": "Germany",
+                                    "code": "DE",
+                                    "codeLong": "DEU"
+                                },
+                                "region": {
+                                    "city": "Frankfurt"
+                                }
+                            },
+                            "timezone": {
+                                "name": "Europe/Berlin",
+                                "offset": 7200,
+                                "offsetHours": "2:00",
+                                "abbr": "CEST",
+                                "abbrName": "Central European Summer Time",
+                                "isDst": true
+                            },
+                            "visible": true,
+                            "website": "https://www.frankfurt-airport.com/en.html"
+                        }
+                    },
+                    "time": {
+                        "real": {
+                            "departure": 1683115883
+                        }
+                    }
+                },
+                {
+                    "identification": {
+                        "id": "30227838",
+                        "number": {
+                            "default": "SM160"
+                        }
+                    },
+                    "airport": {
+                        "origin": {
+                            "name": "Hurghada International Airport",
+                            "code": {
+                                "iata": "HRG",
+                                "icao": "HEGN"
+                            },
+                            "position": {
+                                "latitude": 27.17831,
+                                "longitude": 33.799431,
+                                "altitude": 52,
+                                "country": {
+                                    "id": null,
+                                    "name": "Egypt",
+                                    "code": "EGY"
+                                },
+                                "region": {
+                                    "city": "Hurghada"
+                                }
+                            },
+                            "timezone": {
+                                "name": "Africa/Cairo",
+                                "offset": 10800,
+                                "offsetHours": "3:00",
+                                "abbr": "EEST",
+                                "abbrName": "Eastern European Summer Time",
+                                "isDst": true
+                            },
+                            "visible": true,
+                            "website": null
+                        },
+                        "destination": {
+                            "name": "Sharm el-Sheikh International Airport",
+                            "code": {
+                                "iata": "SSH",
+                                "icao": "HESH"
+                            },
+                            "position": {
+                                "latitude": 27.97728,
+                                "longitude": 34.394951,
+                                "altitude": 143,
+                                "country": {
+                                    "id": null,
+                                    "name": "Egypt",
+                                    "code": "EGY"
+                                },
+                                "region": {
+                                    "city": "Sharm el-Sheikh"
+                                }
+                            },
+                            "timezone": {
+                                "name": "Africa/Cairo",
+                                "offset": 10800,
+                                "offsetHours": "3:00",
+                                "abbr": "EEST",
+                                "abbrName": "Eastern European Summer Time",
+                                "isDst": true
+                            },
+                            "visible": true,
+                            "website": null
+                        }
+                    },
+                    "time": {
+                        "real": {
+                            "departure": 1683104524
+                        }
+                    }
+                },
+                {
+                    "identification": {
+                        "id": "3021fb21",
+                        "number": {
+                            "default": "SM388"
+                        }
+                    },
+                    "airport": {
+                        "origin": {
+                            "name": "Belgrade Nikola Tesla Airport",
+                            "code": {
+                                "iata": "BEG",
+                                "icao": "LYBE"
+                            },
+                            "position": {
+                                "latitude": 44.818439,
+                                "longitude": 20.30913,
+                                "altitude": 335,
+                                "country": {
+                                    "id": 196,
+                                    "name": "Serbia",
+                                    "code": "RS",
+                                    "codeLong": "SRB"
+                                },
+                                "region": {
+                                    "city": "Belgrade"
+                                }
+                            },
+                            "timezone": {
+                                "name": "Europe/Belgrade",
+                                "offset": 7200,
+                                "offsetHours": "2:00",
+                                "abbr": "CEST",
+                                "abbrName": "Central European Summer Time",
+                                "isDst": true
+                            },
+                            "visible": true,
+                            "website": "http://www.beg.aero/code/navigate.php?Id=54"
+                        },
+                        "destination": {
+                            "name": "Hurghada International Airport",
+                            "code": {
+                                "iata": "HRG",
+                                "icao": "HEGN"
+                            },
+                            "position": {
+                                "latitude": 27.17831,
+                                "longitude": 33.799431,
+                                "altitude": 52,
+                                "country": {
+                                    "id": null,
+                                    "name": "Egypt",
+                                    "code": "EGY"
+                                },
+                                "region": {
+                                    "city": "Hurghada"
+                                }
+                            },
+                            "timezone": {
+                                "name": "Africa/Cairo",
+                                "offset": 10800,
+                                "offsetHours": "3:00",
+                                "abbr": "EEST",
+                                "abbrName": "Eastern European Summer Time",
+                                "isDst": true
+                            },
+                            "visible": true,
+                            "website": null
+                        }
+                    },
+                    "time": {
+                        "real": {
+                            "departure": 1683088804
+                        }
+                    }
+                },
+                {
+                    "identification": {
+                        "id": "30218348",
+                        "number": {
+                            "default": "SM387"
+                        }
+                    },
+                    "airport": {
+                        "origin": {
+                            "name": "Hurghada International Airport",
+                            "code": {
+                                "iata": "HRG",
+                                "icao": "HEGN"
+                            },
+                            "position": {
+                                "latitude": 27.17831,
+                                "longitude": 33.799431,
+                                "altitude": 52,
+                                "country": {
+                                    "id": null,
+                                    "name": "Egypt",
+                                    "code": "EGY"
+                                },
+                                "region": {
+                                    "city": "Hurghada"
+                                }
+                            },
+                            "timezone": {
+                                "name": "Africa/Cairo",
+                                "offset": 10800,
+                                "offsetHours": "3:00",
+                                "abbr": "EEST",
+                                "abbrName": "Eastern European Summer Time",
+                                "isDst": true
+                            },
+                            "visible": true,
+                            "website": null
+                        },
+                        "destination": {
+                            "name": "Belgrade Nikola Tesla Airport",
+                            "code": {
+                                "iata": "BEG",
+                                "icao": "LYBE"
+                            },
+                            "position": {
+                                "latitude": 44.818439,
+                                "longitude": 20.30913,
+                                "altitude": 335,
+                                "country": {
+                                    "id": 196,
+                                    "name": "Serbia",
+                                    "code": "RS",
+                                    "codeLong": "SRB"
+                                },
+                                "region": {
+                                    "city": "Belgrade"
+                                }
+                            },
+                            "timezone": {
+                                "name": "Europe/Belgrade",
+                                "offset": 7200,
+                                "offsetHours": "2:00",
+                                "abbr": "CEST",
+                                "abbrName": "Central European Summer Time",
+                                "isDst": true
+                            },
+                            "visible": true,
+                            "website": "http://www.beg.aero/code/navigate.php?Id=54"
+                        }
+                    },
+                    "time": {
+                        "real": {
+                            "departure": 1683073163
+                        }
+                    }
+                }
+            ]
+        },
+        "ems": null,
+        "availability": [
+            "AGE",
+            "MSN"
+        ],
+        "time": {
+            "scheduled": {
+                "departure": 1683136800,
+                "arrival": 1683153000
+            },
+            "real": {
+                "departure": 1683138682,
+                "arrival": null
+            },
+            "estimated": {
+                "departure": null,
+                "arrival": 1683152896
+            },
+            "other": {
+                "eta": 1683152896,
+                "updated": 1683141054
+            },
+            "historical": {
+                "flighttime": "14173",
+                "delay": "1347"
+            }
+        },
+        "trail": [
+            {
+                "lat": 45.847229,
+                "lng": 14.765224,
+                "alt": 35000,
+                "spd": 467,
+                "ts": 1683141593,
+                "hd": 136
+            },
+            {
+                "lat": 46.138824,
+                "lng": 14.37139,
+                "alt": 35000,
+                "spd": 470,
+                "ts": 1683141407,
+                "hd": 136
+            },
+            {
+                "lat": 46.432159,
+                "lng": 13.96925,
+                "alt": 35000,
+                "spd": 472,
+                "ts": 1683141221,
+                "hd": 136
+            }
+        ],
+        "firstTimestamp": 1683137563,
+        "s": "ND1SFr7qfltQOkEInJwJF4qrHWO_nAQDv6GqDjNY6y_qkYfNacGfyyWD5OYl8iG-"
+    },
+    {
+        "identification": {
+            "id": "3023efb0",
+            "row": 5354201921,
+            "number": {
+                "default": "TK1055",
+                "alternative": null
+            },
+            "callsign": "THY6UB"
+        },
+        "status": {
+            "live": true,
+            "text": "Delayed 21:21",
+            "icon": "red",
+            "estimated": null,
+            "ambiguous": false,
+            "generic": {
+                "status": {
+                    "text": "delayed",
+                    "color": "red",
+                    "type": "arrival"
+                },
+                "eventTime": {
+                    "utc": 1683141717,
+                    "local": 1683148917
+                }
+            }
+        },
+        "level": "limited",
+        "promote": false,
+        "aircraft": {
+            "model": {
+                "code": "A321",
+                "text": "Airbus A321-231"
+            },
+            "countryId": 228,
+            "registration": "TC-JRB",
+            "age": null,
+            "msn": null,
+            "images": {
+                "thumbnails": [
+                    {
+                        "src": "https://cdn.jetphotos.com/200/6/1065500_1680247281_tb.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10925149",
+                        "copyright": "Bora Polater",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/200/6/992121_1678178118_tb.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10902490",
+                        "copyright": "Michael Musil",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/200/5/53775_1674481116_tb.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10859267",
+                        "copyright": "egesanda",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/200/6/79702_1673160113_tb.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10842851",
+                        "copyright": "K Can Ozdemir",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/200/6/78692_1669541382_tb.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10793169",
+                        "copyright": "Paul Denton",
+                        "source": "Jetphotos"
+                    }
+                ],
+                "medium": [
+                    {
+                        "src": "https://cdn.jetphotos.com/400/6/1065500_1680247281.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10925149",
+                        "copyright": "Bora Polater",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/400/6/992121_1678178118.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10902490",
+                        "copyright": "Michael Musil",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/400/5/53775_1674481116.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10859267",
+                        "copyright": "egesanda",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/400/6/79702_1673160113.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10842851",
+                        "copyright": "K Can Ozdemir",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/400/6/78692_1669541382.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10793169",
+                        "copyright": "Paul Denton",
+                        "source": "Jetphotos"
+                    }
+                ],
+                "large": [
+                    {
+                        "src": "https://cdn.jetphotos.com/640cb/6/1065500_1680247281.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10925149",
+                        "copyright": "Bora Polater",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/640cb/6/992121_1678178118.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10902490",
+                        "copyright": "Michael Musil",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/640cb/5/53775_1674481116.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10859267",
+                        "copyright": "egesanda",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/640cb/6/79702_1673160113.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10842851",
+                        "copyright": "K Can Ozdemir",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/640cb/6/78692_1669541382.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10793169",
+                        "copyright": "Paul Denton",
+                        "source": "Jetphotos"
+                    }
+                ]
+            },
+            "hex": "4baa42"
+        },
+        "airline": {
+            "name": "Turkish Airlines (Star Alliance Livery)",
+            "short": "Turkish Airlines",
+            "code": {
+                "iata": "TK",
+                "icao": "THY"
+            },
+            "url": "turkish-airlines-thy"
+        },
+        "owner": null,
+        "airspace": null,
+        "airport": {
+            "origin": {
+                "name": "Istanbul Airport",
+                "code": {
+                    "iata": "IST",
+                    "icao": "LTFM"
+                },
+                "position": {
+                    "latitude": 41.267052,
+                    "longitude": 28.729757,
+                    "altitude": 325,
+                    "country": {
+                        "id": 228,
+                        "name": "Turkey",
+                        "code": "TR",
+                        "codeLong": "TUR"
+                    },
+                    "region": {
+                        "city": "Istanbul"
+                    }
+                },
+                "timezone": {
+                    "name": "Europe/Istanbul",
+                    "offset": 10800,
+                    "offsetHours": "3:00",
+                    "abbr": "+03",
+                    "abbrName": "",
+                    "isDst": false
+                },
+                "visible": true,
+                "website": null,
+                "info": {
+                    "terminal": null,
+                    "baggage": null,
+                    "gate": "C2"
+                }
+            },
+            "destination": {
+                "name": "Zagreb Franjo Tudman Airport",
+                "code": {
+                    "iata": "ZAG",
+                    "icao": "LDZA"
+                },
+                "position": {
+                    "latitude": 45.742931,
+                    "longitude": 16.068769,
+                    "altitude": 353,
+                    "country": {
+                        "id": null,
+                        "name": "Croatia",
+                        "code": "HRV"
+                    },
+                    "region": {
+                        "city": "Zagreb"
+                    }
+                },
+                "timezone": {
+                    "name": "Europe/Zagreb",
+                    "offset": 7200,
+                    "offsetHours": "2:00",
+                    "abbr": "CEST",
+                    "abbrName": "Central European Summer Time",
+                    "isDst": true
+                },
+                "visible": true,
+                "website": "http://www.zagreb-airport.hr/",
+                "info": {
+                    "terminal": null,
+                    "baggage": "05",
+                    "gate": "A27"
+                }
+            },
+            "real": null
+        },
+        "flightHistory": {
+            "aircraft": [
+                {
+                    "identification": {
+                        "id": "302365ab",
+                        "number": {
+                            "default": "TK1024"
+                        }
+                    },
+                    "airport": {
+                        "origin": {
+                            "name": "Sarajevo International Airport",
+                            "code": {
+                                "iata": "SJJ",
+                                "icao": "LQSA"
+                            },
+                            "position": {
+                                "latitude": 43.824581,
+                                "longitude": 18.331461,
+                                "altitude": 1708,
+                                "country": {
+                                    "id": null,
+                                    "name": "Bosnia And Herzegovina",
+                                    "code": "BIH"
+                                },
+                                "region": {
+                                    "city": "Sarajevo"
+                                }
+                            },
+                            "timezone": {
+                                "name": "Europe/Sarajevo",
+                                "offset": 7200,
+                                "offsetHours": "2:00",
+                                "abbr": "CEST",
+                                "abbrName": "Central European Summer Time",
+                                "isDst": true
+                            },
+                            "visible": true,
+                            "website": "http://www.sarajevo-airport.ba/?lang=eng"
+                        },
+                        "destination": {
+                            "name": "Istanbul Airport",
+                            "code": {
+                                "iata": "IST",
+                                "icao": "LTFM"
+                            },
+                            "position": {
+                                "latitude": 41.267052,
+                                "longitude": 28.729757,
+                                "altitude": 325,
+                                "country": {
+                                    "id": 228,
+                                    "name": "Turkey",
+                                    "code": "TR",
+                                    "codeLong": "TUR"
+                                },
+                                "region": {
+                                    "city": "Istanbul"
+                                }
+                            },
+                            "timezone": {
+                                "name": "Europe/Istanbul",
+                                "offset": 10800,
+                                "offsetHours": "3:00",
+                                "abbr": "+03",
+                                "abbrName": "",
+                                "isDst": false
+                            },
+                            "visible": true,
+                            "website": null
+                        }
+                    },
+                    "time": {
+                        "real": {
+                            "departure": 1683124201
+                        }
+                    }
+                },
+                {
+                    "identification": {
+                        "id": "3022af0c",
+                        "number": {
+                            "default": "TK1023"
+                        }
+                    },
+                    "airport": {
+                        "origin": {
+                            "name": "Istanbul Airport",
+                            "code": {
+                                "iata": "IST",
+                                "icao": "LTFM"
+                            },
+                            "position": {
+                                "latitude": 41.267052,
+                                "longitude": 28.729757,
+                                "altitude": 325,
+                                "country": {
+                                    "id": 228,
+                                    "name": "Turkey",
+                                    "code": "TR",
+                                    "codeLong": "TUR"
+                                },
+                                "region": {
+                                    "city": "Istanbul"
+                                }
+                            },
+                            "timezone": {
+                                "name": "Europe/Istanbul",
+                                "offset": 10800,
+                                "offsetHours": "3:00",
+                                "abbr": "+03",
+                                "abbrName": "",
+                                "isDst": false
+                            },
+                            "visible": true,
+                            "website": null
+                        },
+                        "destination": {
+                            "name": "Sarajevo International Airport",
+                            "code": {
+                                "iata": "SJJ",
+                                "icao": "LQSA"
+                            },
+                            "position": {
+                                "latitude": 43.824581,
+                                "longitude": 18.331461,
+                                "altitude": 1708,
+                                "country": {
+                                    "id": null,
+                                    "name": "Bosnia And Herzegovina",
+                                    "code": "BIH"
+                                },
+                                "region": {
+                                    "city": "Sarajevo"
+                                }
+                            },
+                            "timezone": {
+                                "name": "Europe/Sarajevo",
+                                "offset": 7200,
+                                "offsetHours": "2:00",
+                                "abbr": "CEST",
+                                "abbrName": "Central European Summer Time",
+                                "isDst": true
+                            },
+                            "visible": true,
+                            "website": "http://www.sarajevo-airport.ba/?lang=eng"
+                        }
+                    },
+                    "time": {
+                        "real": {
+                            "departure": 1683110254
+                        }
+                    }
+                },
+                {
+                    "identification": {
+                        "id": "30223da6",
+                        "number": {
+                            "default": "TK1844"
+                        }
+                    },
+                    "airport": {
+                        "origin": {
+                            "name": "Athens Eleftherios Venizelos",
+                            "code": {
+                                "iata": "ATH",
+                                "icao": "LGAV"
+                            },
+                            "position": {
+                                "latitude": 37.936352,
+                                "longitude": 23.94446,
+                                "altitude": 308,
+                                "country": {
+                                    "id": 86,
+                                    "name": "Greece",
+                                    "code": "GR",
+                                    "codeLong": "GRC"
+                                },
+                                "region": {
+                                    "city": "Athens"
+                                }
+                            },
+                            "timezone": {
+                                "name": "Europe/Athens",
+                                "offset": 10800,
+                                "offsetHours": "3:00",
+                                "abbr": "EEST",
+                                "abbrName": "Eastern European Summer Time",
+                                "isDst": true
+                            },
+                            "visible": true,
+                            "website": "http://www.aia.gr/default.asp?langid=2"
+                        },
+                        "destination": {
+                            "name": "Istanbul Airport",
+                            "code": {
+                                "iata": "IST",
+                                "icao": "LTFM"
+                            },
+                            "position": {
+                                "latitude": 41.267052,
+                                "longitude": 28.729757,
+                                "altitude": 325,
+                                "country": {
+                                    "id": 228,
+                                    "name": "Turkey",
+                                    "code": "TR",
+                                    "codeLong": "TUR"
+                                },
+                                "region": {
+                                    "city": "Istanbul"
+                                }
+                            },
+                            "timezone": {
+                                "name": "Europe/Istanbul",
+                                "offset": 10800,
+                                "offsetHours": "3:00",
+                                "abbr": "+03",
+                                "abbrName": "",
+                                "isDst": false
+                            },
+                            "visible": true,
+                            "website": null
+                        }
+                    },
+                    "time": {
+                        "real": {
+                            "departure": 1683098159
+                        }
+                    }
+                },
+                {
+                    "identification": {
+                        "id": "3021fe55",
+                        "number": {
+                            "default": "TK1843"
+                        }
+                    },
+                    "airport": {
+                        "origin": {
+                            "name": "Istanbul Airport",
+                            "code": {
+                                "iata": "IST",
+                                "icao": "LTFM"
+                            },
+                            "position": {
+                                "latitude": 41.267052,
+                                "longitude": 28.729757,
+                                "altitude": 325,
+                                "country": {
+                                    "id": 228,
+                                    "name": "Turkey",
+                                    "code": "TR",
+                                    "codeLong": "TUR"
+                                },
+                                "region": {
+                                    "city": "Istanbul"
+                                }
+                            },
+                            "timezone": {
+                                "name": "Europe/Istanbul",
+                                "offset": 10800,
+                                "offsetHours": "3:00",
+                                "abbr": "+03",
+                                "abbrName": "",
+                                "isDst": false
+                            },
+                            "visible": true,
+                            "website": null
+                        },
+                        "destination": {
+                            "name": "Athens Eleftherios Venizelos",
+                            "code": {
+                                "iata": "ATH",
+                                "icao": "LGAV"
+                            },
+                            "position": {
+                                "latitude": 37.936352,
+                                "longitude": 23.94446,
+                                "altitude": 308,
+                                "country": {
+                                    "id": 86,
+                                    "name": "Greece",
+                                    "code": "GR",
+                                    "codeLong": "GRC"
+                                },
+                                "region": {
+                                    "city": "Athens"
+                                }
+                            },
+                            "timezone": {
+                                "name": "Europe/Athens",
+                                "offset": 10800,
+                                "offsetHours": "3:00",
+                                "abbr": "EEST",
+                                "abbrName": "Eastern European Summer Time",
+                                "isDst": true
+                            },
+                            "visible": true,
+                            "website": "http://www.aia.gr/default.asp?langid=2"
+                        }
+                    },
+                    "time": {
+                        "real": {
+                            "departure": 1683090022
+                        }
+                    }
+                }
+            ]
+        },
+        "ems": null,
+        "availability": [
+            "AGE",
+            "MSN"
+        ],
+        "time": {
+            "scheduled": {
+                "departure": 1683128100,
+                "arrival": 1683135600
+            },
+            "real": {
+                "departure": 1683135992,
+                "arrival": null
+            },
+            "estimated": {
+                "departure": null,
+                "arrival": 1683141717
+            },
+            "other": {
+                "eta": 1683141717,
+                "updated": 1683141525
+            },
+            "historical": {
+                "flighttime": "6228",
+                "delay": "1341"
+            }
+        },
+        "trail": [
+            {
+                "lat": 45.667694,
+                "lng": 15.95456,
+                "alt": 1925,
+                "spd": 139,
+                "ts": 1683141622,
+                "hd": 47
+            }
+        ],
+        "firstTimestamp": 1683133403,
+        "s": "kyBN_Z2YGjVEU8E9pK7v7UjGPUODVpaJv6ySvtBBYx5YJIas-d3mTw57ztgge_M_"
+    },
+    {
+        "identification": {
+            "id": "302400a4",
+            "row": 5357339648,
+            "number": {
+                "default": "CD312",
+                "alternative": null
+            },
+            "callsign": "CND312"
+        },
+        "status": {
+            "live": true,
+            "text": "Estimated- 22:54",
+            "icon": "green",
+            "estimated": null,
+            "ambiguous": false,
+            "generic": {
+                "status": {
+                    "text": "estimated",
+                    "color": "green",
+                    "type": "arrival"
+                },
+                "eventTime": {
+                    "utc": 1683147264,
+                    "local": 1683154464
+                }
+            }
+        },
+        "level": "limited",
+        "promote": false,
+        "aircraft": {
+            "model": {
+                "code": "B738",
+                "text": "Boeing 737-804"
+            },
+            "countryId": 155,
+            "registration": "PH-CDF",
+            "age": null,
+            "msn": null,
+            "images": {
+                "thumbnails": [
+                    {
+                        "src": "https://cdn.jetphotos.com/200/6/602542_1679781066_tb.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10919913",
+                        "copyright": "Angelo Harmsworth",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/200/6/424977_1676491679_tb.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10881107",
+                        "copyright": "Fercleos",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/200/6/18924_1668977730_tb.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10787752",
+                        "copyright": "Jeroen Stroes",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/200/5/32900_1675192655_tb.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10867204",
+                        "copyright": "Tim Kaempfer",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/200/5/48634_1662206741_tb.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10708182",
+                        "copyright": "Kelvin Jahae",
+                        "source": "Jetphotos"
+                    }
+                ],
+                "medium": [
+                    {
+                        "src": "https://cdn.jetphotos.com/400/6/602542_1679781066.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10919913",
+                        "copyright": "Angelo Harmsworth",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/400/6/424977_1676491679.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10881107",
+                        "copyright": "Fercleos",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/400/6/18924_1668977730.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10787752",
+                        "copyright": "Jeroen Stroes",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/400/5/32900_1675192655.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10867204",
+                        "copyright": "Tim Kaempfer",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/400/5/48634_1662206741.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10708182",
+                        "copyright": "Kelvin Jahae",
+                        "source": "Jetphotos"
+                    }
+                ],
+                "large": [
+                    {
+                        "src": "https://cdn.jetphotos.com/640cb/6/602542_1679781066.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10919913",
+                        "copyright": "Angelo Harmsworth",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/640cb/6/424977_1676491679.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10881107",
+                        "copyright": "Fercleos",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/640cb/6/18924_1668977730.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10787752",
+                        "copyright": "Jeroen Stroes",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/640cb/5/32900_1675192655.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10867204",
+                        "copyright": "Tim Kaempfer",
+                        "source": "Jetphotos"
+                    },
+                    {
+                        "src": "https://cdn.jetphotos.com/640cb/5/48634_1662206741.jpg?v=0",
+                        "link": "https://www.jetphotos.com/photo/10708182",
+                        "copyright": "Kelvin Jahae",
+                        "source": "Jetphotos"
+                    }
+                ]
+            },
+            "hex": "484fab"
+        },
+        "airline": {
+            "name": "Corendon Airlines",
+            "short": "Corendon Airlines",
+            "code": {
+                "iata": "XC",
+                "icao": "CAI"
+            },
+            "url": "corendon-airlines-cai"
+        },
+        "owner": {
+            "name": "Corendon Dutch Airlines",
+            "code": {
+                "iata": "CD",
+                "icao": "CND"
+            },
+            "url": "corendon-dutch-airlines-cnd"
+        },
+        "airspace": null,
+        "airport": {
+            "origin": {
+                "name": "Heraklion International Airport",
+                "code": {
+                    "iata": "HER",
+                    "icao": "LGIR"
+                },
+                "position": {
+                    "latitude": 35.33971,
+                    "longitude": 25.18029,
+                    "altitude": 115,
+                    "country": {
+                        "id": null,
+                        "name": "Greece",
+                        "code": "GRC"
+                    },
+                    "region": {
+                        "city": "Heraklion"
+                    }
+                },
+                "timezone": {
+                    "name": "Europe/Athens",
+                    "offset": 10800,
+                    "offsetHours": "3:00",
+                    "abbr": "EEST",
+                    "abbrName": "Eastern European Summer Time",
+                    "isDst": true
+                },
+                "visible": true,
+                "website": "http://www.heraklion-airport.info/",
+                "info": {
+                    "terminal": null,
+                    "baggage": null,
+                    "gate": null
+                }
+            },
+            "destination": {
+                "name": "Amsterdam Schiphol Airport",
+                "code": {
+                    "iata": "AMS",
+                    "icao": "EHAM"
+                },
+                "position": {
+                    "latitude": 52.308609,
+                    "longitude": 4.763889,
+                    "altitude": 11,
+                    "country": {
+                        "id": 155,
+                        "name": "Netherlands",
+                        "code": "NL",
+                        "codeLong": "NLD"
+                    },
+                    "region": {
+                        "city": "Amsterdam"
+                    }
+                },
+                "timezone": {
+                    "name": "Europe/Amsterdam",
+                    "offset": 7200,
+                    "offsetHours": "2:00",
+                    "abbr": "CEST",
+                    "abbrName": "Central European Summer Time",
+                    "isDst": true
+                },
+                "visible": true,
+                "website": "http://www.schiphol.nl/index_en.html",
+                "info": {
+                    "terminal": null,
+                    "baggage": null,
+                    "gate": null
+                }
+            },
+            "real": null
+        },
+        "flightHistory": {
+            "aircraft": [
+                {
+                    "identification": {
+                        "id": "30231a4d",
+                        "number": {
+                            "default": "CD311"
+                        }
+                    },
+                    "airport": {
+                        "origin": {
+                            "name": "Amsterdam Schiphol Airport",
+                            "code": {
+                                "iata": "AMS",
+                                "icao": "EHAM"
+                            },
+                            "position": {
+                                "latitude": 52.308609,
+                                "longitude": 4.763889,
+                                "altitude": 11,
+                                "country": {
+                                    "id": 155,
+                                    "name": "Netherlands",
+                                    "code": "NL",
+                                    "codeLong": "NLD"
+                                },
+                                "region": {
+                                    "city": "Amsterdam"
+                                }
+                            },
+                            "timezone": {
+                                "name": "Europe/Amsterdam",
+                                "offset": 7200,
+                                "offsetHours": "2:00",
+                                "abbr": "CEST",
+                                "abbrName": "Central European Summer Time",
+                                "isDst": true
+                            },
+                            "visible": true,
+                            "website": "http://www.schiphol.nl/index_en.html"
+                        },
+                        "destination": {
+                            "name": "Heraklion International Airport",
+                            "code": {
+                                "iata": "HER",
+                                "icao": "LGIR"
+                            },
+                            "position": {
+                                "latitude": 35.33971,
+                                "longitude": 25.18029,
+                                "altitude": 115,
+                                "country": {
+                                    "id": null,
+                                    "name": "Greece",
+                                    "code": "GRC"
+                                },
+                                "region": {
+                                    "city": "Heraklion"
+                                }
+                            },
+                            "timezone": {
+                                "name": "Europe/Athens",
+                                "offset": 10800,
+                                "offsetHours": "3:00",
+                                "abbr": "EEST",
+                                "abbrName": "Eastern European Summer Time",
+                                "isDst": true
+                            },
+                            "visible": true,
+                            "website": "http://www.heraklion-airport.info/"
+                        }
+                    },
+                    "time": {
+                        "real": {
+                            "departure": 1683119830
+                        }
+                    }
+                },
+                {
+                    "identification": {
+                        "id": "302085a2",
+                        "number": {
+                            "default": "CD222"
+                        }
+                    },
+                    "airport": {
+                        "origin": {
+                            "name": "Antalya Airport",
+                            "code": {
+                                "iata": "AYT",
+                                "icao": "LTAI"
+                            },
+                            "position": {
+                                "latitude": 36.898731,
+                                "longitude": 30.800461,
+                                "altitude": 177,
+                                "country": {
+                                    "id": 228,
+                                    "name": "Turkey",
+                                    "code": "TR",
+                                    "codeLong": "TUR"
+                                },
+                                "region": {
+                                    "city": "Antalya"
+                                }
+                            },
+                            "timezone": {
+                                "name": "Europe/Istanbul",
+                                "offset": 10800,
+                                "offsetHours": "3:00",
+                                "abbr": "+03",
+                                "abbrName": "",
+                                "isDst": false
+                            },
+                            "visible": true,
+                            "website": "http://www.aytport.com/en/index_1.asp"
+                        },
+                        "destination": {
+                            "name": "Amsterdam Schiphol Airport",
+                            "code": {
+                                "iata": "AMS",
+                                "icao": "EHAM"
+                            },
+                            "position": {
+                                "latitude": 52.308609,
+                                "longitude": 4.763889,
+                                "altitude": 11,
+                                "country": {
+                                    "id": 155,
+                                    "name": "Netherlands",
+                                    "code": "NL",
+                                    "codeLong": "NLD"
+                                },
+                                "region": {
+                                    "city": "Amsterdam"
+                                }
+                            },
+                            "timezone": {
+                                "name": "Europe/Amsterdam",
+                                "offset": 7200,
+                                "offsetHours": "2:00",
+                                "abbr": "CEST",
+                                "abbrName": "Central European Summer Time",
+                                "isDst": true
+                            },
+                            "visible": true,
+                            "website": "http://www.schiphol.nl/index_en.html"
+                        }
+                    },
+                    "time": {
+                        "real": {
+                            "departure": 1683049062
+                        }
+                    }
+                },
+                {
+                    "identification": {
+                        "id": "301f9ebc",
+                        "number": {
+                            "default": "CD221"
+                        }
+                    },
+                    "airport": {
+                        "origin": {
+                            "name": "Amsterdam Schiphol Airport",
+                            "code": {
+                                "iata": "AMS",
+                                "icao": "EHAM"
+                            },
+                            "position": {
+                                "latitude": 52.308609,
+                                "longitude": 4.763889,
+                                "altitude": 11,
+                                "country": {
+                                    "id": 155,
+                                    "name": "Netherlands",
+                                    "code": "NL",
+                                    "codeLong": "NLD"
+                                },
+                                "region": {
+                                    "city": "Amsterdam"
+                                }
+                            },
+                            "timezone": {
+                                "name": "Europe/Amsterdam",
+                                "offset": 7200,
+                                "offsetHours": "2:00",
+                                "abbr": "CEST",
+                                "abbrName": "Central European Summer Time",
+                                "isDst": true
+                            },
+                            "visible": true,
+                            "website": "http://www.schiphol.nl/index_en.html"
+                        },
+                        "destination": {
+                            "name": "Antalya Airport",
+                            "code": {
+                                "iata": "AYT",
+                                "icao": "LTAI"
+                            },
+                            "position": {
+                                "latitude": 36.898731,
+                                "longitude": 30.800461,
+                                "altitude": 177,
+                                "country": {
+                                    "id": 228,
+                                    "name": "Turkey",
+                                    "code": "TR",
+                                    "codeLong": "TUR"
+                                },
+                                "region": {
+                                    "city": "Antalya"
+                                }
+                            },
+                            "timezone": {
+                                "name": "Europe/Istanbul",
+                                "offset": 10800,
+                                "offsetHours": "3:00",
+                                "abbr": "+03",
+                                "abbrName": "",
+                                "isDst": false
+                            },
+                            "visible": true,
+                            "website": "http://www.aytport.com/en/index_1.asp"
+                        }
+                    },
+                    "time": {
+                        "real": {
+                            "departure": 1683030198
+                        }
+                    }
+                },
+                {
+                    "identification": {
+                        "id": "301d64e0",
+                        "number": {
+                            "default": "CD122"
+                        }
+                    },
+                    "airport": {
+                        "origin": {
+                            "name": "Ibiza Airport",
+                            "code": {
+                                "iata": "IBZ",
+                                "icao": "LEIB"
+                            },
+                            "position": {
+                                "latitude": 38.872849,
+                                "longitude": 1.373117,
+                                "altitude": 20,
+                                "country": {
+                                    "id": null,
+                                    "name": "Spain",
+                                    "code": "ESP"
+                                },
+                                "region": {
+                                    "city": "Ibiza"
+                                }
+                            },
+                            "timezone": {
+                                "name": "Europe/Madrid",
+                                "offset": 7200,
+                                "offsetHours": "2:00",
+                                "abbr": "CEST",
+                                "abbrName": "Central European Summer Time",
+                                "isDst": true
+                            },
+                            "visible": true,
+                            "website": "https://www.aena.es/es/ibiza.html"
+                        },
+                        "destination": {
+                            "name": "Amsterdam Schiphol Airport",
+                            "code": {
+                                "iata": "AMS",
+                                "icao": "EHAM"
+                            },
+                            "position": {
+                                "latitude": 52.308609,
+                                "longitude": 4.763889,
+                                "altitude": 11,
+                                "country": {
+                                    "id": 155,
+                                    "name": "Netherlands",
+                                    "code": "NL",
+                                    "codeLong": "NLD"
+                                },
+                                "region": {
+                                    "city": "Amsterdam"
+                                }
+                            },
+                            "timezone": {
+                                "name": "Europe/Amsterdam",
+                                "offset": 7200,
+                                "offsetHours": "2:00",
+                                "abbr": "CEST",
+                                "abbrName": "Central European Summer Time",
+                                "isDst": true
+                            },
+                            "visible": true,
+                            "website": "http://www.schiphol.nl/index_en.html"
+                        }
+                    },
+                    "time": {
+                        "real": {
+                            "departure": 1682964039
+                        }
+                    }
+                }
+            ]
+        },
+        "ems": null,
+        "availability": [
+            "AGE",
+            "MSN"
+        ],
+        "time": {
+            "scheduled": {
+                "departure": 1683133200,
+                "arrival": 1683147300
+            },
+            "real": {
+                "departure": 1683135253,
+                "arrival": null
+            },
+            "estimated": {
+                "departure": null,
+                "arrival": 1683147264
+            },
+            "other": {
+                "eta": 1683147264,
+                "updated": 1683135285
+            },
+            "historical": {
+                "flighttime": "12624",
+                "delay": "-535"
+            }
+        },
+        "trail": [
+            {
+                "lat": 46.57045,
+                "lng": 16.177101,
+                "alt": 38000,
+                "spd": 442,
+                "ts": 1683141599,
+                "hd": 319
+            }
+        ],
+        "firstTimestamp": 1683134886,
+        "s": "xMxfnDMzjmFU97WXtpGI-8XJTZuASqwnZqD3_I6B-NZsi-5Okid0awkEOq_uyov7"
+    }
+]

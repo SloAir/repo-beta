@@ -60,3 +60,5 @@ class Flight(Document):
     time = EmbeddedDocumentField(FlightTime)
     trail = EmbeddedDocumentListField(FlightTrail)
     first_timestamp = IntField(required=True)
+
+
