@@ -23,15 +23,19 @@ urlpatterns = [
     path('api/get/', views.get_data, name='get_data'),
 
     # aircraft routes
-    path('api/aircraft/get/', views.get_aircraft, name='get_aircraft'),
+    path('api/aircraft/get/<str:registration>/', views.get_aircraft, name='get_aircraft'),
     path('api/aircraft/post/', views.insert_aircraft, name='post_aircraft'),
     path('api/aircraft/put/', views.update_aircraft, name='put_aircraft'),
 
+    # airline routes
+    path('api/airline/get/<str:airline_icao>/', views.get_airline, name='get_airline'),
+    path('api/airline/post/', views.insert_airline, name='post_airline'),
+    path('api/airline/put/', views.update_airline, name='put_airline'),
+
     # airport routes
 
-    # airline routes
-
     # flight routes
+    path('api/flight/get/<str:flight_id>/', views.get_flight, name='get_flight'),
     path('api/flight/post/', views.insert_flight, name='post_flight'),
     path('api/flight/put/', views.update_flight, name='put_flight'),
 ]

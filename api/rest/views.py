@@ -1,12 +1,13 @@
 import os
+import json
 import requests
 from datetime import datetime
 from dotenv import load_dotenv
 from rest.settings import db
 from django.http import *
 from .radar import *
-from django.middleware.csrf import CsrfViewMiddleware
 from django.views.decorators.csrf import csrf_exempt
+
 load_dotenv()
 
 
@@ -229,6 +230,7 @@ def get_data(request):
         data_array.append(data_json)
 
         requests.post(os.environ.get('SERVER_URL') + 'api/aircraft/post/', json=aircraft_data, headers=headers)
+        requests.post(os.environ.get('SERVER_URL') + 'api/airline/post/', json=airline_data, headers=headers)
         requests.post(os.environ.get('SERVER_URL') + 'api/flight/post/', json=flight_data, headers=headers)
 
     # safe=false -> data is NOT a dictionary
@@ -237,9 +239,16 @@ def get_data(request):
 
 # function gets all of the aircraft data from the database
 @csrf_exempt
-def get_aircraft(request):
+def get_aircraft(request, registration):
     if request.method != 'GET':
         return JsonResponse({'error': 'Unsupported request method.'})
+
+    aircraft = db.aircrafts.find_one({'registration': registration})
+
+    if aircraft:
+        aircraft['_id'] = str(aircraft['_id'])
+
+    return JsonResponse(aircraft)
 
 
 # function inserts the aircraft into the database
@@ -284,6 +293,21 @@ def update_aircraft(request):
     return JsonResponse({'message': 'Aircraft updated successfully!'})
 
 
+# function returns a JSON object of a flight that matches the given flight ID
+@csrf_exempt
+def get_flight(request, flight_id):
+    if request.method != 'GET':
+        return JsonResponse({'error': 'Unsupported request method.'})
+
+    flight = db.flights.find_one({'identification.id': flight_id})
+
+    if flight:
+        flight['_id'] = str(flight['_id'])
+
+    return JsonResponse(flight)
+
+
+# function inserts a flight into the database
 @csrf_exempt
 def insert_flight(request):
     if request.method != 'POST':
@@ -302,6 +326,7 @@ def insert_flight(request):
     return JsonResponse({'message': 'Flight inserted successfully!'})
 
 
+# function updates the flight in the database
 @csrf_exempt
 def update_flight(request):
     if request.method != 'PUT':
@@ -323,6 +348,20 @@ def update_flight(request):
     )
 
     return JsonResponse({'message': 'Flight updated successfully!'})
+
+
+# function returns a JSON object of an airline that matches the given ICAO code
+@csrf_exempt
+def get_airline(request, airline_icao):
+    if request.method != 'GET':
+        return JsonResponse({'error': 'Unsupported request method.'})
+
+    airline = db.airlines.find_one({'code.icao': airline_icao})
+
+    if airline:
+        airline['_id'] = str(airline['_id'])
+
+    return JsonResponse(airline)
 
 
 # function inserts an airline into the database
@@ -351,3 +390,9 @@ def update_airline(request):
     data = json.loads(request.body)
 
     data['modified'] = datetime.now()
+    db.airlines.update_one(
+        {'code.icao': data['code']['icao']},
+        {'$set': data}
+    )
+
+    return JsonResponse({'message': 'Airline updated successfully!'})
