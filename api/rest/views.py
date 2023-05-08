@@ -1,5 +1,6 @@
 import os
 import requests
+from datetime import datetime
 from dotenv import load_dotenv
 from rest.settings import db
 from django.http import *
@@ -17,16 +18,19 @@ def process_aircraft_data(data):
     del aircraft_data['aircraft']['countryId']
     del aircraft_data['aircraft']['age']
     del aircraft_data['aircraft']['msn']
-    del aircraft_data['aircraft']['images']['thumbnails']
-    del aircraft_data['aircraft']['images']['medium']
+
+    if aircraft_data['aircraft']['images']:
+        del aircraft_data['aircraft']['images']['thumbnails']
+        del aircraft_data['aircraft']['images']['medium']
+
+        # move images from ['images']['large'] to ['images']
+        images = aircraft_data['aircraft']['images']['large']
+        del aircraft_data['aircraft']['images']['large']
+        aircraft_data['aircraft']['images'] = images
+
     del aircraft_data['aircraft']['hex']
 
-    # move images from ['images']['large'] to ['images']
-    images = aircraft_data['aircraft']['images']['large']
-    del aircraft_data['aircraft']['images']['large']
-    aircraft_data['aircraft']['images'] = images
-
-    aircraft_data['flightId'] = data['identification']['id']
+    aircraft_data['aircraft']['flightHistory'] = [{'flightId': data['identification']['id']}]
 
     return aircraft_data['aircraft']
 
@@ -249,9 +253,10 @@ def insert_aircraft(request):
 
     # if the aircraft already exists, redirect to PUT URL
     if db.aircrafts.find_one({'registration': registration_number}):
-        # return requests.put(os.environ.get('SERVER_URL') + 'api/aircraft/put/', json=data)
-        print()
+        requests.put(os.environ.get('SERVER_URL') + 'api/aircraft/put/', json=data)
+        return JsonResponse({'message': 'Redirected to PUT'})
     else:
+        data['created'] = datetime.now()
         db.aircrafts.insert_one(data)
 
     return JsonResponse({'message': 'Aircraft inserted successfully.'})
@@ -264,11 +269,19 @@ def update_aircraft(request):
         return JsonResponse({'error': 'Unsupported request method.'})
 
     data = json.loads(request.body)
+    data['modified'] = datetime.now()
     flight_id = data['flightId']
+    del data['flightId']
 
-    db.aircrafts.update_one({})
+    db.aircrafts.update_one(
+        {'registration': data['registration']},
+        {
+            '$set': {k: v for k, v in data.items() if k != 'flightHistory'},
+            '$push': {'flightHistory': {'$each': [flight_id], '$position': 0}}
+        }
+    )
 
-    return JsonResponse({'message': 'Aircraft updated successfully.'})
+    return JsonResponse({'message': 'Aircraft updated successfully!'})
 
 
 @csrf_exempt
@@ -280,11 +293,13 @@ def insert_flight(request):
     flight_id = data['identification']['id']
 
     if db.flights.find_one({'identification.id': flight_id}):
-        return requests.put(os.environ.get('SERVER_URL') + 'api/flight/put/', json=data)
+        requests.put(os.environ.get('SERVER_URL') + 'api/flight/put/', json=data)
+        return JsonResponse({'message': 'Redirected to put'})
     else:
+        data['created'] = datetime.now()
         db.flights.insert_one(data)
 
-    return JsonResponse({'message': 'Flight inserted successfully.'})
+    return JsonResponse({'message': 'Flight inserted successfully!'})
 
 
 @csrf_exempt
@@ -293,13 +308,46 @@ def update_flight(request):
         return JsonResponse({'error': 'Unsupported request method.'})
 
     data = json.loads(request.body)
-    flight_id = data['identification']['id']
-    trail = data['trail'][0]
 
-    filter = {'flightId': flight_id}
-    update = {"$push": {"trail": {"$each": [trail], "$position": 0}}}
-    db.flights.update_one(filter, update)
+    data['modified'] = datetime.now()
 
-    updated_flight = db.flights.find_one(filter)
+    # Update all fields except 'trail'
+    # then add trail from the 
+    db.flights.update_one(
+        {'identification.id': data['identification']['id']},
+        {
+            '$set': {k: v for k, v in data.items() if k != 'trail'},
+            '$push': {'trail': {'$each': [data['trail'][0]], '$position': 0}}
+        },
+        upsert=True
+    )
 
-    return JsonResponse(updated_flight)
+    return JsonResponse({'message': 'Flight updated successfully!'})
+
+
+# function inserts an airline into the database
+@csrf_exempt
+def insert_airline(request):
+    if request.method != 'POST':
+        return JsonResponse({'error': 'Unsupported request method.'})
+
+    data = json.loads(request.body)
+
+    if db.airlines.find_one({'code.icao': data['code']['icao']}):
+        requests.put(os.environ.get('SERVER_URL') + 'api/airline/put/', json=data)
+        return JsonResponse({'message': 'Redirected to PUT.'})
+    else:
+        data['created'] = datetime.now()
+        db.airlines.insert_one(data)
+
+    return JsonResponse({'message': 'Airline inserted successfully!'})
+
+
+@csrf_exempt
+def update_airline(request):
+    if request.method != 'PUT':
+        return JsonResponse({'error': 'Unsupported request method.'})
+
+    data = json.loads(request.body)
+
+    data['modified'] = datetime.now()
