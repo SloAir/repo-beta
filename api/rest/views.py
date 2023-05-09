@@ -1,53 +1,77 @@
 import os
 import json
 import requests
+import logging
+
 from datetime import datetime
 from dotenv import load_dotenv
-from rest.settings import db
 from django.http import *
 from .radar import *
 from django.views.decorators.csrf import csrf_exempt
 
 load_dotenv()
+logger = logging.getLogger(__name__)
 
 
 # function returns a processed JSON object of an aircraft as a dictionary
 def process_aircraft_data(data):
-    aircraft_data = data
+    aircraft_data = data['aircraft']
+
+    if not all(aircraft_data.get(k) for k in ('countryId', 'age', 'msn')):
+        logger.warning('Missing \'aircraft\' field.')
 
     # remove unnecessary data from aircraft
-    del aircraft_data['aircraft']['countryId']
-    del aircraft_data['aircraft']['age']
-    del aircraft_data['aircraft']['msn']
+    del aircraft_data['countryId']
+    del aircraft_data['age']
+    del aircraft_data['msn']
 
-    if aircraft_data['aircraft']['images']:
-        del aircraft_data['aircraft']['images']['thumbnails']
-        del aircraft_data['aircraft']['images']['medium']
+    if not aircraft_data['images']:
+        logger.warning('Missing \'images\' field.')
 
-        # move images from ['images']['large'] to ['images']
-        images = aircraft_data['aircraft']['images']['large']
-        del aircraft_data['aircraft']['images']['large']
-        aircraft_data['aircraft']['images'] = images
+    images = aircraft_data.get('images', {})
 
-    del aircraft_data['aircraft']['hex']
+    if not all(images.get(k) for k in ('thumbnails', 'medium', 'large')):
+        logger.warning('Missing \'images\' field.')
 
-    aircraft_data['aircraft']['flightHistory'] = [{'flightId': data['identification']['id']}]
+    del aircraft_data['images']['thumbnails']
+    del aircraft_data['images']['medium']
+
+    # move images from ['images']['large'] to ['images']
+    images = aircraft_data['images']['large']
+    del aircraft_data['images']['large']
+    aircraft_data['images'] = images
+
+    if not aircraft_data['hex']:
+        logger.warning('Missing \'hex\' field.')
+
+    del aircraft_data['hex']
+
+    aircraft_data['flightHistory'] = [{'flightId': data['identification']['id']}]
 
     return aircraft_data['aircraft']
 
 
 # function returns a processed JSON object of the origin airport as a dictionary
 def process_origin_airport_data(data):
+    if not data['airport']['origin']:
+        logger.warning('Missing \'origin\' field.')
+
     return data['airport']['origin']
 
 
 # function returns a processed JSON object of the destination airport as a dictionary
 def process_destination_airport_data(data):
+    if not data['airport']['destination']:
+        logger.warning('Missing \'destination\' field.')
+
     return data['airport']['destination']
 
 
 # function returns a processed JSON object of an airline as a dictionary
 def process_airline_data(data):
+    if not data['airline']:
+        logger.warning('Missing \'airline\' field.')
+
     return data['airline']
 
 
@@ -55,9 +79,21 @@ def process_airline_data(data):
 def process_flight_data(data):
     flight_data = data
 
+    identification = flight_data.get('identification', {})
+
+    # check if all of the fields we are trying to delete exist
+    if not all(identification.get(k) for k in ('row', 'number')):
+        logger.warning('Missing \'identification\' field.')
+
     # delete unnecessary data from identification
     del flight_data['identification']['row']
     del flight_data['identification']['number']
+
+    status = flight_data.get('status', {})
+
+    # check if all of the fields we are trying to delete exist
+    if not all(status.get(k) for k in ('text', 'icon', 'estimated', 'ambiguous', 'generic')):
+        logger.warning('Missing \'status\' field.')
 
     # delete unnecessary data from status
     del flight_data['status']['text']
@@ -66,37 +102,57 @@ def process_flight_data(data):
     del flight_data['status']['ambiguous']
     del flight_data['status']['generic']
 
+    # check if 'airport' field exists
+    if not flight_data['airport']:
+        logger.warning('Missing \'airport\' field.')
+
     # remove unnecessary airport data
     del flight_data['airport']
 
     # remove more unnecessary data
+    if not flight_data['level']:
+        logger.warning('Missing \'level\' field.')
+
     del flight_data['level']
+
+    if not flight_data['promote']:
+        logger.warning('Missing \'promote\' field.')
+
     del flight_data['promote']
+
+    if not flight_data['aircraft']:
+        logger.warning('Missing \'aircraft\' field.')
 
     # remove unnecessary data from aircraft
     del flight_data['aircraft']
+
+    if not flight_data['flightHistory']:
+        logger.warning('Missing \'flightHistory\' field.')
 
     # remove flight history
     del flight_data['flightHistory']
 
     # remove more unnecessary data
+    if not flight_data['ems']:
+        logger.warning('Missing \'ems\' field.')
+
     del flight_data['ems']
+
+    if not flight_data['availability']:
+        logger.warning('Missing \'availability\' field.')
+
     del flight_data['availability']
+
+    if not flight_data['s']:
+        logger.warning('Missing \'s\' field.')
 
     del flight_data['s']
 
     return data
 
 
-# function saves data to a specified collection
-# returns true if successful
-def insert_data(data, collection):
-    collection = db[collection]
-    return collection.insert_one(data)
-
-
 # function returns JSON data of all the flights above Slovenian airspace
-def get_data(request):
+def get_all(request):
     if request.method != 'GET':
         return JsonResponse({'error': 'Unsupported request method.'})
     

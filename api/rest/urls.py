@@ -21,7 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     # route for getting all of the data
-    path('api/get/', views.get_data, name='get_data'),
+    path('api/get/', views.get_all, name='get_data'),
 
     # aircraft routes
     path('api/aircraft/get/<str:aircraft_registration>/', views.get_aircraft, name='get_aircraft'),
