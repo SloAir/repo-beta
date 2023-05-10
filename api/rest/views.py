@@ -1,7 +1,6 @@
 import os
 import json
 import requests
-import logging
 
 from datetime import datetime
 from dotenv import load_dotenv
@@ -10,51 +9,50 @@ from .radar import *
 from django.views.decorators.csrf import csrf_exempt
 
 load_dotenv()
-logger = logging.getLogger(__name__)
 
 
 # function returns a processed JSON object of an aircraft as a dictionary
 def process_aircraft_data(data):
     aircraft_data = data['aircraft']
 
-    if not all(aircraft_data.get(k) for k in ('countryId', 'age', 'msn')):
-        logger.warning('Missing \'aircraft\' field.')
+    for k in ('countryId', 'age', 'msn'):
+        if k in aircraft_data:
+            # delete unnecessary fields
+            del aircraft_data[k]
 
-    # remove unnecessary data from aircraft
-    del aircraft_data['countryId']
-    del aircraft_data['age']
-    del aircraft_data['msn']
+    if aircraft_data['images']:
+        if 'large' in aircraft_data['images']:
+            # move images from ['images']['large'] to ['images']
+            images = aircraft_data['images']['large']
+            del aircraft_data['images']['large']
+            aircraft_data['images'] = images
 
-    if not aircraft_data['images']:
-        logger.warning('Missing \'images\' field.')
+        # if 'large' field does not exist, we try to extract 'medium' images
+        elif 'medium' in aircraft_data['images']:
+            # move images from ['images']['medium'] to ['images']
+            images = aircraft_data['images']['medium']
+            del aircraft_data['images']['medium']
+            aircraft_data['images'] = images
 
-    images = aircraft_data.get('images', {})
+        # if 'medium' field does not exist, we try to extract 'thumbnail' images
+        elif 'thumbnails' in aircraft_data['images']:
+            # move images from ['images']['thumbnails'] to ['images']
+            images = aircraft_data['images']['thumbnails']
+            del aircraft_data['images']['thumbnails']
+            aircraft_data['images'] = images
 
-    if not all(images.get(k) for k in ('thumbnails', 'medium', 'large')):
-        logger.warning('Missing \'images\' field.')
-
-    del aircraft_data['images']['thumbnails']
-    del aircraft_data['images']['medium']
-
-    # move images from ['images']['large'] to ['images']
-    images = aircraft_data['images']['large']
-    del aircraft_data['images']['large']
-    aircraft_data['images'] = images
-
-    if not aircraft_data['hex']:
-        logger.warning('Missing \'hex\' field.')
-
-    del aircraft_data['hex']
+    if aircraft_data['hex']:
+        del aircraft_data['hex']
 
     aircraft_data['flightHistory'] = [{'flightId': data['identification']['id']}]
 
-    return aircraft_data['aircraft']
+    return aircraft_data
 
 
 # function returns a processed JSON object of the origin airport as a dictionary
 def process_origin_airport_data(data):
     if not data['airport']['origin']:
-        logger.warning('Missing \'origin\' field.')
+        return {}
 
     return data['airport']['origin']
 
@@ -62,7 +60,7 @@ def process_origin_airport_data(data):
 # function returns a processed JSON object of the destination airport as a dictionary
 def process_destination_airport_data(data):
     if not data['airport']['destination']:
-        logger.warning('Missing \'destination\' field.')
+        return {}
 
     return data['airport']['destination']
 
@@ -70,7 +68,7 @@ def process_destination_airport_data(data):
 # function returns a processed JSON object of an airline as a dictionary
 def process_airline_data(data):
     if not data['airline']:
-        logger.warning('Missing \'airline\' field.')
+        return {}
 
     return data['airline']
 
@@ -79,74 +77,53 @@ def process_airline_data(data):
 def process_flight_data(data):
     flight_data = data
 
-    identification = flight_data.get('identification', {})
+    # check if 'identification' field exists
+    if 'identification' in flight_data:
+        # check if all of the fields inside of the 'indentification' field exist
+        for k in ('row', 'number'):
+            if k in flight_data['identification']:
+                # delete unnecessary fields
+                del flight_data['identification'][k]
 
-    # check if all of the fields we are trying to delete exist
-    if not all(identification.get(k) for k in ('row', 'number')):
-        logger.warning('Missing \'identification\' field.')
-
-    # delete unnecessary data from identification
-    del flight_data['identification']['row']
-    del flight_data['identification']['number']
-
-    status = flight_data.get('status', {})
-
-    # check if all of the fields we are trying to delete exist
-    if not all(status.get(k) for k in ('text', 'icon', 'estimated', 'ambiguous', 'generic')):
-        logger.warning('Missing \'status\' field.')
-
-    # delete unnecessary data from status
-    del flight_data['status']['text']
-    del flight_data['status']['icon']
-    del flight_data['status']['estimated']
-    del flight_data['status']['ambiguous']
-    del flight_data['status']['generic']
+    # check if 'status' field exists
+    if 'status' in flight_data:
+        # check if all of the fields inside of the 'status' field exist
+        for k in ('text', 'icon', 'estimated', 'ambiguous', 'generic'):
+            if k in flight_data['status']:
+                # delete unnecessary fields
+                del flight_data['status'][k]
 
     # check if 'airport' field exists
-    if not flight_data['airport']:
-        logger.warning('Missing \'airport\' field.')
+    if flight_data['airport']:
+        del flight_data['airport']
 
-    # remove unnecessary airport data
-    del flight_data['airport']
+    # check if 'level' field
+    if flight_data['level']:
+        del flight_data['level']
 
-    # remove more unnecessary data
-    if not flight_data['level']:
-        logger.warning('Missing \'level\' field.')
+    # check if 'promote' field exists
+    if flight_data['promote']:
+        del flight_data['promote']
 
-    del flight_data['level']
+    # check if 'aircraft' field exists
+    if flight_data['aircraft']:
+        # remove unnecessary data about aircraft
+        del flight_data['aircraft']
 
-    if not flight_data['promote']:
-        logger.warning('Missing \'promote\' field.')
-
-    del flight_data['promote']
-
-    if not flight_data['aircraft']:
-        logger.warning('Missing \'aircraft\' field.')
-
-    # remove unnecessary data from aircraft
-    del flight_data['aircraft']
-
-    if not flight_data['flightHistory']:
-        logger.warning('Missing \'flightHistory\' field.')
-
-    # remove flight history
-    del flight_data['flightHistory']
+    # check if 'flightHistory' field exists
+    if flight_data['flightHistory']:
+        # remove flight history
+        del flight_data['flightHistory']
 
     # remove more unnecessary data
-    if not flight_data['ems']:
-        logger.warning('Missing \'ems\' field.')
+    if flight_data['ems']:
+        del flight_data['ems']
 
-    del flight_data['ems']
+    if flight_data['availability']:
+        del flight_data['availability']
 
-    if not flight_data['availability']:
-        logger.warning('Missing \'availability\' field.')
-
-    del flight_data['availability']
-
-    if not flight_data['s']:
-        logger.warning('Missing \'s\' field.')
-
-    del flight_data['s']
+    if flight_data['s']:
+        del flight_data['s']
 
     return data
 
@@ -270,9 +247,13 @@ def get_all(request):
     # process all of the data; clean-up and add to an array of dictionaries
     for si_flight in si_flight_details:
         aircraft_data = process_aircraft_data(si_flight)
+
         origin_airport_data = process_origin_airport_data(si_flight)
+
         destination_airport_data = process_destination_airport_data(si_flight)
+
         airline_data = process_airline_data(si_flight)
+
         flight_data = process_flight_data(si_flight)
 
         data_json = {
@@ -283,11 +264,14 @@ def get_all(request):
             'flight': flight_data
         }
 
-        data_array.append(data_json)
-
+        # send POST requests to the routes for insertion
         requests.post(os.environ.get('SERVER_URL') + 'api/aircraft/post/', json=aircraft_data, headers=headers)
         requests.post(os.environ.get('SERVER_URL') + 'api/airline/post/', json=airline_data, headers=headers)
+        requests.post(os.environ.get('SERVER_URL') + 'api/airport/post/', json=origin_airport_data, headers=headers)
+        requests.post(os.environ.get('SERVER_URL') + 'api/airport/post/', json=destination_airport_data, headers=headers)
         requests.post(os.environ.get('SERVER_URL') + 'api/flight/post/', json=flight_data, headers=headers)
+
+        data_array.append(data_json)
 
     # safe=false -> data is NOT a dictionary
     return JsonResponse(data_array, safe=False)
@@ -301,13 +285,15 @@ def get_aircraft(request, aircraft_registration):
 
     aircraft = db.aircrafts.find_one({'registration': aircraft_registration})
 
-    if aircraft:
-        aircraft['_id'] = str(aircraft['_id'])
+    if not aircraft:
+        return JsonResponse({'message': 'Aircraft not found.'})
+
+    aircraft['_id'] = str(aircraft['_id'])
 
     return JsonResponse(aircraft)
 
 
-# function inserts the aircraft into the database
+# function inserts an aircraft into the database
 @csrf_exempt
 def insert_aircraft(request):
     if request.method != 'POST':
@@ -322,12 +308,13 @@ def insert_aircraft(request):
         return JsonResponse({'message': 'Redirected to PUT'})
     else:
         data['created'] = datetime.now()
+        data['modified'] = datetime.now()
         db.aircrafts.insert_one(data)
 
     return JsonResponse({'message': 'Aircraft inserted successfully.'})
 
 
-# function updates the aircraft in the database
+# function updates an aircraft in the database
 @csrf_exempt
 def update_aircraft(request):
     if request.method != 'PUT':
@@ -335,6 +322,7 @@ def update_aircraft(request):
 
     data = json.loads(request.body)
     data['modified'] = datetime.now()
+
     flight_id = data['flightId']
     del data['flightId']
 
@@ -349,6 +337,7 @@ def update_aircraft(request):
     return JsonResponse({'message': 'Aircraft updated successfully!'})
 
 
+# function deletes an aircraft from the database that matches the aircraft's registration number
 @csrf_exempt
 def delete_aircraft(request, aircraft_registration):
     if request.method != 'DELETE':
@@ -368,8 +357,10 @@ def get_airline(request, airline_icao):
 
     airline = db.airlines.find_one({'code.icao': airline_icao})
 
-    if airline:
-        airline['_id'] = str(airline['_id'])
+    if not airline:
+        return JsonResponse({'message': 'Airline not found.'})
+
+    airline['_id'] = str(airline['_id'])
 
     return JsonResponse(airline)
 
@@ -387,11 +378,13 @@ def insert_airline(request):
         return JsonResponse({'message': 'Redirected to PUT.'})
     else:
         data['created'] = datetime.now()
+        data['modified'] = datetime.now()
         db.airlines.insert_one(data)
 
     return JsonResponse({'message': 'Airline inserted successfully!'})
 
 
+# function updates an airline in the database
 @csrf_exempt
 def update_airline(request):
     if request.method != 'PUT':
@@ -408,6 +401,7 @@ def update_airline(request):
     return JsonResponse({'message': 'Airline updated successfully!'})
 
 
+# function deletes an airline with a matching ICAO code from the database
 @csrf_exempt
 def delete_airline(request, airline_icao):
     if request.method != 'DELETE':
@@ -419,6 +413,72 @@ def delete_airline(request, airline_icao):
     return JsonResponse({'message': 'Airline deleted successfully.'})
 
 
+# function returns a JSON object of an airport
+@csrf_exempt
+def get_airport(request, airport_icao):
+    if request.method != 'GET':
+        return JsonResponse({'error': 'Unsupported request method.'})
+
+    airport = db.airports.find_one({'code.icao': airport_icao})
+
+    if not airport:
+        return JsonResponse({'message': 'Airport not found.'})
+
+    airport['_id'] = str(airport['_id'])
+
+    return JsonResponse(airport)
+
+
+# function inserts an airport into the database
+@csrf_exempt
+def insert_airport(request):
+    if request.method != 'POST':
+        return JsonResponse({'error': 'Unsupported request method.'})
+
+    data = json.loads(request.body)
+
+    if db.airports.find_one({'code.icao': data['code']['icao']}):
+        requests.put(os.environ.get('SERVER_URL') + 'api/airport/put/', json=data)
+        return JsonResponse({'message': 'Redirected to PUT'})
+    else:
+        data['created'] = datetime.now()
+        data['modified'] = datetime.now()
+        db.airports.insert_one(data)
+
+    return JsonResponse({'message': 'Airport inserted successfully!'})
+
+
+# function updates an existing airport in the database
+@csrf_exempt
+def update_airport(request):
+    if request.method != 'PUT':
+        return JsonResponse({'error': 'Unsupported request method.'})
+
+    data = json.loads(request.body)
+
+    data['modified'] = datetime.now()
+
+    db.airports.update_one(
+        {'code.icao': data['code']['icao']},
+        {'$set': data},
+        upsert=True
+    )
+
+    return JsonResponse({'message': 'Airport updated successfully!'})
+
+
+# function deletes an airport with a matching ICAO code from the database
+@csrf_exempt
+def delete_airport(request, airport_icao):
+    if request.method != 'DELETE':
+        return JsonResponse({'error': 'Unsupported request method.'})
+
+    if not db.airports.delete_one({'code.icao': airport_icao}):
+        return JsonResponse({'error': 'Could not delete'})
+
+    return JsonResponse({'message': 'Airport deleted successfully.'})
+
+
 # function returns a JSON object of a flight that matches the given flight ID
 @csrf_exempt
 def get_flight(request, flight_id):
@@ -427,8 +487,10 @@ def get_flight(request, flight_id):
 
     flight = db.flights.find_one({'identification.id': flight_id})
 
-    if flight:
-        flight['_id'] = str(flight['_id'])
+    if not flight:
+        return JsonResponse({'message': 'Flight not found.'})
+
+    flight['_id'] = str(flight['_id'])
 
     return JsonResponse(flight)
 
@@ -440,19 +502,19 @@ def insert_flight(request):
         return JsonResponse({'error': 'Unsupported request method.'})
 
     data = json.loads(request.body)
-    flight_id = data['identification']['id']
 
-    if db.flights.find_one({'identification.id': flight_id}):
+    if db.flights.find_one({'identification.id': data['identification']['id']}):
         requests.put(os.environ.get('SERVER_URL') + 'api/flight/put/', json=data)
-        return JsonResponse({'message': 'Redirected to put'})
+        return JsonResponse({'message': 'Redirected to PUT'})
     else:
         data['created'] = datetime.now()
+        data['modified'] = datetime.now()
         db.flights.insert_one(data)
 
     return JsonResponse({'message': 'Flight inserted successfully!'})
 
 
-# function updates the flight in the database
+# function updates a flight in the database
 @csrf_exempt
 def update_flight(request):
     if request.method != 'PUT':
@@ -476,6 +538,7 @@ def update_flight(request):
     return JsonResponse({'message': 'Flight updated successfully!'})
 
 
+# function deletes a flight with a matching flight ID from the database
 @csrf_exempt
 def delete_flight(request, flight_id):
     if request.method != 'DELETE':

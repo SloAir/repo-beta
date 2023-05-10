@@ -89,7 +89,7 @@ print('Connected to the database!')
 
 
 # Logging setup
-
+"""
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -99,7 +99,7 @@ LOGGING = {
         },
         'file': {
             'class': 'logging.FileHandler',
-            'filename': 'logs/views_log.txt',
+            'filename': 'rest/logs/views_log.txt',
         },
     },
     'loggers': {
@@ -113,6 +113,7 @@ LOGGING = {
         },
     },
 }
+"""
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
