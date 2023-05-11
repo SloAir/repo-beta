@@ -21,7 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     # route for getting all of the data
-    path('api/get/', views.get_data, name='get_data'),
+    path('api/get/', views.get_all, name='get_data'),
 
     # aircraft routes
     path('api/aircraft/get/<str:aircraft_registration>/', views.get_aircraft, name='get_aircraft'),
@@ -36,6 +36,10 @@ urlpatterns = [
     path('api/airline/delete/<str:airline_icao>/', views.delete_airline, name='delete_airline'),
 
     # airport routes
+    path('api/airport/get/<str:airport_icao>/', views.get_airport, name='get_airport'),
+    path('api/airport/post/', views.insert_airport, name='post_airport'),
+    path('api/airport/put/', views.update_airport, name='put_airport'),
+    path('api/airport/delete/<str:airport_icao>/', views.delete_airport, name='delete_airport'),
 
     # flight routes
     path('api/flight/get/<str:flight_id>/', views.get_flight, name='get_flight'),
