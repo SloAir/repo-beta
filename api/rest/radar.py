@@ -6,19 +6,18 @@ fr = FlightRadar24API()
 
 def get_data():
     # get all existing flight_id from the DB
-    collection = db["flights"]
-    projection = {"flight_id": 1}
-    db_flights = collection.find({}, projection)
-
-    # get all predefined zones -> extract Central Europe
-    zones = fr.get_zones()
-    ceur_bounds = fr.get_bounds(zones["europe"]["subzones"]["ceur"])
+    db_flights = db.flights.find(
+        {},
+        {'flight_id': 1}
+    )
 
     # setup custom bounds for Slovenia
     si_bounds = '46.66,13.51,45.66,16.19'
     lat_max, lon_min, lat_min, lon_max = map(float, si_bounds.split(','))
 
-    # get Central Europe flights
+    # get all predefined zones -> extract Central Europe
+    zones = fr.get_zones()
+    ceur_bounds = fr.get_bounds(zones["europe"]["subzones"]["ceur"])
     ceur_flights = fr.get_flights(bounds=ceur_bounds)
 
     # get flight_id for flights in SLO airspace ATM
@@ -36,7 +35,6 @@ def get_data():
 
     for si_flight_id in si_flights:
         # get_flight_details
-        # details = fr.get_flight_details(si_flight_id)
         details = fr.get_flight_details(si_flight_id)
 
         # "aircraft" is a GROUND vehicle -> ignore
@@ -69,13 +67,11 @@ def get_data():
             # get first trail object inside bounds
             new_trail = {}
             for i in range(trail_len):
-                if lat_min <= details["trail"][i]['lat'] <= lat_max and lon_min <= details["trail"][i][
-                    'lng'] <= lon_max:
+                if (lat_min <= details["trail"][i]['lat'] <= lat_max and
+                    lon_min <= details["trail"][i]['lng'] <= lon_max
+                ):
                     new_trail = details["trail"][i]
                     break
-
-            # updated_flight = collection.find_one(filter)
-            # si_flight_details.append(updated_flight)
 
         # if flight does not exist
         else:
@@ -85,8 +81,9 @@ def get_data():
             cum_diff = 0
 
             for i in range(trail_len):
-                if lat_min <= details["trail"][i]['lat'] <= lat_max and lon_min <= details["trail"][i][
-                    'lng'] <= lon_max:
+                if (lat_min <= details["trail"][i]['lat'] <= lat_max and
+                    lon_min <= details["trail"][i]['lng'] <= lon_max
+                ):
                     if i == 0:
                         valid_trail.append(details["trail"][i])
                     else:
@@ -107,3 +104,5 @@ def get_data():
 
             details["trail"] = valid_trail
             si_flight_details.append(details)
+
+    return si_flight_details
