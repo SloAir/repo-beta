@@ -1,10 +1,12 @@
 from FlightRadar24.api import FlightRadar24API
-from rest.settings import db
+from mongoengine.connection import get_db
 
 fr = FlightRadar24API()
 
 
 def get_data():
+    db = get_db()
+
     # get all existing flight_id from the DB
     db_flights = db.flights.find(
         {},

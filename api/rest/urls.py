@@ -13,37 +13,48 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
 from django.urls import path
-from . import views
+from rest.views import (
+    aircraft_views,
+    airline_views,
+    airport_views,
+    flight_views,
+    data_views
+)
+from rest import admin
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    # homepage for API administration
 
-    # route for getting all of the data
-    path('api/get/', views.get_all, name='get_data'),
+    # routes for API authentication
+    path('api/', admin.homepage, name='homepage_admin'),
+    path('api/login/', admin.authenticate_user, name='login_admin'),
 
-    # aircraft routes
-    path('api/aircraft/get/<str:aircraft_registration>/', views.get_aircraft, name='get_aircraft'),
-    path('api/aircraft/post/', views.insert_aircraft, name='post_aircraft'),
-    path('api/aircraft/put/', views.update_aircraft, name='put_aircraft'),
-    path('api/aircraft/delete/<str:aircraft_registration>/', views.delete_aircraft, name='delete_aircraft'),
+    # API route for getting all of the data
+    path('api/get/', data_views.get_all, name='get_data'),
 
-    # airline routes
-    path('api/airline/get/<str:airline_icao>/', views.get_airline, name='get_airline'),
-    path('api/airline/post/', views.insert_airline, name='post_airline'),
-    path('api/airline/put/', views.update_airline, name='put_airline'),
-    path('api/airline/delete/<str:airline_icao>/', views.delete_airline, name='delete_airline'),
+    # API aircraft routes
+    path('api/aircraft/get/', aircraft_views.get_all, name='get_aircrafts'),
+    path('api/aircraft/get/<str:aircraft_registration>/', aircraft_views.get_aircraft, name='get_aircraft'),
+    path('api/aircraft/post/', aircraft_views.insert_aircraft, name='post_aircraft'),
+    path('api/aircraft/put/', aircraft_views.update_aircraft, name='put_aircraft'),
+    path('api/aircraft/delete/<str:aircraft_registration>/', aircraft_views.delete_aircraft, name='delete_aircraft'),
 
-    # airport routes
-    path('api/airport/get/<str:airport_icao>/', views.get_airport, name='get_airport'),
-    path('api/airport/post/', views.insert_airport, name='post_airport'),
-    path('api/airport/put/', views.update_airport, name='put_airport'),
-    path('api/airport/delete/<str:airport_icao>/', views.delete_airport, name='delete_airport'),
+    # API airline routes
+    path('api/airline/get/<str:airline_icao>/', airline_views.get_airline, name='get_airline'),
+    path('api/airline/post/', airline_views.insert_airline, name='post_airline'),
+    path('api/airline/put/', airline_views.update_airline, name='put_airline'),
+    path('api/airline/delete/<str:airline_icao>/', airline_views.delete_airline, name='delete_airline'),
 
-    # flight routes
-    path('api/flight/get/<str:flight_id>/', views.get_flight, name='get_flight'),
-    path('api/flight/post/', views.insert_flight, name='post_flight'),
-    path('api/flight/put/', views.update_flight, name='put_flight'),
-    path('api/flight/delete/<str:flight_id>/', views.delete_flight, name='delete_flight')
+    # API airport routes
+    path('api/airport/get/<str:airport_icao>/', airport_views.get_airport, name='get_airport'),
+    path('api/airport/post/', airport_views.insert_airport, name='post_airport'),
+    path('api/airport/put/', airport_views.update_airport, name='put_airport'),
+    path('api/airport/delete/<str:airport_icao>/', airport_views.delete_airport, name='delete_airport'),
+
+    # API flight routes
+    path('api/flight/get/<str:flight_id>/', flight_views.get_flight, name='get_flight'),
+    path('api/flight/post/', flight_views.insert_flight, name='post_flight'),
+    path('api/flight/put/', flight_views.update_flight, name='put_flight'),
+    path('api/flight/delete/<str:flight_id>/', flight_views.delete_flight, name='delete_flight')
 ]

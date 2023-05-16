@@ -14,6 +14,7 @@ from pathlib import Path
 import os
 import mongoengine
 from dotenv import load_dotenv
+from mongoengine import get_db
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_mongoengine'
 ]
 
 MIDDLEWARE = [
@@ -57,7 +59,7 @@ ROOT_URLCONF = 'rest.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'rest/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -76,44 +78,41 @@ WSGI_APPLICATION = 'rest.wsgi.application'
 # Database connection
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+AUTHENTICATION_BACKENDS = [
+    'django_mongoengine.auth.MongoEngineBackend',
+]
+
 load_dotenv()
 
-mongo = mongoengine.connect(
-    host=os.environ.get('DB_HOST'),
-    port=int(os.environ.get('DB_PORT'))
-)
+db_name = os.environ.get('DB_NAME')
+db_host = os.environ.get('DB_HOST')
+db_port = int(os.environ.get('DB_PORT'))
 
-db = mongo['SloAir']
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'dummy'
+    }
+}
 
-print('Connected to the database!')
-
-
-# Logging setup
-"""
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'console': {
-            'class': 'logging.StreamHandler',
-        },
-        'file': {
-            'class': 'logging.FileHandler',
-            'filename': 'rest/logs/views_log.txt',
-        },
-    },
-    'loggers': {
-        'django': {
-            'handlers': ['console', 'file'],
-            'level': 'INFO',
-        },
-        '__main__': {
-            'handlers': ['console', 'file'],
-            'level': 'DEBUG',
-        },
+MONGODB_DATABASES = {
+    'default': {
+        'NAME': db_name,
+        'HOST': db_host,
+        'PORT': db_port
     },
 }
-"""
+
+mongoengine.connect(
+    db=db_name,
+    host=db_host,
+    port=db_port
+)
+
+db = get_db()
+
+SESSION_ENGINE = 'django_mongoengine.sessions'
+SESSION_SERIALIZER = 'django_mongoengine.sessions.BSONSerializer'
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -161,3 +160,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Cookie setup
 CSRF_COOKIE_NAME = 'csrftoken'
+
+APPEND_SLASH = False
+
+PASSWORD_HASHERS = [
+    'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
+]
