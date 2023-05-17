@@ -9,6 +9,24 @@ from django.middleware.csrf import get_token
 from django.views.decorators.csrf import csrf_protect
 
 
+def get_all(request):
+    if request.method != 'GET':
+        return JsonResponse({'error': 'Unsupported request method.'})
+
+    flights = db.flights.find({})
+
+    if not flights:
+        return JsonResponse({'error': 'Aircrafts collection is empty.'})
+
+    flights_list = []
+
+    for flight in flights:
+        flight['_id'] = str(flight['_id'])
+        flights_list.append(flight)
+
+    return JsonResponse(flights_list, safe=False)
+
+
 # function returns a JSON object of a flight that matches the given flight ID
 def get_flight(request, flight_id):
     if request.method != 'GET':
@@ -17,7 +35,7 @@ def get_flight(request, flight_id):
     flight = db.flights.find_one({'identification.id': flight_id})
 
     if not flight:
-        return JsonResponse({'message': 'Flight not found.'})
+        return JsonResponse({'error': 'Flight not found.'})
 
     flight['_id'] = str(flight['_id'])
 

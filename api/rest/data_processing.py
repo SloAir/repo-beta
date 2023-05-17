@@ -1,5 +1,8 @@
 # function returns a processed JSON object of an aircraft as a dictionary
 async def process_aircraft_data(data):
+    if not data['aircraft']:
+        return None
+
     aircraft_data = data['aircraft']
 
     # return None, if no info
@@ -44,7 +47,12 @@ async def process_origin_airport_data(data):
     if not data['airport']['origin']:
         return None
 
-    return data['airport']['origin']
+    airport_data = data['airport']['origin']
+
+    if airport_data['info']:
+        del airport_data['info']
+
+    return airport_data
 
 
 # function returns a processed JSON object of the destination airport as a dictionary
@@ -53,7 +61,12 @@ async def process_destination_airport_data(data):
     if not data['airport']['destination']:
         return None
 
-    return data['airport']['destination']
+    airport_data = data['airport']['origin']
+
+    if airport_data['info']:
+        del airport_data['info']
+
+    return airport_data
 
 
 # function returns a processed JSON object of an airline as a dictionary
@@ -67,11 +80,11 @@ async def process_airline_data(data):
 
 # function returns a processed JSON object of the flight as a dictionary
 async def process_flight_data(data):
-    flight_data = data
-
     # return None, if no info
-    if not flight_data:
+    if not data:
         return None
+
+    flight_data = data
 
     # check if 'identification' field exists
     if 'identification' in flight_data:

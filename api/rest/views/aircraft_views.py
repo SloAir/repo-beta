@@ -14,19 +14,17 @@ def get_all(request):
         return JsonResponse({'error': 'Unsupported request method.'})
 
     aircrafts = db.aircrafts.find({})
-    print(type(aircrafts))
 
     if not aircrafts:
-        return JsonResponse({'message': 'Aircrafts collection is empty.'})
+        return JsonResponse({'error': 'Aircrafts collection is empty.'})
 
-    aircrafts_dict = {}
+    aircrafts_list = []
+
     for aircraft in aircrafts:
         aircraft['_id'] = str(aircraft['_id'])
-        aircrafts_dict.update({aircraft['_id']: aircraft})
+        aircrafts_list.append(aircraft)
 
-    print(type(aircrafts_dict))
-
-    return JsonResponse(aircrafts_dict)
+    return JsonResponse(aircrafts_list, safe=False)
 
 
 # function gets all of the aircraft data from the database
@@ -37,7 +35,7 @@ def get_aircraft(request, aircraft_registration):
     aircraft = db.aircrafts.find_one({'registration': aircraft_registration})
 
     if not aircraft:
-        return JsonResponse({'message': 'Aircraft not found.'})
+        return JsonResponse({'error': 'Aircraft not found.'})
 
     aircraft['_id'] = str(aircraft['_id'])
 

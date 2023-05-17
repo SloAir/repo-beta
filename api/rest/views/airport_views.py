@@ -9,6 +9,24 @@ from django.middleware.csrf import get_token
 from django.views.decorators.csrf import csrf_protect
 
 
+def get_all(request):
+    if request.method != 'GET':
+        return JsonResponse({'error': 'Unsupported request method.'})
+
+    airports = db.airports.find({})
+
+    if not airports:
+        return JsonResponse({'error': 'Aircrafts collection is empty.'})
+
+    airports_list = []
+
+    for airport in airports:
+        airport['_id'] = str(airport['_id'])
+        airports_list.append(airport)
+
+    return JsonResponse(airports_list, safe=False)
+
+
 # function returns a JSON object of an airport
 def get_airport(request, airport_icao):
     if request.method != 'GET':

@@ -9,6 +9,24 @@ from django.middleware.csrf import get_token
 from django.views.decorators.csrf import csrf_protect
 
 
+def get_all(request):
+    if request.method != 'GET':
+        return JsonResponse({'error': 'Unsupported request method.'})
+
+    airlines = db.airlines.find({})
+
+    if not airlines:
+        return JsonResponse({'error': 'Aircrafts collection is empty.'})
+
+    airlines_list = []
+
+    for airline in airlines:
+        airline['_id'] = str(airline['_id'])
+        airlines_list.append(airline)
+
+    return JsonResponse(airlines_list, safe=False)
+
+
 # function returns a JSON object of an airline that matches the given ICAO code
 def get_airline(request, airline_icao):
     if request.method != 'GET':

@@ -12,6 +12,7 @@ class LoginForm(forms.Form):
 
 def login_view(request):
     form = LoginForm()
+
     return render(request, 'admin/login.html', {'form': form})
 
 
@@ -24,8 +25,15 @@ def authenticate(username, password):
     return user
 
 
-def homepage(request):
-    return render(request, 'admin/index.html')
+def login(request, username, password):
+    user = authenticate(username, password)
+
+    if user is None:
+        return False
+
+    request.session['user_id'] = str(user['_id'])
+
+    return True
 
 
 @csrf_protect
@@ -42,11 +50,13 @@ def authenticate_user(request):
     username = form.cleaned_data['username']
     password = form.cleaned_data['password']
 
-    user = authenticate(username, password)
+    user = login(request, username, password)
 
-    if user is None:
+    if not user:
         return render(request, 'admin/login.html', {'form': form})
 
-    print(user)
-
     return redirect('/api/')
+
+
+def homepage(request):
+    return render(request, 'admin/index.html')
