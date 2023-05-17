@@ -1,3 +1,5 @@
+from django.http import HttpResponseRedirect
+
 from rest.settings import db
 from django import forms
 from django.contrib.auth.hashers import check_password
@@ -16,16 +18,25 @@ def login_view(request):
     return render(request, 'admin/login.html', {'form': form})
 
 
-def authenticate(username, password):
+def find_user(username):
     user = db.admin.find_one({'username': username})
 
-    if not user or not check_password(password, user['password']):
+    if user is None:
         return None
 
     return user
 
 
-def login(request, username, password):
+def authenticate(username, password):
+    user = find_user(username)
+
+    if user is None or not check_password(password, user['password']):
+        return None
+
+    return user
+
+
+def set_session(request, username, password):
     user = authenticate(username, password)
 
     if user is None:
@@ -37,7 +48,7 @@ def login(request, username, password):
 
 
 @csrf_protect
-def authenticate_user(request):
+def login(request):
     if request.method != 'POST':
         form = LoginForm()
         return render(request, 'admin/login.html', {'form': form})
@@ -50,12 +61,21 @@ def authenticate_user(request):
     username = form.cleaned_data['username']
     password = form.cleaned_data['password']
 
-    user = login(request, username, password)
+    user = set_session(request, username, password)
 
     if not user:
         return render(request, 'admin/login.html', {'form': form})
 
     return redirect('/api/')
+
+
+def logout(request):
+    if 'user_id' not in request.session:
+        return
+
+    del request.session['user_id']
+
+    return HttpResponseRedirect('/api/login/')
 
 
 def homepage(request):

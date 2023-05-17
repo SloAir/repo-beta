@@ -5,7 +5,6 @@ import time
 
 from rest.settings import db
 from django.http import *
-from django.middleware.csrf import get_token
 from django.views.decorators.csrf import csrf_protect
 
 
@@ -50,16 +49,9 @@ def insert_aircraft(request):
 
     data = json.loads(request.body)
     registration_number = data['registration']
-
-    csrf_token = get_token(request)
-    headers = {
-        'X-CSRFToken': csrf_token,
-        'Cookie': 'csrftoken={}'.format(csrf_token)
-    }
-
     # if the aircraft already exists, redirect to PUT URL
     if db.aircrafts.find_one({'registration': registration_number}):
-        requests.put(os.environ.get('SERVER_URL') + 'api/aircraft/put/', json=data, headers=headers)
+        requests.put(os.environ.get('SERVER_URL') + 'api/aircraft/put/', json=data)
         return JsonResponse({'message': 'Redirected to PUT'})
     else:
         data['created'] = int(time.time())

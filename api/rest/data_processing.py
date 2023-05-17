@@ -61,7 +61,7 @@ async def process_destination_airport_data(data):
     if not data['airport']['destination']:
         return None
 
-    airport_data = data['airport']['origin']
+    airport_data = data['airport']['destination']
 
     if airport_data['info']:
         del airport_data['info']

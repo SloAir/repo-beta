@@ -50,14 +50,8 @@ def insert_flight(request):
 
     data = json.loads(request.body)
 
-    csrf_token = get_token(request)
-    headers = {
-        'X-CSRFToken': csrf_token,
-        'Cookie': 'csrftoken={}'.format(csrf_token)
-    }
-
     if db.flights.find_one({'identification.id': data['identification']['id']}):
-        requests.put(os.environ.get('SERVER_URL') + 'api/flight/put/', json=data, headers=headers)
+        requests.put(os.environ.get('SERVER_URL') + 'api/flight/put/', json=data)
         return JsonResponse({'message': 'Redirected to PUT'})
     else:
         data['created'] = int(time.time())

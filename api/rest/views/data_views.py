@@ -20,12 +20,6 @@ async def get_all(request):
     # data = fr.get_flight_details('301962bc')
     data_array = []
 
-    csrf_token = get_token(request)
-    headers = {
-        'X-CSRFToken': csrf_token,
-        'Cookie': 'csrftoken={}'.format(csrf_token)
-    }
-
     # process all of the data; clean-up and add to an array of dictionaries
     for si_flight in si_flight_details:
 
@@ -44,11 +38,11 @@ async def get_all(request):
         }
 
         # send POST requests to the routes for insertion
-        requests.post(os.environ.get('SERVER_URL') + 'api/aircraft/post/', json=aircraft_data, headers=headers)
-        requests.post(os.environ.get('SERVER_URL') + 'api/airline/post/', json=airline_data, headers=headers)
-        requests.post(os.environ.get('SERVER_URL') + 'api/airport/post/', json=origin_airport_data, headers=headers)
-        requests.post(os.environ.get('SERVER_URL') + 'api/airport/post/', json=destination_airport_data, headers=headers)
-        requests.post(os.environ.get('SERVER_URL') + 'api/flight/post/', json=flight_data, headers=headers)
+        requests.post(os.environ.get('SERVER_URL') + 'api/aircraft/post/', json=aircraft_data)
+        requests.post(os.environ.get('SERVER_URL') + 'api/airline/post/', json=airline_data)
+        requests.post(os.environ.get('SERVER_URL') + 'api/airport/post/', json=origin_airport_data)
+        requests.post(os.environ.get('SERVER_URL') + 'api/airport/post/', json=destination_airport_data)
+        requests.post(os.environ.get('SERVER_URL') + 'api/flight/post/', json=flight_data)
 
         data_array.append(data_json)
 

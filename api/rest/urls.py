@@ -25,10 +25,11 @@ from rest import admin
 
 urlpatterns = [
     # homepage for API administration
+    path('api/', admin.homepage, name='index'),
 
     # routes for API authentication
-    path('api/', admin.homepage, name='homepage_admin'),
-    path('api/login/', admin.authenticate_user, name='login_admin'),
+    path('api/login/', admin.login, name='login_admin'),
+    path('api/logout/', admin.logout, name='logout_admin'),
 
     # API route for getting all of the data
     path('api/get/', data_views.get_all, name='get_data'),
