@@ -3,9 +3,10 @@ import json
 import requests
 import time
 
+from django.contrib.auth.decorators import login_required
+
 from rest.settings import db
 from django.http import *
-from django.middleware.csrf import get_token
 from django.views.decorators.csrf import csrf_protect
 
 
@@ -44,6 +45,7 @@ def get_flight(request, flight_id):
 
 # function inserts a flight into the database
 @csrf_protect
+@login_required
 def insert_flight(request):
     if request.method != 'POST':
         return JsonResponse({'error': 'Unsupported request method.'})
@@ -63,6 +65,7 @@ def insert_flight(request):
 
 # function updates a flight in the database
 @csrf_protect
+@login_required
 def update_flight(request):
     if request.method != 'PUT':
         return JsonResponse({'error': 'Unsupported request method.'})
@@ -87,6 +90,7 @@ def update_flight(request):
 
 # function deletes a flight with a matching flight ID from the database
 @csrf_protect
+@login_required
 def delete_flight(request, flight_id):
     if request.method != 'DELETE':
         return JsonResponse({'error': 'Unsupported request method.'})

@@ -1,4 +1,4 @@
-from django.http import HttpResponseRedirect
+from django.shortcuts import redirect
 
 
 class Session:
@@ -7,10 +7,9 @@ class Session:
 
     def __call__(self, request):
         if 'user_id' not in request.session:
-            # Session is not set, handle it as desired
-            # Redirect to login page, raise an exception, etc.
+            # redirect to login page, if session is not set
             if not request.path.startswith('/api/login/'):
-                return HttpResponseRedirect('/api/login')
+                return redirect('/api/login/')
 
         # Session is set, continue processing the request
         response = self.get_response(request)

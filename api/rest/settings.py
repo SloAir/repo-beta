@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-
+from datetime import timedelta
 from pathlib import Path
 import os
 import mongoengine
@@ -41,18 +41,20 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_mongoengine'
+    'django_mongoengine',
+    'rest_framework',
+    'rest_framework_simplejwt',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'rest.session.Session',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'rest.session.Session'
+    'django.middleware.clickjacking.XFrameOptionsMiddleware'
 ]
 
 ROOT_URLCONF = 'rest.urls'
@@ -75,12 +77,24 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'rest.wsgi.application'
 
+# REST settings
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': {
+        'rest_framework_simplejwt.authentication.JWTAuthentication'
+    }
+}
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1)
+}
 
 # Database connection
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 AUTHENTICATION_BACKENDS = [
-    'django_mongoengine.auth.MongoEngineBackend',
+    'django_mongoengine.mongo_auth.backends.MongoEngineBackend',
 ]
 
 load_dotenv()
@@ -162,7 +176,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Cookie setup
 CSRF_COOKIE_NAME = 'csrftoken'
 
-APPEND_SLASH = False
+# APPEND_SLASH = False
 
 PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',

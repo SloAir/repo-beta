@@ -14,6 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path
+
 from rest.views import (
     aircraft_views,
     airline_views,
@@ -21,9 +22,18 @@ from rest.views import (
     flight_views,
     data_views
 )
+
 from rest import admin
 
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView
+)
+
 urlpatterns = [
+    path('api/token/', TokenObtainPairView.as_view(), name='token'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='refresh_token'),
+
     # homepage for API administration
     path('api/', admin.homepage, name='index'),
 
@@ -32,7 +42,7 @@ urlpatterns = [
     path('api/logout/', admin.logout, name='logout_admin'),
 
     # API route for getting all of the data
-    path('api/get/', data_views.get_all, name='get_data'),
+    path('api/get/', data_views.get_from_fr, name='get_data'),
 
     # API aircraft routes
     path('api/aircraft/get/', aircraft_views.get_all, name='get_aircrafts'),

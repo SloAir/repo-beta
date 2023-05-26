@@ -1,22 +1,21 @@
 import os
 import requests
+
 import rest.radar as radar
 from rest import data_processing as data
 
 from django.http import *
-from django.middleware.csrf import get_token
 from dotenv import load_dotenv
 
 load_dotenv()
 
 
 # function returns JSON data of all the flights above Slovenian airspace
-async def get_all(request):
+async def get_from_fr(request):
     if request.method != 'GET':
         return JsonResponse({'error': 'Unsupported request method.'})
 
     si_flight_details = radar.get_data()
-
     # data = fr.get_flight_details('301962bc')
     data_array = []
 
@@ -38,11 +37,33 @@ async def get_all(request):
         }
 
         # send POST requests to the routes for insertion
-        requests.post(os.environ.get('SERVER_URL') + 'api/aircraft/post/', json=aircraft_data)
-        requests.post(os.environ.get('SERVER_URL') + 'api/airline/post/', json=airline_data)
-        requests.post(os.environ.get('SERVER_URL') + 'api/airport/post/', json=origin_airport_data)
-        requests.post(os.environ.get('SERVER_URL') + 'api/airport/post/', json=destination_airport_data)
-        requests.post(os.environ.get('SERVER_URL') + 'api/flight/post/', json=flight_data)
+        aircraft_response = requests.post(
+            os.environ.get('SERVER_URL') + 'api/aircraft/post/',
+            json=aircraft_data
+        )
+
+        airline_response = requests.post(
+            os.environ.get('SERVER_URL') + 'api/airline/post/',
+            json=airline_data
+        )
+
+        origin_airport_response = requests.post(
+            os.environ.get('SERVER_URL') + 'api/airport/post/',
+            json=origin_airport_data
+        )
+
+        destination_airport_response = requests.post(
+            os.environ.get('SERVER_URL') + 'api/airport/post/',
+            json=destination_airport_data
+        )
+
+        flight_response = requests.post(
+            os.environ.get('SERVER_URL') + 'api/flight/post/',
+            json=flight_data
+        )
+
+        print(aircraft_response.headers)
+        print(flight_response.headers)
 
         data_array.append(data_json)
 

@@ -3,6 +3,7 @@ from mongoengine.connection import get_db
 
 fr = FlightRadar24API()
 
+# def validate_data(data):
 
 def get_data():
     db = get_db()
@@ -40,8 +41,9 @@ def get_data():
         details = fr.get_flight_details(si_flight_id)
 
         # "aircraft" is a GROUND vehicle -> ignore
-        if details["aircraft"]["model"]["code"] == 'GRND':
-            continue
+        if 'model' in details['aircraft'] and 'code' in details['aircraft']['model']:
+            if details["aircraft"]["model"]["code"] == 'GRND':
+                continue
 
         # adjust time intervals to the amount of data inside the trail -> COULD CHANGE!
         trail_len = len(details["trail"])

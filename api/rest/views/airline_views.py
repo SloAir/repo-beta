@@ -3,6 +3,8 @@ import json
 import requests
 import time
 
+from django.contrib.auth.decorators import login_required
+
 from rest.settings import db
 from django.http import *
 from django.middleware.csrf import get_token
@@ -44,6 +46,7 @@ def get_airline(request, airline_icao):
 
 # function inserts an airline into the database
 @csrf_protect
+@login_required
 def insert_airline(request):
     if request.method != 'POST':
         return JsonResponse({'error': 'Unsupported request method.'})
@@ -63,6 +66,7 @@ def insert_airline(request):
 
 # function updates an airline in the database
 @csrf_protect
+@login_required
 def update_airline(request):
     if request.method != 'PUT':
         return JsonResponse({'error': 'Unsupported request method.'})
@@ -81,6 +85,7 @@ def update_airline(request):
 
 # function deletes an airline with a matching ICAO code from the database
 @csrf_protect
+@login_required
 def delete_airline(request, airline_icao):
     if request.method != 'DELETE':
         return JsonResponse({'error': 'Unsupported request method.'})

@@ -8,6 +8,7 @@ Django_MongoEngine==0.5.4
 
 requests==2.26.0
 DjangoRESTFramework==3.14.0
+DjangoRESTFramework-simpleJWT
 Django-CORS-Headers==3.14.0
 
 BCrypt==4.0.1

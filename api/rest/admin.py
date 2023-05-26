@@ -61,9 +61,9 @@ def login(request):
     username = form.cleaned_data['username']
     password = form.cleaned_data['password']
 
-    user = set_session(request, username, password)
+    session = set_session(request, username, password)
 
-    if not user:
+    if not session:
         return render(request, 'admin/login.html', {'form': form})
 
     return redirect('/api/')
