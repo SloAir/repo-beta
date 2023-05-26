@@ -2,6 +2,8 @@ import data.model.Arrivals
 import data.model.Departures
 import it.skrape.core.*
 import it.skrape.fetcher.*
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 
 fun main() {
     try {
@@ -77,13 +79,19 @@ fun main() {
             }
             arrivalsData to departureData
         }
+        //Lists of JSON strings
+        val arrivalsJson = mutableListOf<String>()
+        val departuresJson = mutableListOf<String>()
+
         println("Arrivals")
         scrapedData.first.forEach { flight ->
             println("${flight.date} - ${flight.plan} - ${flight.expec} - ${flight.dest} - ${flight.flightNum} - ${flight.flightStatus}")
+            arrivalsJson.add(Json.encodeToString(flight))
         }
         println("Departures")
         scrapedData.second.forEach { flight ->
             println("${flight.date} - ${flight.plan} - ${flight.expec} - ${flight.dest} - ${flight.flightNum} - ${flight.exitTag} - ${flight.checkIn} - ${flight.flightStatus}")
+            departuresJson.add(Json.encodeToString(flight))
         }
     } catch (ex : Exception) {
         println(ex.message)

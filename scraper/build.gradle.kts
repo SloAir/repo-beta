@@ -4,6 +4,7 @@ import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 plugins {
     kotlin("multiplatform")
     id("org.jetbrains.compose")
+    kotlin("plugin.serialization") version "1.5.31"
 }
 
 group = "si.um.feri.lpm"
@@ -25,6 +26,7 @@ kotlin {
             dependencies {
                 implementation(compose.desktop.currentOs)
                 implementation("it.skrape:skrapeit:1.2.2")
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
             }
         }
         val jvmTest by getting

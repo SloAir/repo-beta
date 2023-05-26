@@ -1,5 +1,8 @@
 package data.model
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class Arrivals(
     val date: String,
     val plan: String,
