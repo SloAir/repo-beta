@@ -25,15 +25,7 @@ from rest.views import (
 
 from rest import admin
 
-from rest_framework_simplejwt.views import (
-    TokenObtainPairView,
-    TokenRefreshView
-)
-
 urlpatterns = [
-    path('api/token/', TokenObtainPairView.as_view(), name='token'),
-    path('api/token/refresh/', TokenRefreshView.as_view(), name='refresh_token'),
-
     # homepage for API administration
     path('api/', admin.homepage, name='index'),
 

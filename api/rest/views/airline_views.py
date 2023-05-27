@@ -8,9 +8,10 @@ from django.contrib.auth.decorators import login_required
 from rest.settings import db
 from django.http import *
 from django.middleware.csrf import get_token
-from django.views.decorators.csrf import csrf_protect
+from django.views.decorators.csrf import csrf_protect, csrf_exempt
 
 
+@csrf_exempt
 def get_all(request):
     if request.method != 'GET':
         return JsonResponse({'error': 'Unsupported request method.'})
@@ -30,6 +31,7 @@ def get_all(request):
 
 
 # function returns a JSON object of an airline that matches the given ICAO code
+@csrf_exempt
 def get_airline(request, airline_icao):
     if request.method != 'GET':
         return JsonResponse({'error': 'Unsupported request method.'})
@@ -45,8 +47,7 @@ def get_airline(request, airline_icao):
 
 
 # function inserts an airline into the database
-@csrf_protect
-@login_required
+@csrf_exempt
 def insert_airline(request):
     if request.method != 'POST':
         return JsonResponse({'error': 'Unsupported request method.'})
@@ -65,8 +66,7 @@ def insert_airline(request):
 
 
 # function updates an airline in the database
-@csrf_protect
-@login_required
+@csrf_exempt
 def update_airline(request):
     if request.method != 'PUT':
         return JsonResponse({'error': 'Unsupported request method.'})
@@ -84,8 +84,7 @@ def update_airline(request):
 
 
 # function deletes an airline with a matching ICAO code from the database
-@csrf_protect
-@login_required
+@csrf_exempt
 def delete_airline(request, airline_icao):
     if request.method != 'DELETE':
         return JsonResponse({'error': 'Unsupported request method.'})

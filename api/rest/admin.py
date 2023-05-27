@@ -75,7 +75,7 @@ def logout(request):
 
     del request.session['user_id']
 
-    return HttpResponseRedirect('/api/login/')
+    return redirect('/api/login/')
 
 
 def homepage(request):

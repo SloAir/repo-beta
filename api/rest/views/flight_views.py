@@ -7,9 +7,10 @@ from django.contrib.auth.decorators import login_required
 
 from rest.settings import db
 from django.http import *
-from django.views.decorators.csrf import csrf_protect
+from django.views.decorators.csrf import csrf_exempt
 
 
+@csrf_exempt
 def get_all(request):
     if request.method != 'GET':
         return JsonResponse({'error': 'Unsupported request method.'})
@@ -29,6 +30,7 @@ def get_all(request):
 
 
 # function returns a JSON object of a flight that matches the given flight ID
+@csrf_exempt
 def get_flight(request, flight_id):
     if request.method != 'GET':
         return JsonResponse({'error': 'Unsupported request method.'})
@@ -44,8 +46,7 @@ def get_flight(request, flight_id):
 
 
 # function inserts a flight into the database
-@csrf_protect
-@login_required
+@csrf_exempt
 def insert_flight(request):
     if request.method != 'POST':
         return JsonResponse({'error': 'Unsupported request method.'})
@@ -64,8 +65,7 @@ def insert_flight(request):
 
 
 # function updates a flight in the database
-@csrf_protect
-@login_required
+@csrf_exempt
 def update_flight(request):
     if request.method != 'PUT':
         return JsonResponse({'error': 'Unsupported request method.'})
@@ -89,8 +89,7 @@ def update_flight(request):
 
 
 # function deletes a flight with a matching flight ID from the database
-@csrf_protect
-@login_required
+@csrf_exempt
 def delete_flight(request, flight_id):
     if request.method != 'DELETE':
         return JsonResponse({'error': 'Unsupported request method.'})
