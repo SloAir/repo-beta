@@ -52,7 +52,10 @@ def insert_airport(request):
     if request.method != 'POST':
         return JsonResponse({'error': 'Unsupported request method.'})
 
-    data = json.loads(request.body)
+    if request.body == None:
+        return JsonResponse({'message' : 'request.body is None!'})
+        
+    data = json.loads(request.body)    
 
     if db.airports.find_one({'code.icao': data['code']['icao']}):
         requests.put(os.environ.get('SERVER_URL') + 'api/airport/put/', json=data)
