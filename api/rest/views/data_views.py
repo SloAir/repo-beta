@@ -37,33 +37,30 @@ async def get_from_fr(request):
         }
 
         # send POST requests to the routes for insertion
-        aircraft_response = requests.post(
+        requests.post(
             os.environ.get('SERVER_URL') + 'api/aircraft/post/',
             json=aircraft_data
         )
 
-        airline_response = requests.post(
+        requests.post(
             os.environ.get('SERVER_URL') + 'api/airline/post/',
             json=airline_data
         )
 
-        origin_airport_response = requests.post(
+        requests.post(
             os.environ.get('SERVER_URL') + 'api/airport/post/',
             json=origin_airport_data
         )
 
-        destination_airport_response = requests.post(
+        requests.post(
             os.environ.get('SERVER_URL') + 'api/airport/post/',
             json=destination_airport_data
         )
 
-        flight_response = requests.post(
+        requests.post(
             os.environ.get('SERVER_URL') + 'api/flight/post/',
             json=flight_data
         )
-
-        print(aircraft_response.headers)
-        print(flight_response.headers)
 
         data_array.append(data_json)
 

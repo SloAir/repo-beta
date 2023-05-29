@@ -49,9 +49,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'rest.session.Session',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware'
@@ -101,7 +99,6 @@ load_dotenv()
 
 db_name = os.environ.get('DB_NAME')
 db_host = os.environ.get('DB_HOST')
-db_port = int(os.environ.get('DB_PORT'))
 
 DATABASES = {
     'default': {
@@ -113,15 +110,13 @@ DATABASES = {
 MONGODB_DATABASES = {
     'default': {
         'NAME': db_name,
-        'HOST': db_host,
-        'PORT': db_port
+        'HOST': db_host
     },
 }
 
 mongoengine.connect(
     db=db_name,
-    host=db_host,
-    port=db_port
+    host=db_host
 )
 
 db = get_db()
@@ -171,10 +166,6 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-
-# Cookie setup
-CSRF_COOKIE_NAME = 'csrftoken'
 
 # APPEND_SLASH = False
 

@@ -3,11 +3,8 @@ import json
 import requests
 import time
 
-from django.contrib.auth.decorators import login_required
-
 from rest.settings import db
 from django.http import *
-from django.views.decorators.csrf import csrf_protect
 
 
 def get_all(request):
@@ -44,8 +41,6 @@ def get_aircraft(request, aircraft_registration):
 
 
 # function inserts an aircraft into the database
-@csrf_protect
-@login_required
 def insert_aircraft(request):
     if request.method != 'POST':
         return JsonResponse({'error': 'Unsupported request method.'})
@@ -65,8 +60,6 @@ def insert_aircraft(request):
 
 
 # function updates an aircraft in the database
-@csrf_protect
-@login_required
 def update_aircraft(request):
     if request.method != 'PUT':
         return JsonResponse({'error': 'Unsupported request method.'})
@@ -86,8 +79,6 @@ def update_aircraft(request):
 
 
 # function deletes an aircraft from the database that matches the aircraft's registration number
-@csrf_protect
-@login_required
 def delete_aircraft(request, aircraft_registration):
     if request.method != 'DELETE':
         return JsonResponse({'error': 'Unsupported request method.'})
