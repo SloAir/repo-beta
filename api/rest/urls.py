@@ -20,12 +20,25 @@ from rest.views import (
     airline_views,
     airport_views,
     flight_views,
-    data_views
+    data_views,
+    user_views
 )
 
 from rest import admin
 
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView
+)
+
 urlpatterns = [
+    path('api/token/', TokenObtainPairView.as_view(), name='token'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='refresh_token'),
+
+    # login and register form for users
+    path('register/', user_views.register, name='register_user'),
+    path('login/', user_views.login, name='login_user'),
+
     # homepage for API administration
     path('api/', admin.homepage, name='index'),
 
@@ -33,8 +46,14 @@ urlpatterns = [
     path('api/login/', admin.login, name='login_admin'),
     path('api/logout/', admin.logout, name='logout_admin'),
 
-    # API route for getting all of the data
+    # API route for getting all of the FR data
     path('api/get/', data_views.get_from_fr, name='get_data'),
+
+    # API user routes
+    path('api/user/get/<str:username>', user_views.get_user, name='get_user'),
+    path('api/user/post/', user_views.insert_user, name='post_user'),
+    path('api/user/put/', user_views.update_user, name='put_user'),
+    path('api/user/delete/<str:username>', user_views.delete_user, name='delete_user'),
 
     # API aircraft routes
     path('api/aircraft/get/', aircraft_views.get_all, name='get_aircrafts'),

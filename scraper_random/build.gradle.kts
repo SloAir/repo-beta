@@ -4,10 +4,9 @@ import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 plugins {
     kotlin("multiplatform")
     id("org.jetbrains.compose")
-    kotlin("plugin.serialization") version "1.5.31"
 }
 
-group = "si.um.feri.lpm"
+group = "com.example"
 version = "1.0-SNAPSHOT"
 
 repositories {
@@ -26,7 +25,6 @@ kotlin {
             dependencies {
                 implementation(compose.desktop.currentOs)
                 implementation("it.skrape:skrapeit:1.2.2")
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
             }
         }
         val jvmTest by getting
@@ -38,7 +36,7 @@ compose.desktop {
         mainClass = "MainKt"
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = "scraper"
+            packageName = "scraper_random"
             packageVersion = "1.0.0"
         }
     }

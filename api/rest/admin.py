@@ -71,7 +71,7 @@ def login(request):
 
 def logout(request):
     if 'user_id' not in request.session:
-        return
+        return redirect('/api/login/')
 
     del request.session['user_id']
 
