@@ -3,13 +3,13 @@ package data.model
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Departure(
-    var date: String,
-    var planned: String,
-    var expected: String,
-    var destination: String,
-    var flightNumber: String,
+class Departure(
+    override var date: String,
+    override var planned: String,
+    override var expected: String,
+    override var destination: String,
+    override var flightNumber: String,
     var exitTag: String,
     var checkIn: String,
-    var flightStatus: String
-)
+    override var flightStatus: String
+): Flight()

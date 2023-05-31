@@ -24,7 +24,17 @@ open class BottomNavigation(
 
     companion object {
         fun getAllElements(): List<BottomNavigation> {
-            return listOf<BottomNavigation>(Parser, Generator)
+            return listOf(
+                Parser,
+                Generator
+            )
+        }
+
+        fun getAllRoutes(): List<String> {
+            return listOf(
+                Parser.route,
+                Generator.route
+            )
         }
     }
 }

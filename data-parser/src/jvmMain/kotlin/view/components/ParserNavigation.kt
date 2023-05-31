@@ -23,7 +23,17 @@ open class ParserNavigation(
 
     companion object {
         fun getAllElements(): List<ParserNavigation> {
-            return listOf<ParserNavigation>(Arrivals, Departures)
+            return listOf(
+                Arrivals,
+                Departures
+            )
+        }
+
+        fun getAllRoutes(): List<String> {
+            return listOf(
+                Arrivals.route,
+                Departures.route
+            )
         }
     }
 }
