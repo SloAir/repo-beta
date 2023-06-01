@@ -113,6 +113,15 @@ object Generator {
             return flightHistory
         }
 
+        override fun generateOne(): Aircraft {
+            return Aircraft(
+                model = generateAircraftModel(),
+                registration = generateRandomRegistrationNumber(),
+                images = generateAircraftImages(5),
+                flightHistory = generateFlightHistory(5)
+            )
+        }
+
         override fun generate(count: Int): List<Aircraft> {
             val aircrafts: MutableList<Aircraft> = mutableListOf()
 
@@ -215,7 +224,7 @@ object Generator {
             return url.lowercase()
         }
 
-        fun generateOne(): Airline {
+        override fun generateOne(): Airline {
             val airlineName = generateAirlineName()
 
             return Airline(
@@ -342,6 +351,18 @@ object Generator {
             return "https://www.$uri$domain"
         }
 
+        override fun generateOne(): Airport {
+            val airportName = generateAirportName()
+
+            return Airport(
+                name = airportName,
+                code = generateAirportCode(),
+                position = generateAirportPosition(),
+                isVisible = true,
+                website = generateRandomWebsite(airportName)
+            )
+        }
+
         override fun generate(count: Int): List<Airport> {
             val airports: MutableList<Airport> = mutableListOf()
 
@@ -360,7 +381,6 @@ object Generator {
 
             return airports
         }
-
 
         override fun serialize(arr: List<Airport>): String {
             return Json.encodeToString(ListSerializer(Airport.serializer()), arr)
@@ -504,12 +524,16 @@ object Generator {
             TODO()
         }
 
+        override fun generateOne(): Flight {
+            TODO("Not yet implemented")
+        }
+
         override fun generate(count: Int): List<Flight> {
             TODO("Not yet implemented")
         }
 
         override fun serialize(arr: List<Flight>): String {
-            TODO()
+            return Json.encodeToString(ListSerializer(Flight.serializer()), arr)
         }
     }
 }
