@@ -46,6 +46,7 @@ data class FlightTrail(
     val lng: Float,
     val alt: Int,
     val spd: Int,
+    val ts: Long,
     val hd: Int
 )
 

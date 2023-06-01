@@ -13,13 +13,13 @@ import kotlin.random.Random
 import kotlin.random.nextInt
 
 object Generator {
-    private val currentDirectory = System.getProperty("user.dir")
+    private val currentDirectory = System.getProperty("user.dir") + "/src/jvmMain/kotlin/generator"
 
     object AircraftGenerator: IGenerator<Aircraft> {
 
         private fun generateAircraftModel(): AircraftModel {
-            val aircraftModels = readFromFile("$currentDirectory/src/jvmMain/kotlin/generator/model/aircraft/data/aircraft_models.txt")
-            val aircraftModelInitials = readFromFile("$currentDirectory/src/jvmMain/kotlin/generator/model/aircraft/data/aircraft_model_initials.txt")
+            val aircraftModels = readFromFile("$currentDirectory/model/aircraft/data/aircraft_models.txt")
+            val aircraftModelInitials = readFromFile("$currentDirectory/model/aircraft/data/aircraft_model_initials.txt")
 
             val random = Random.nextInt(0, aircraftModels.size)
             val aircraftModel = aircraftModels[random]
@@ -59,10 +59,10 @@ object Generator {
         private fun generateAircraftImages(count: Int): List<AircraftImage> {
             val aircraftImages: MutableList<AircraftImage> = mutableListOf()
 
-            val imageSrc = readFromFile("$currentDirectory/src/jvmMain/kotlin/generator/model/aircraft/data/images/src.txt")
-            val imageLink = readFromFile("$currentDirectory/src/jvmMain/kotlin/generator/model/aircraft/data/images/link.txt")
-            val imageCopyright = readFromFile("$currentDirectory/src/jvmMain/kotlin/generator/model/aircraft/data/images/copyright.txt")
-            val imageSource = readFromFile("$currentDirectory/src/jvmMain/kotlin/generator/model/aircraft/data/images/source.txt")
+            val imageSrc = readFromFile("$currentDirectory/model/aircraft/data/images/src.txt")
+            val imageLink = readFromFile("$currentDirectory/model/aircraft/data/images/link.txt")
+            val imageCopyright = readFromFile("$currentDirectory/model/aircraft/data/images/copyright.txt")
+            val imageSource = readFromFile("$currentDirectory/model/aircraft/data/images/source.txt")
 
             val generatedNumbers: MutableList<Int> = mutableListOf()
 
@@ -161,7 +161,7 @@ object Generator {
         private fun generateAirlineName(): String {
             var name = ""
 
-            val airlinesList = readFromFile("$currentDirectory/src/jvmMain/kotlin/generator/model/airline/data/airlines.txt")
+            val airlinesList = readFromFile("$currentDirectory/model/airline/data/airlines.txt")
             val adjectiveList = listOf(
                 "Airways",
                 "Airlines",
@@ -261,7 +261,7 @@ object Generator {
     object AirportGenerator: IGenerator<Airport> {
 
         private fun generateAirportName(): String {
-            val airportNames = readFromFile("$currentDirectory/src/jvmMain/kotlin/generator/model/airport/data/airports.txt")
+            val airportNames = readFromFile("$currentDirectory/model/airport/data/airports.txt")
             val random = Random.nextInt(0, airportNames.size)
 
             return airportNames[random]
@@ -285,7 +285,7 @@ object Generator {
         }
 
         private fun generateRandomCountry(): AirportCountry {
-            val countries = readFromFile("$currentDirectory/src/jvmMain/kotlin/generator/model/airport/data/countries.txt")
+            val countries = readFromFile("$currentDirectory/model/airport/data/countries.txt")
             val countryId = Random.nextInt(0, countries.size)
             val country = countries[countryId]
             val countryCode = country.substring(0, 3).uppercase()
@@ -298,7 +298,7 @@ object Generator {
         }
 
         private fun generateRandomRegion(): AirportRegion {
-            val cities = readFromFile("$currentDirectory/src/jvmMain/kotlin/generator/model/airport/data/cities.txt")
+            val cities = readFromFile("$currentDirectory/model/airport/data/cities.txt")
             val random = Random.nextInt(0, cities.size)
             val city = cities[random]
 
@@ -306,9 +306,27 @@ object Generator {
         }
 
         private fun generateAirportPosition(): AirportPostion {
-            val latitude = (Random.nextInt(-9000000 .. 9000000).toFloat() / 100000)
-            val longitude = (Random.nextInt(-18000000 .. 18000000).toFloat() / 100000)
-            val altitude = Random.nextInt(0, 5000)
+            val divisor = 1_000_000
+
+            // Earth's latitude bounds
+            // -90.000000
+            val latMin = -90_000_000
+            // 90.000000
+            val latMax = 90_000_000
+
+            // Earth's longitude bounds
+            // -180.000000
+            val lonMin = -180_000_000
+            // 180.000000
+            val lonMax = 180_000_000
+
+            // min and max  altitude of the generated Airport
+            val altMin = 0
+            val altMax = 5500
+
+            val latitude = (Random.nextInt(latMin .. latMax).toFloat() / divisor)
+            val longitude = (Random.nextInt(lonMin .. lonMax).toFloat() / divisor)
+            val altitude = Random.nextInt(altMin, altMax)
 
 
             return AirportPostion(
@@ -520,16 +538,111 @@ object Generator {
             )
         }
 
-        private fun generateFlightTrail(): FlightTrail {
-            TODO()
+        private fun generateLatitudeAndLongitude(): Pair<Float, Float> {
+            val divisor = 1_000_000
+
+            // 45.660000, 46.660000
+            val latMin = 45_660_660
+            val latMax = 46_660_000
+
+            // 13.510000, 16.190000
+            val lngMin = 13_510_000
+            val lngMax = 16_190_000
+
+            val lat = (Random.nextInt(latMin, latMax).toFloat() / divisor)
+            val lng = (Random.nextInt(lngMin, lngMax).toFloat() / divisor)
+
+            return Pair(lat, lng)
+        }
+
+        private fun generateAltitude(): Int {
+            val altMin = 0
+            val altMax = 12_000
+
+            return Random.nextInt(altMin, altMax)
+        }
+
+        private fun generateSpeed(): Int {
+            val speedMin = 0
+            // https://www.flyingmag.com/guides/how-fast-do-commerical-planes-fly/
+            val speedMax = 1200
+
+            return Random.nextInt(speedMin, speedMax)
+        }
+
+        private fun generateDirection(): Int {
+            val angleMin = 0
+            val angleMax = 360
+
+            return Random.nextInt(angleMin, angleMax)
+        }
+
+        private fun generateFlightTrail(len: Int): List<FlightTrail> {
+            val trail: MutableList<FlightTrail> = mutableListOf()
+
+            // timestamp of the generated trail
+            var ts = Instant.now().epochSecond
+
+            for(i in 0 until len) {
+                val (lat, lng) = generateLatitudeAndLongitude()
+                val alt = generateAltitude()
+                val spd = generateSpeed()
+                val hd = generateDirection()
+
+                trail.add(
+                    FlightTrail(
+                        lat = lat,
+                        lng = lng,
+                        alt = alt,
+                        spd = spd,
+                        ts = ts,
+                        hd = hd
+                    )
+                )
+
+                // so that it simulates the 'generation' of the trail every 5 seconds
+                ts += 5
+            }
+
+            return trail
         }
 
         override fun generateOne(): Flight {
-            TODO("Not yet implemented")
+            // length of the trail
+            val trailLen = Random.nextInt(10, 100)
+
+            return Flight(
+                identification = generateFlightIdentification(),
+                status = generateStatus(),
+                owner = generateAirline(),
+                airspace = null,
+                time = generateTime(),
+                trail = generateFlightTrail(trailLen),
+                firstTimestamp = Instant.now().epochSecond
+            )
         }
 
-        override fun generate(count: Int): List<Flight> {
-            TODO("Not yet implemented")
+        override fun generate(len: Int): List<Flight> {
+            val flights: MutableList<Flight> = mutableListOf()
+
+
+            for(i in 0 until len) {
+                val trailLen = Random.nextInt(10, 100)
+
+                flights.add(
+                    Flight(
+                        identification = generateFlightIdentification(),
+                        status = generateStatus(),
+                        owner = generateAirline(),
+                        airspace = null,
+                        time = generateTime(),
+                        trail = generateFlightTrail(trailLen),
+                        firstTimestamp = Instant.now().epochSecond
+                    )
+                )
+            }
+
+            return flights
         }
 
         override fun serialize(arr: List<Flight>): String {
@@ -539,18 +652,28 @@ object Generator {
 }
 
 fun main() {
-    // Generator.Airport.generate()
-    // val aircrafts = Generator.AircraftGenerator.generate(10)
+    val aircrafts = Generator.AircraftGenerator.generate(10)
     val airlines = Generator.AirlineGenerator.generate(10)
-    // val airports = Generator.AirportGenerator.generate(10)
+    val airports = Generator.AirportGenerator.generate(10)
+    val flights = Generator.FlightGenerator.generate(10)
 
-    // aircrafts.forEach { aircraft ->
-    //     println(aircraft)
-    // }
+    aircrafts.forEach { aircraft ->
+        println(aircraft)
+    }
+    println()
 
-    Generator.AirlineGenerator.serialize(airlines)
+    airlines.forEach { airline ->
+        println(airline)
+    }
+    println()
 
-    // airports.forEach { airport ->
-    //     println(airport)
-    // }
+    airports.forEach { airport ->
+        println(airport)
+    }
+    println()
+
+    flights.forEach { flight ->
+        println(flight)
+    }
+    println()
 }
