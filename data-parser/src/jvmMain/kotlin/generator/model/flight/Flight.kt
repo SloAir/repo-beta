@@ -1,49 +1,47 @@
 package generator.model.flight
 
 import generator.model.airline.Airline
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class FlightIdentification(
     val id: String,
     val callsign: String
 )
 
-data class Status(val live: String)
+@Serializable
+data class FlightStatus(val live: String)
 
-data class Scheduled(
-    val departure: Long,
-    val arrival: Long
+@Serializable
+data class TimeData(
+    val departure: Long?,
+    val arrival: Long?
 )
 
-data class Real(
-    val departure: Long,
-    val arrival: Long
-)
-
-data class Estimated(
-    val departure: Long,
-    val arrival: Long
-)
-
-data class Other(
+@Serializable
+data class TimeOther(
     val eta: Long,
     val updated: Long
 )
 
-data class Historical(
+@Serializable
+data class TimeHistorical(
     // has to be spelled 'flighttime' and not 'flightTime' because of API
     val flighttime: String,
     val delay: String
 )
 
-data class Time(
-    val scheduled: Scheduled,
-    val real: Real,
-    val estimated: Estimated,
-    val other: Other,
-    val historical: Historical
+@Serializable
+data class FlightTime(
+    val scheduled: TimeData,
+    val real: TimeData,
+    val estimated: TimeData,
+    val other: TimeOther,
+    val historical: TimeHistorical
 )
 
-data class Trail(
+@Serializable
+data class FlightTrail(
     val lat: Float,
     val lng: Float,
     val alt: Int,
@@ -51,12 +49,13 @@ data class Trail(
     val hd: Int
 )
 
+@Serializable
 data class Flight(
     val identification: FlightIdentification,
-    val status: Status,
-    val owner: Airline? = null,
+    val status: FlightStatus,
+    val owner: Airline? ,
     val airspace: String? = null,
-    val time: Time,
-    val trail: List<Trail>,
+    val time: FlightTime,
+    val trail: List<FlightTrail>,
     val firstTimestamp: Long
 )

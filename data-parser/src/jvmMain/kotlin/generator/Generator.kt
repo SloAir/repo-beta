@@ -8,6 +8,7 @@ import generator.model.flight.*
 import generator.model.readFromFile
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.json.Json
+import java.time.Instant
 import kotlin.random.Random
 import kotlin.random.nextInt
 
@@ -129,8 +130,8 @@ object Generator {
             return aircrafts
         }
 
-        override fun serialize(array: List<Aircraft>): String {
-            return Json.encodeToString(ListSerializer(Aircraft.serializer()), array)
+        override fun serialize(arr: List<Aircraft>): String {
+            return Json.encodeToString(ListSerializer(Aircraft.serializer()), arr)
         }
     }
 
@@ -214,6 +215,17 @@ object Generator {
             return url.lowercase()
         }
 
+        fun generateOne(): Airline {
+            val airlineName = generateAirlineName()
+
+            return Airline(
+                name = airlineName,
+                short = generateAirlineNameShort(airlineName),
+                code = generateAirlineCode(),
+                url = generateUrl(airlineName)
+            )
+        }
+
         override fun generate(count: Int): List<Airline> {
             val airlines: MutableList<Airline> = mutableListOf()
 
@@ -232,8 +244,8 @@ object Generator {
             return airlines
         }
 
-        override fun serialize(array: List<Airline>): String {
-            return Json.encodeToString(ListSerializer(Airline.serializer()), array)
+        override fun serialize(arr: List<Airline>): String {
+            return Json.encodeToString(ListSerializer(Airline.serializer()), arr)
         }
     }
 
@@ -350,17 +362,153 @@ object Generator {
         }
 
 
-        override fun serialize(array: List<Airport>): String {
-            return Json.encodeToString(ListSerializer(Airport.serializer()), array)
+        override fun serialize(arr: List<Airport>): String {
+            return Json.encodeToString(ListSerializer(Airport.serializer()), arr)
         }
     }
 
     object FlightGenerator: IGenerator<Flight> {
+
+        private fun generateFlightIdentification(): FlightIdentification {
+            var id = ""
+            val idLen = 8
+            val idCharacters = listOf('0' .. '9', 'a' .. 'z')
+
+            for(i in 0 until idLen) {
+                id += idCharacters.flatten().random()
+            }
+
+            var callsign = ""
+            val callsignLen = 6
+            val callsignCharacters = listOf('0' .. '9', 'A' .. 'Z')
+
+            for(i in 0 until callsignLen) {
+                callsign += callsignCharacters.flatten().random()
+            }
+
+            return FlightIdentification(
+                id = id,
+                callsign = callsign
+            )
+        }
+
+        private fun generateStatus(): FlightStatus {
+            var live = false
+            val random = Random.nextInt(0, 1000)
+
+            when(random % 3) {
+                0, 1 -> live = true
+                2 -> live = false
+            }
+
+            return FlightStatus(live.toString())
+        }
+
+        // generates a random airline for the owner field
+        private fun generateAirline(): Airline? {
+            val random = Random.nextInt(0, 1000)
+
+            return when(random % 5) {
+                0, 1, 2 -> AirlineGenerator.generateOne()
+                else -> null
+            }
+        }
+
+        private fun generateTimeData(str: String): TimeData {
+            val field = str.lowercase()
+
+            // time in epoch seconds
+            val currentTime = Instant.now().epochSecond
+            // 5 seconds
+            val minOffset = 60 * 5
+            // 3 hours
+            val maxOffset = 60 * 60 * 3
+
+            val randomDeparture: Long
+            val randomArrival: Long
+
+            return when(field) {
+                "scheduled" -> {
+                    randomDeparture = currentTime - Random.nextInt(minOffset, maxOffset).toLong()
+                    randomArrival = currentTime + Random.nextInt(minOffset, maxOffset).toLong()
+                    TimeData(
+                        departure = randomDeparture,
+                        arrival = randomArrival,
+                    )
+                }
+                "real" -> {
+                    randomDeparture = currentTime - Random.nextInt(minOffset, maxOffset).toLong()
+                    TimeData(
+                        departure = randomDeparture,
+                        arrival = null
+                    )
+                }
+                "estimated" -> {
+                    randomArrival = currentTime + Random.nextInt(minOffset, maxOffset).toLong()
+                    TimeData(
+                        departure = null,
+                        arrival = randomArrival
+                    )
+                }
+                else -> TimeData(null, null)
+            }
+        }
+
+        private fun generateOtherTimeField(): TimeOther {
+            // time in epoch seconds
+            val currentTime = Instant.now().epochSecond
+            // 5 seconds
+            val minOffset = 60 * 5
+            // 3 hours
+            val maxOffset = 60 * 60 * 3
+
+            val randomEta = currentTime + Random.nextInt(minOffset, maxOffset).toLong()
+            val updated = Instant.now().epochSecond
+
+            return TimeOther(
+                eta = randomEta,
+                updated = updated
+            )
+        }
+
+        private fun generateHistoricalTimeField(): TimeHistorical {
+            // 30 minutes minimum flying time
+            val minFlightTime = 60 * 30
+            // 5 hours max flying time
+            val maxFlightTime = 60 * 60 * 5
+
+            val minDelay = 0
+            // 4 hours
+            val maxDelay = 60 * 60 * 4
+
+            val randomFlightTime = Random.nextInt(minFlightTime, maxFlightTime).toString()
+            val randomDelay = Random.nextInt(minDelay, maxDelay).toString()
+
+            return TimeHistorical(
+                flighttime = randomFlightTime,
+                delay = randomDelay
+            )
+        }
+
+        private fun generateTime(): FlightTime {
+            return FlightTime(
+                scheduled = generateTimeData("scheduled"),
+                real = generateTimeData("real"),
+                estimated = generateTimeData("estimated"),
+                other = generateOtherTimeField(),
+                historical = generateHistoricalTimeField()
+            )
+        }
+
+        private fun generateFlightTrail(): FlightTrail {
+            TODO()
+        }
+
         override fun generate(count: Int): List<Flight> {
             TODO("Not yet implemented")
         }
 
-        override fun serialize(flights: List<Flight>): String {
+        override fun serialize(arr: List<Flight>): String {
             TODO()
         }
     }
