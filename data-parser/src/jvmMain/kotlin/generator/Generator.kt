@@ -6,6 +6,8 @@ import generator.model.airline.*
 import generator.model.airport.*
 import generator.model.flight.*
 import generator.model.readFromFile
+import kotlinx.serialization.builtins.ListSerializer
+import kotlinx.serialization.json.Json
 import kotlin.random.Random
 import kotlin.random.nextInt
 
@@ -126,6 +128,10 @@ object Generator {
 
             return aircrafts
         }
+
+        override fun serialize(array: List<Aircraft>): String {
+            return Json.encodeToString(ListSerializer(Aircraft.serializer()), array)
+        }
     }
 
     object AirlineGenerator: IGenerator<Airline> {
@@ -224,6 +230,10 @@ object Generator {
             }
 
             return airlines
+        }
+
+        override fun serialize(array: List<Airline>): String {
+            return Json.encodeToString(ListSerializer(Airline.serializer()), array)
         }
     }
 
@@ -338,28 +348,35 @@ object Generator {
 
             return airports
         }
+
+
+        override fun serialize(array: List<Airport>): String {
+            return Json.encodeToString(ListSerializer(Airport.serializer()), array)
+        }
     }
 
     object FlightGenerator: IGenerator<Flight> {
         override fun generate(count: Int): List<Flight> {
             TODO("Not yet implemented")
         }
+
+        override fun serialize(flights: List<Flight>): String {
+            TODO()
+        }
     }
 }
 
 fun main() {
     // Generator.Airport.generate()
-    val aircrafts = Generator.AircraftGenerator.generate(10)
+    // val aircrafts = Generator.AircraftGenerator.generate(10)
     val airlines = Generator.AirlineGenerator.generate(10)
-    val airports = Generator.AirportGenerator.generate(10)
+    // val airports = Generator.AirportGenerator.generate(10)
 
     // aircrafts.forEach { aircraft ->
     //     println(aircraft)
     // }
 
-    airlines.forEach { airline ->
-        println()
-    }
+    Generator.AirlineGenerator.serialize(airlines)
 
     // airports.forEach { airport ->
     //     println(airport)
