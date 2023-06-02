@@ -22,14 +22,15 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import data.model.Arrival
 import data.model.Departure
 import data.model.Flight
-import data.model.IdGenerator
+import data.serialize
 import view.*
 import view.components.Components.CardText
 import view.components.Components.DeleteButton
 import view.components.Components.EditButton
+import view.components.Components.GenericText
+import view.components.Components.SendButton
 
 object ParserView {
     @Composable
@@ -177,17 +178,35 @@ object ParserView {
 
     @Composable
     fun RenderFlights(flights: SnapshotStateList<Flight>) {
-        LazyColumn(
+        Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
             modifier = Modifier
                 .fillMaxWidth()
-        ) {
-            items(flights, key = { flight -> flight.id }) { flight ->
-                FlightCard(flight, onDelete = {
-                    flights.remove(flight)
-                })
+        )  {
+            Box(
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxWidth()
+            ) {
+                LazyColumn(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                ) {
+                    items(flights, key = { flight -> flight.id }) { flight ->
+                        FlightCard(flight, onDelete = {
+                            flights.remove(flight)
+                        })
+                    }
+                }
             }
+            SendButton(
+                onClick = {
+                    println(serialize(flights))
+                }
+            )
         }
     }
 

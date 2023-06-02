@@ -108,7 +108,7 @@ fun scrapeData(): Pair<SnapshotStateList<Flight>, SnapshotStateList<Flight>>
 
 // function serializes each flight object into a JSON string
 // returns a list of all of the serialized objects
-fun serialize(flights: List<Flight>): List<String> {
+fun serialize(flights: SnapshotStateList<Flight>): List<String> {
     val list: MutableList<String> = mutableListOf()
 
     flights.forEach { flight ->

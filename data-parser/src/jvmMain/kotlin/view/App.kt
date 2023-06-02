@@ -102,7 +102,7 @@ fun MainScreen() {
             parserRoute ->
                 ParserView.ParserScreen(
                     arrivals = arrivals.value,
-                    departures = departures.value
+                    departures = departures.value,
                 )
             generatorRoute ->
                 GeneratorView.GeneratorScreen()

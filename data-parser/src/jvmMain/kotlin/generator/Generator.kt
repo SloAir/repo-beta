@@ -115,6 +115,31 @@ object Generator {
             return flightHistory
         }
 
+        private fun generateFlightHistory(
+            min: Int,
+            max: Int
+        ): List<FlightHistory> {
+            val flightHistory: MutableList<FlightHistory> = mutableListOf()
+
+            val len = Random.nextInt(min, max)
+
+            for(i in 0 until len) {
+                var flightId = ""
+
+                val repeat = 8
+                for(j in 0 until repeat) {
+                    val random = listOf('0' .. '9', 'a' .. 'z').flatten().random()
+                    flightId += random
+
+                }
+                flightHistory.add(
+                    FlightHistory(flightId)
+                )
+            }
+
+            return flightHistory
+        }
+
         override fun generateOne(): Aircraft {
             return Aircraft(
                 id = IdGenerator.setId(),
@@ -125,7 +150,15 @@ object Generator {
             )
         }
 
-        override fun generate(len: Int): SnapshotStateList<Aircraft> {
+        // Function does nothing
+        override fun generate(len: Int): SnapshotStateList<Aircraft> = SnapshotStateList()
+
+        fun generate(
+            len: Int,
+            images: Int,
+            flightHistoryMin: Int,
+            flightHistoryMax: Int
+        ): SnapshotStateList<Aircraft> {
             val aircrafts = SnapshotStateList<Aircraft>()
 
             for(i in 0 until len) {
@@ -134,8 +167,8 @@ object Generator {
                         id = IdGenerator.setId(),
                         model = generateAircraftModel(),
                         registration = generateRandomRegistrationNumber(),
-                        images = generateAircraftImages(5),
-                        flightHistory = generateFlightHistory(5)
+                        images = generateAircraftImages(images),
+                        flightHistory = generateFlightHistory(flightHistoryMin, flightHistoryMax)
                     )
                 )
             }
@@ -316,24 +349,47 @@ object Generator {
 
             // Earth's latitude bounds
             // -90.000000
-            val latMin = -90_000_000
+            val minLat = -90_000_000
             // 90.000000
-            val latMax = 90_000_000
+            val maxLat = 90_000_000
 
             // Earth's longitude bounds
             // -180.000000
-            val lonMin = -180_000_000
+            val minLng = -180_000_000
             // 180.000000
-            val lonMax = 180_000_000
+            val maxLng = 180_000_000
 
             // min and max  altitude of the generated Airport
-            val altMin = 0
-            val altMax = 5500
+            val minAlt = 0
+            val maxAlt = 5500
 
-            val latitude = (Random.nextInt(latMin .. latMax).toFloat() / divisor)
-            val longitude = (Random.nextInt(lonMin .. lonMax).toFloat() / divisor)
-            val altitude = Random.nextInt(altMin, altMax)
+            val latitude = (Random.nextInt(minLat .. maxLat).toFloat() / divisor)
+            val longitude = (Random.nextInt(minLng .. maxLng).toFloat() / divisor)
+            val altitude = Random.nextInt(minAlt, maxAlt)
 
+
+            return AirportPostion(
+                latitude = latitude,
+                longitude = longitude,
+                altitude = altitude,
+                country = generateRandomCountry(),
+                region = generateRandomRegion()
+            )
+        }
+
+        private fun generateAirportPosition(
+            minLat: Int,
+            maxLat: Int,
+            minLng: Int,
+            maxLng: Int,
+            minAlt: Int,
+            maxAlt: Int
+        ): AirportPostion {
+            val divisor = 1_000_000
+
+            val latitude = (Random.nextInt(minLat .. maxLat).toFloat() / divisor)
+            val longitude = (Random.nextInt(minLng .. maxLng).toFloat() / divisor)
+            val altitude = Random.nextInt(minAlt, maxAlt)
 
             return AirportPostion(
                 latitude = latitude,
@@ -388,17 +444,33 @@ object Generator {
             )
         }
 
-        override fun generate(len: Int): SnapshotStateList<Airport> {
+        override fun generate(len: Int): SnapshotStateList<Airport> = SnapshotStateList()
+        fun generate(
+            size: Int,
+            minLat: Int,
+            maxLat: Int,
+            minLng: Int,
+            maxLng: Int,
+            minAlt: Int,
+            maxAlt: Int
+        ): SnapshotStateList<Airport> {
             val airports = SnapshotStateList<Airport>()
 
-            for(i in 0 until len) {
+            for(i in 0 until size) {
                 val airportName = generateAirportName()
                 airports.add(
                     Airport(
-                        id = IdGenerator.id,
+                        id = IdGenerator.setId(),
                         name = airportName,
                         code = generateAirportCode(),
-                        position = generateAirportPosition(),
+                        position = generateAirportPosition(
+                            minLat = minLat,
+                            maxLat = maxLat,
+                            minLng = minLng,
+                            maxLng = maxLng,
+                            minAlt = minAlt,
+                            maxAlt = maxAlt
+                        ),
                         isVisible = true,
                         website = generateRandomWebsite(airportName),
                     )
@@ -659,31 +731,4 @@ object Generator {
             return Json.encodeToString(ListSerializer(Flight.serializer()), arr)
         }
     }
-}
-
-fun main() {
-    val aircrafts = Generator.AircraftGenerator.generate(10)
-    val airlines = Generator.AirlineGenerator.generate(10)
-    val airports = Generator.AirportGenerator.generate(10)
-    val flights = Generator.FlightGenerator.generate(10)
-
-    aircrafts.forEach { aircraft ->
-        println(aircraft)
-    }
-    println()
-
-    airlines.forEach { airline ->
-        println(airline)
-    }
-    println()
-
-    airports.forEach { airport ->
-        println(airport)
-    }
-    println()
-
-    flights.forEach { flight ->
-        println(flight)
-    }
-    println()
 }

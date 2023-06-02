@@ -6,38 +6,38 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class AirportCountry(
     val id: Int,
-    val name: String,
-    val code: String
+    var name: String,
+    var code: String
 )
 
 @Serializable
-data class AirportRegion(val city: String)
+data class AirportRegion(var city: String)
 
 @Serializable
 data class AirportPostion(
-    val latitude: Float,
-    val longitude: Float,
-    val altitude: Int,
-    val country: AirportCountry,
-    val region: AirportRegion
+    var latitude: Float,
+    var longitude: Float,
+    var altitude: Int,
+    var country: AirportCountry,
+    var region: AirportRegion
 )
 
 @Serializable
 data class AirportTimezone(
-    val name: String,
-    val offset: Int,
-    val offsetHours: String,
-    val abbr: String,
-    val abbrName: String,
-    val isDst: Boolean
+    var name: String,
+    var offset: Int,
+    var offsetHours: String,
+    var abbr: String,
+    var abbrName: String,
+    var isDst: Boolean
 )
 
 @Serializable
 data class Airport(
     val id: Int,
-    val name: String,
-    val code: Code,
-    val position: AirportPostion,
-    val isVisible: Boolean,
-    val website: String,
+    var name: String,
+    var code: Code,
+    var position: AirportPostion,
+    var isVisible: Boolean,
+    var website: String,
 )

@@ -4,6 +4,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Code(
-    val iata: String,
-    val icao: String
+    var iata: String,
+    var icao: String
 )

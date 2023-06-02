@@ -21,7 +21,7 @@ data class FlightHistory(var flightId: String)
 
 @Serializable
 data class Aircraft(
-    var id: Int,
+    val id: Int,
     var model: AircraftModel,
     var registration: String,
     var images: List<AircraftImage>,

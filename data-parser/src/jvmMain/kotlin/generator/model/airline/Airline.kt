@@ -6,8 +6,8 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class Airline(
     val id: Int,
-    val name: String,
-    val short: String,
-    val code: Code,
-    val url: String
+    var name: String,
+    var short: String,
+    var code: Code,
+    var url: String
 )
