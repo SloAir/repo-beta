@@ -43,11 +43,12 @@ def get_from_fr(request):
             os.environ.get('SERVER_URL') + 'api/aircraft/post/',
             json=aircraft_data
         )
-
-        requests.post(
-            os.environ.get('SERVER_URL') + 'api/airline/post/',
-            json=airline_data
-        )
+        
+        if airline_data is not None:
+            requests.post(
+                os.environ.get('SERVER_URL') + 'api/airline/post/',
+                json=airline_data
+            )
 
         requests.post(
             os.environ.get('SERVER_URL') + 'api/airport/post/',

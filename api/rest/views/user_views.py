@@ -4,6 +4,9 @@ import time
 
 import requests
 
+from bson import json_util
+from bson import ObjectId
+
 from django.http import JsonResponse
 from django.middleware.csrf import get_token
 from dotenv import load_dotenv
@@ -77,10 +80,11 @@ def register(request):
         form = RegisterForm()
         return render(request, 'user/register.html', {'form': form})
 
-    form = RegisterForm(request.POST)
+    form = RegisterForm(json.loads(request.body))
 
     if not form.is_valid():
-        return render(request, 'user/register.html', {'form': form})
+        return JsonResponse({'error' : 'Invalid inputs'})
+        #return render(request, 'user/register.html', {'form': form})
 
     username = form.cleaned_data['username']
     email = form.cleaned_data['email']
@@ -94,12 +98,14 @@ def register(request):
     if username_exists(username) or email_exists(email):
         form = RegisterForm()
         print('exists')
-        return render(request, 'user/register.html', {'form': form})
+        return JsonResponse({'error' : 'Username exists'})
+        #return render(request, 'user/register.html', {'form': form})
 
     if not match_password(password, repeat_password):
         form = RegisterForm()
         print('no match')
-        return render(request, 'user/register.html', {'form': form})
+        return JsonResponse({'error' : 'Pass no match'})
+        #return render(request, 'user/register.html', {'form': form})
 
     user = create_user(
         username,
@@ -112,13 +118,13 @@ def register(request):
         'X-CSRFToken': csrf_token
     }
 
-    requests.post(
+    response = requests.post(
         os.environ.get('SERVER_URL') + 'api/user/post/',
         json=user,
         headers=headers
     )
 
-    return JsonResponse({'message': 'User created'})
+    return JsonResponse(response.json())
 
 
 def authenticate(username, password):
@@ -134,42 +140,49 @@ def set_session(request, username, password):
     user = authenticate(username, password)
 
     if user is None:
-        return False
+        return None
 
     request.session['user_id'] = str(user['_id'])
 
-    return True
+    return user
 
 
-@csrf_protect
+#@csrf_protect
 def login(request):
     if request.method != 'POST':
         form = LoginForm()
         return render(request, 'user/login.html', {'form': form})
 
-    form = LoginForm(request.POST)
+    form = LoginForm(json.loads(request.body))
 
     if not form.is_valid():
-        return render(request, 'user/login.html', {'form': form})
+        return JsonResponse({'error' : 'Invalid inputs'})
+        #return render(request, 'user/login.html', {'form': form})
 
     username = form.cleaned_data['username']
     password = form.cleaned_data['password']
 
-    session = set_session(request, username, password)
+    user = set_session(request, username, password)
 
-    if not session:
-        return render(request, 'user/login.html', {'form': form})
+    if user is None:
+        return JsonResponse({'error' : 'User is none error'})
 
-    return redirect('/')
+    print(request.user)
+
+    return JsonResponse({'message' : 'Successful login', 
+                         "user" : json.dumps(user, default=json_util.default),
+                         "session_id" : "halo"})
 
 
 def logout(request):
+    print(request)
     if 'user_id' not in request.session:
-        return
+        return JsonResponse({"message" : "session error"})
 
     del request.session['user_id']
 
-    return redirect('user/login/')
+    # return redirect('user/login/')
+    return JsonResponse({"message" : "Logged out"})
 
 
 def create_user(username, email, password):
@@ -217,9 +230,15 @@ def insert_user(request):
     else:
         data['created'] = int(time.time())
         data['modified'] = int(time.time())
-        db.users.insert_one(data)
+        inserted_user = db.users.insert_one(data)
 
-    return JsonResponse({'message': 'User inserted successfully.'})
+        inserted_id = str(inserted_user.inserted_id)
+
+        inserted_user = db.users.find_one({'_id' : ObjectId(inserted_id)})
+
+        inserted_user_json = json.dumps(inserted_user, default=json_util.default)
+
+        return JsonResponse({'message': 'User inserted successfully.', 'user' : inserted_user_json})
 
 
 def update_user(request):

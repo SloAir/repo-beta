@@ -38,6 +38,7 @@ urlpatterns = [
     # login and register form for users
     path('register/', user_views.register, name='register_user'),
     path('login/', user_views.login, name='login_user'),
+    path('logout/', user_views.logout, name='logout_user'),
 
     # homepage for API administration
     path('api/', admin.homepage, name='index'),

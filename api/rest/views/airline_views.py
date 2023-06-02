@@ -47,9 +47,12 @@ def insert_airline(request):
 
     data = json.loads(request.body)
 
-    if db.airlines.find_one({'code.icao': data['code']['icao']}):
-        requests.put(os.environ.get('SERVER_URL') + 'api/airline/put/', json=data)
-        return JsonResponse({'message': 'Redirected to PUT.'})
+    print(data)
+
+    if data['code'] is not None:
+        if db.airlines.find_one({'code.icao': data['code']['icao']}):
+            requests.put(os.environ.get('SERVER_URL') + 'api/airline/put/', json=data)
+            return JsonResponse({'message': 'Redirected to PUT.'})
     else:
         data['created'] = int(time.time())
         data['modified'] = int(time.time())

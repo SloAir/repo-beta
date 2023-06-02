@@ -47,8 +47,13 @@ def insert_airport(request):
 
     if request.body == None:
         return JsonResponse({'message' : 'request.body is None!'})
-        
-    data = json.loads(request.body)    
+    
+    print(request.body)
+    try:
+        data = json.loads(request.body)    
+    except json.JSONDecodeError:
+        return JsonResponse({'error' : 'Invalid JSON'}, status = 400)
+    
 
     if db.airports.find_one({'code.icao': data['code']['icao']}):
         requests.put(os.environ.get('SERVER_URL') + 'api/airport/put/', json=data)
