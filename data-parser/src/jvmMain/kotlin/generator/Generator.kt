@@ -1,5 +1,7 @@
 package generator
 
+import androidx.compose.runtime.snapshots.SnapshotStateList
+import data.model.IdGenerator
 import generator.model.Code
 import generator.model.aircraft.*
 import generator.model.airline.*
@@ -56,7 +58,7 @@ object Generator {
             return registrationNumber
         }
 
-        private fun generateAircraftImages(count: Int): List<AircraftImage> {
+        private fun generateAircraftImages(len: Int): List<AircraftImage> {
             val aircraftImages: MutableList<AircraftImage> = mutableListOf()
 
             val imageSrc = readFromFile("$currentDirectory/model/aircraft/data/images/src.txt")
@@ -66,7 +68,7 @@ object Generator {
 
             val generatedNumbers: MutableList<Int> = mutableListOf()
 
-            for(i in 0 until count) {
+            for(i in 0 until len) {
                 val random = Random.nextInt(0, imageSrc.size)
 
                 if(generatedNumbers.contains(random)) {
@@ -93,10 +95,10 @@ object Generator {
             return aircraftImages
         }
 
-        private fun generateFlightHistory(count: Int): List<FlightHistory> {
+        private fun generateFlightHistory(len: Int): List<FlightHistory> {
             val flightHistory: MutableList<FlightHistory> = mutableListOf()
 
-            for(i in 0 until count) {
+            for(i in 0 until len) {
                 var flightId = ""
 
                 val repeat = 8
@@ -115,6 +117,7 @@ object Generator {
 
         override fun generateOne(): Aircraft {
             return Aircraft(
+                id = IdGenerator.setId(),
                 model = generateAircraftModel(),
                 registration = generateRandomRegistrationNumber(),
                 images = generateAircraftImages(5),
@@ -122,12 +125,13 @@ object Generator {
             )
         }
 
-        override fun generate(count: Int): List<Aircraft> {
-            val aircrafts: MutableList<Aircraft> = mutableListOf()
+        override fun generate(len: Int): SnapshotStateList<Aircraft> {
+            val aircrafts = SnapshotStateList<Aircraft>()
 
-            for(i in 0 until count) {
+            for(i in 0 until len) {
                 aircrafts.add(
                     Aircraft(
+                        id = IdGenerator.setId(),
                         model = generateAircraftModel(),
                         registration = generateRandomRegistrationNumber(),
                         images = generateAircraftImages(5),
@@ -228,6 +232,7 @@ object Generator {
             val airlineName = generateAirlineName()
 
             return Airline(
+                id = IdGenerator.id,
                 name = airlineName,
                 short = generateAirlineNameShort(airlineName),
                 code = generateAirlineCode(),
@@ -235,13 +240,14 @@ object Generator {
             )
         }
 
-        override fun generate(count: Int): List<Airline> {
-            val airlines: MutableList<Airline> = mutableListOf()
+        override fun generate(len: Int): SnapshotStateList<Airline> {
+            val airlines = SnapshotStateList<Airline>()
 
-            for(i in 0 until count) {
+            for(i in 0 until len) {
                 val airlineName = generateAirlineName()
                 airlines.add(
                     Airline(
+                        id = IdGenerator.setId(),
                         name = airlineName,
                         short = generateAirlineNameShort(airlineName),
                         code = generateAirlineCode(),
@@ -373,6 +379,7 @@ object Generator {
             val airportName = generateAirportName()
 
             return Airport(
+                id = IdGenerator.setId(),
                 name = airportName,
                 code = generateAirportCode(),
                 position = generateAirportPosition(),
@@ -381,13 +388,14 @@ object Generator {
             )
         }
 
-        override fun generate(count: Int): List<Airport> {
-            val airports: MutableList<Airport> = mutableListOf()
+        override fun generate(len: Int): SnapshotStateList<Airport> {
+            val airports = SnapshotStateList<Airport>()
 
-            for(i in 0 until count) {
+            for(i in 0 until len) {
                 val airportName = generateAirportName()
                 airports.add(
                     Airport(
+                        id = IdGenerator.id,
                         name = airportName,
                         code = generateAirportCode(),
                         position = generateAirportPosition(),
@@ -612,6 +620,7 @@ object Generator {
             val trailLen = Random.nextInt(10, 100)
 
             return Flight(
+                id = IdGenerator.setId(),
                 identification = generateFlightIdentification(),
                 status = generateStatus(),
                 owner = generateAirline(),
@@ -622,8 +631,8 @@ object Generator {
             )
         }
 
-        override fun generate(len: Int): List<Flight> {
-            val flights: MutableList<Flight> = mutableListOf()
+        override fun generate(len: Int): SnapshotStateList<Flight> {
+            val flights = SnapshotStateList<Flight>()
 
 
             for(i in 0 until len) {
@@ -631,6 +640,7 @@ object Generator {
 
                 flights.add(
                     Flight(
+                        id = IdGenerator.id,
                         identification = generateFlightIdentification(),
                         status = generateStatus(),
                         owner = generateAirline(),

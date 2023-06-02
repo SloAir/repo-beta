@@ -52,6 +52,7 @@ data class FlightTrail(
 
 @Serializable
 data class Flight(
+    val id: Int,
     val identification: FlightIdentification,
     val status: FlightStatus,
     val owner: Airline? ,

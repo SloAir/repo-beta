@@ -1,29 +1,31 @@
 package view.components
 
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Build
 import androidx.compose.material.icons.rounded.Call
+import androidx.compose.material.icons.rounded.Create
 import androidx.compose.material.icons.rounded.List
 import androidx.compose.ui.graphics.vector.ImageVector
 
-open class BottomNavigation(
+open class TopNavigation(
     val route: String,
     val title: String,
     val icon: ImageVector
 ) {
-    object Parser: BottomNavigation(
+    object Parser: TopNavigation(
         route = "parser",
-        title = "Parser",
-        icon = Icons.Rounded.List   // Placeholder
+        title = "PARSER",
+        icon = Icons.Rounded.Create
     )
 
-    object Generator: BottomNavigation(
+    object Generator: TopNavigation(
         route = "generator",
-        title = "Generator",
-        icon = Icons.Rounded.Call   // Placeholder
+        title = "GENERATOR",
+        icon = Icons.Rounded.Build
     )
 
     companion object {
-        fun getAllElements(): List<BottomNavigation> {
+        fun getAllElements(): List<TopNavigation> {
             return listOf(
                 Parser,
                 Generator

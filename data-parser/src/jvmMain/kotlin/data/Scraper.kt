@@ -1,19 +1,21 @@
 package data
 
+import androidx.compose.runtime.snapshots.SnapshotStateList
 import data.model.Arrival
 import data.model.Departure
 import data.model.Flight
+import data.model.IdGenerator
 import it.skrape.core.*
 import it.skrape.fetcher.*
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
-fun scrapeData(): Pair<List<Arrival>, List<Departure>>
+fun scrapeData(): Pair<SnapshotStateList<Flight>, SnapshotStateList<Flight>>
 {
+    val departureData = SnapshotStateList<Flight>()
+    val arrivalsData = SnapshotStateList<Flight>()
     try
     {
-        val departureData = mutableListOf<Departure>()
-        val arrivalsData = mutableListOf<Arrival>()
         val scrapedData = skrape(HttpFetcher) {
             request {
                 url = "https://www.lju-airport.si/sl/leti/odhodi-in-prihodi/"
@@ -64,6 +66,7 @@ fun scrapeData(): Pair<List<Arrival>, List<Departure>>
                                 if(str == "departures") {
                                     departureData.add(
                                         Departure(
+                                            id = IdGenerator.setId(),
                                             date = date,
                                             planned = planned,
                                             expected = expected,
@@ -78,6 +81,7 @@ fun scrapeData(): Pair<List<Arrival>, List<Departure>>
                                 else {
                                     arrivalsData.add(
                                         Arrival(
+                                            id = IdGenerator.setId(),
                                             date = date,
                                             planned = planned,
                                             expected = expected,
@@ -94,12 +98,12 @@ fun scrapeData(): Pair<List<Arrival>, List<Departure>>
             }
         }
 
-        return Pair(arrivalsData, departureData)
     }
     catch(ex: Exception) {
         println(ex.message)
-        return Pair(emptyList(), emptyList())
     }
+
+    return Pair(arrivalsData, departureData)
 }
 
 // function serializes each flight object into a JSON string

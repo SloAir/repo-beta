@@ -28,11 +28,6 @@ kotlin {
                 implementation(compose.desktop.currentOs)
                 implementation("it.skrape:skrapeit:1.2.2")
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
-                // Icons
-                implementation("androidx.compose.material:material-icons-extended:$composeVersion")
-                // Calendar
-                implementation("com.maxkeppeler.sheets-compose-dialogs:core:1.0.2")
-                implementation("com.maxkeppeler.sheets-compose-dialogs:calendar:1.0.2")
             }
         }
         val jvmTest by getting

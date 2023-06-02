@@ -7,6 +7,7 @@ import kotlinx.serialization.Serializable
 // source: https://github.com/Kotlin/kotlinx.serialization/blob/master/docs/polymorphism.md#sealed-classes
 @Serializable
 sealed class Flight {
+    abstract var id: Int
     abstract var date: String
     abstract var planned: String
     abstract var expected: String

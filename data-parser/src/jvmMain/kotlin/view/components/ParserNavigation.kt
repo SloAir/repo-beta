@@ -11,13 +11,13 @@ open class ParserNavigation(
 ) {
     object Arrivals: ParserNavigation(
         route = "arrivals",
-        title = "Arrivals",
+        title = "ARRIVALS",
         icon = Icons.Rounded.Add
     )
 
     object Departures: ParserNavigation(
         route = "departures",
-        title = "Departures",
+        title = "DEPARTURES",
         icon = Icons.Rounded.Refresh
     )
 

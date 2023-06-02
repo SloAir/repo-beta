@@ -1,254 +1,232 @@
 package view.components
 
-import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Send
+import androidx.compose.material.icons.rounded.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.ui.graphics.SolidColor
-import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import data.model.Arrival
 import data.model.Departure
 import data.model.Flight
-import data.serialize
+import data.model.IdGenerator
 import view.*
-
+import view.components.Components.CardText
+import view.components.Components.DeleteButton
+import view.components.Components.EditButton
 
 object ParserView {
-    // function modifies the object's variable values
-    // according to the changes in the text box
     @Composable
-    fun ModifyText(
-        // object's string value
-        str: String,
-        onTextChange: (String) -> Unit
+    fun RenderData(
+        flight: Flight,
+        isEditing: Boolean
     ) {
-        var text by remember { mutableStateOf(TextFieldValue(str)) }
-        OutlinedTextField(
-            value = text,
-            onValueChange = { newText ->
-                text = newText
-                onTextChange(newText.text)
-            }
-        )
-    }
-
-    // function 'verifies' the data and sends the verified/modified data to the
-    // API endpoint, where it will be updated or saved into the database
-    @Composable
-    fun VerifyData(flights: List<Flight>) {
-        Column(
-            verticalArrangement = Arrangement.Bottom,
-            horizontalAlignment = Alignment.CenterHorizontally,
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
-                .fillMaxWidth()
-                .fillMaxHeight()
+                .padding(10.dp)
         ) {
-            Button(
-                onClick = {
-                    serialize(flights)
-                },
-                shape = CircleShape
+            CardText(
+                text = flight.date,
+                weight = 0.33f,
+                label = "Date",
+                isEditing = isEditing,
+                onTextChange = {
+                    flight.date = it
+                }
+            )
+            CardText(
+                text = flight.expected,
+                weight = 0.33f,
+                label = "Expected",
+                isEditing = isEditing,
+                onTextChange = {
+                    flight.expected = it
+                }
+            )
+            CardText(
+                text = flight.planned,
+                weight = 0.33f,
+                label = "Planned",
+                isEditing = isEditing,
+                onTextChange = {
+                    flight.planned = it
+                }
+            )
+        }
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .padding(10.dp)
+        ) {
+            CardText(
+                text = flight.destination,
+                weight = 0.33f,
+                label = "Destination",
+                isEditing = isEditing,
+                onTextChange = {
+                    flight.destination = it
+                }
+            )
+            CardText(
+                text = flight.flightNumber,
+                weight = 0.33f,
+                label = "Flight number",
+                isEditing = isEditing,
+                onTextChange = {
+                    flight.flightNumber = it
+                }
+            )
+            CardText(
+                text = flight.flightStatus,
+                weight = 0.33f,
+                label = "Status",
+                isEditing = isEditing,
+                onTextChange = {
+                    flight.flightStatus = it
+                }
+            )
+        }
+
+        if(flight is Departure) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier
+                    .padding(10.dp)
             ) {
-                Icon(
-                    imageVector = Icons.Rounded.Send,
-                    contentDescription = "Send"
+                CardText(
+                    text = flight.checkIn,
+                    weight = 0.33f,
+                    label = "Check-in",
+                    isEditing = isEditing,
+                    onTextChange = {
+                        flight.checkIn = it
+                    }
+                )
+                CardText(
+                    text = flight.exitTag,
+                    weight = 0.33f,
+                    label = "Exit tag",
+                    isEditing = isEditing,
+                    onTextChange = {
+                        flight.exitTag = it
+                    }
                 )
             }
         }
     }
 
-    // function displays the flight's date, planned and expected landing/departure time
-    // in a text box and saves the modified data to the object
     @Composable
-    fun FlightDateTime(
-        flight: Flight,
-        onDateChange: (String) -> Unit,
-        onPlannedChange: (String) -> Unit,
-        onExpectedChange: (String) -> Unit
-    ) {
-        Row(
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            ModifyText(
-                str = flight.date,
-                onTextChange = onDateChange
-            )
-            ModifyText(
-                str = flight.planned,
-                onTextChange = onPlannedChange
-            )
-            ModifyText(
-                str = flight.expected,
-                onTextChange = onExpectedChange,
-            )
-        }
-    }
+    fun FlightCard(flight: Flight, onDelete: (Flight) -> Unit) {
+        var isEditing by remember { mutableStateOf(false) }
 
-    // function displays the row of the destination variable
-    // in a text box and saves the modified data to the object
-    @Composable
-    fun FlightDestination(
-        flight: Flight,
-        onDestinationChange: (String) -> Unit
-    ) {
         Row(
-            horizontalArrangement = Arrangement.Center
-        ) {
-            ModifyText(
-                str = flight.destination,
-                onTextChange = onDestinationChange
-            )
-        }
-    }
-
-    // function displays the flight number and status in a row,
-    // in a text box and saves the modified data to the object
-    @Composable
-    fun FlightMetadata(
-        flight: Flight,
-        onFlightNumberChange: (String) -> Unit,
-        onFlightStatusChange: (String) -> Unit
-    ) {
-        Row(
-            horizontalArrangement = Arrangement.SpaceEvenly,
-        ) {
-            ModifyText(
-                str = flight.flightNumber,
-                onTextChange = onFlightNumberChange
-            )
-            ModifyText(
-                str = flight.flightStatus,
-                onTextChange = onFlightStatusChange
-            )
-        }
-    }
-
-    // function displays the flight's metadata in a row,
-    // in a text box and saves the modified data to the object
-    @Composable
-    fun DepartureMetadata(
-        flight: Departure,
-        onExitTagChange: (String) -> Unit,
-        onCheckInChange: (String) -> Unit
-    ) {
-        Row(
-            horizontalArrangement = Arrangement.SpaceEvenly,
-        ) {
-            ModifyText(
-                str = flight.exitTag,
-                onTextChange = onExitTagChange
-            )
-            ModifyText(
-                str = flight.checkIn,
-                onTextChange = onCheckInChange
-            )
-        }
-    }
-
-    // function renders the modifiable data of a single flight
-    @Composable
-    fun FlightCard(flight: Flight) {
-        Row(
-            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
-                .padding(20.dp)
-                .border(BorderStroke(1.dp, SolidColor(Color.Black)))
-                .fillMaxWidth()
+                .padding(10.dp)
+                .border(
+                    width = 1.dp,
+                    color = Color(COLOR_PRIMARY),
+                    shape = RoundedCornerShape(5.dp)
+                )
+                .background(color = Color(COLOR_CARD))
+                .fillMaxWidth(0.67f)
         ) {
+            Icon(
+                imageVector = Icons.Rounded.List,
+                contentDescription = null,
+                modifier = Modifier
+                    .size(128.dp)
+                    .weight(0.15f)
+            )
             Column(
                 modifier = Modifier
-                    .fillMaxWidth()
+                    .weight(0.6f)
             ) {
-                FlightDateTime(
-                    flight,
-                    onDateChange = { newDate -> flight.date = newDate },
-                    onPlannedChange = { newPlanned -> flight.planned = newPlanned },
-                    onExpectedChange = { newExpected -> flight.expected = newExpected }
+                RenderData(
+                    flight = flight,
+                    isEditing = isEditing
                 )
-                FlightDestination(
-                    flight,
-                    onDestinationChange = { newDestination -> flight.destination = newDestination }
-                )
-                FlightMetadata(
-                    flight,
-                    onFlightNumberChange = { newFlightNumber -> flight.flightNumber = newFlightNumber },
-                    onFlightStatusChange = { newFlightStatus -> flight.flightStatus = newFlightStatus }
-                )
-                if(flight is Departure) {
-                    DepartureMetadata(
-                        flight,
-                        onExitTagChange = { newExitTag -> flight.exitTag = newExitTag },
-                        onCheckInChange = { newCheckIn -> flight.checkIn = newCheckIn }
-                    )
-                }
+            }
+            Row(
+                horizontalArrangement = Arrangement.Center,
+                modifier = Modifier
+                    .weight(0.25f)
+            ) {
+                EditButton(onClick = { isEditing = !isEditing })
+                DeleteButton(onClick = { onDelete(flight) })
             }
         }
     }
 
-    // function renders all of the arrivals as a column
     @Composable
-    fun RenderArrivals(arrivals: List<Arrival>) {
-        LazyColumn {
-            items(arrivals) { item ->
-                FlightCard(item)
+    fun RenderFlights(flights: SnapshotStateList<Flight>) {
+        LazyColumn(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center,
+            modifier = Modifier
+                .fillMaxWidth()
+        ) {
+            items(flights, key = { flight -> flight.id }) { flight ->
+                FlightCard(flight, onDelete = {
+                    flights.remove(flight)
+                })
             }
         }
     }
 
-    // function renders all of the departures as a column
-    @Composable
-    fun RenderDepartures(departures: List<Departure>) {
-        LazyColumn {
-            items(departures) { item ->
-                FlightCard(item)
-            }
-        }
-    }
-
-    // function displays the navigation bar of the parser screen
     @Composable
     fun ParserNavigation(
         elements: List<ParserNavigation>,
         currentRoute: String,
         clickedRoute: (String) -> Unit
     ) {
-        Row(
-            horizontalArrangement = Arrangement.Center,
+        LazyRow(
+            horizontalArrangement = Arrangement.SpaceEvenly,
             modifier = Modifier
+                .padding(8.dp)
+                .drawBehind {
+                    // https://medium.com/@banmarkovic/jetpack-compose-bottom-border-8f1662c2aa84
+                    drawLine(
+                        color = Color(COLOR_PRIMARY),
+                        start = Offset(0f, size.height),
+                        end = Offset(size.width, size.height),
+                        strokeWidth = 1.dp.toPx()
+                    )
+                }
                 .fillMaxWidth()
         ) {
-            elements.forEach { item ->
+            items(elements) { item ->
                 Button(
                     onClick = { clickedRoute(item.route) },
-                    shape = RectangleShape,
-                    modifier = Modifier
-                        .weight(1f)
-                        .fillMaxWidth(),
-                    elevation = ButtonDefaults.elevation(
-                        0.dp,
-                        0.dp,
-                        0.dp,
-                        0.dp,
-                        0.dp
-                    )
+                    colors = ButtonDefaults.buttonColors(
+                        backgroundColor = Color.Transparent
+                    ),
+                    contentPadding = PaddingValues(0.dp),
+                    elevation = ButtonDefaults.elevation(0.dp, 0.dp, 0.dp, 0.dp, 0.dp)
                 ) {
-                    Icon(
-                        imageVector = item.icon,
-                        contentDescription = null
-                    )
                     Text(
-                        text = item.title
+                        text = item.title,
+                        fontFamily = FontFamily.Monospace,
+                        fontWeight = FontWeight.ExtraLight,
+                        fontSize = 20.sp,
+                        color = Color(COLOR_PRIMARY)
                     )
                 }
             }
@@ -257,34 +235,23 @@ object ParserView {
 
     @Composable
     fun ParserScreen(
-        arrivals: List<Arrival>,
-        departures: List<Departure>
+        arrivals: SnapshotStateList<Flight>,
+        departures: SnapshotStateList<Flight>
     ) {
         var currentRoute by remember { mutableStateOf(DEFAULT_PARSER_ROUTE) }
         val (arrivalsRoute, departuresRoute) = ParserNavigation.getAllRoutes()
 
-        Scaffold(
-            topBar = {
-                ParserNavigation(
-                    elements = ParserNavigation.getAllElements(),
-                    currentRoute = DEFAULT_PARSER_ROUTE,
-                    clickedRoute = { route ->
-                        currentRoute = route
-                    }
-                )
-            },
-            bottomBar = {
-                when(currentRoute) {
-                    arrivalsRoute -> VerifyData(arrivals)
-                    departuresRoute -> VerifyData(departures)
+        Column {
+            ParserNavigation(
+                elements = ParserNavigation.getAllElements(),
+                currentRoute = DEFAULT_PARSER_ROUTE,
+                clickedRoute = { route ->
+                    currentRoute = route
                 }
-            },
-            modifier = Modifier
-                .padding(bottom = 45.dp)
-        ) {
+            )
             when(currentRoute) {
-                arrivalsRoute -> RenderArrivals(arrivals)
-                departuresRoute -> RenderDepartures(departures)
+                arrivalsRoute -> RenderFlights(arrivals)
+                departuresRoute -> RenderFlights(departures)
             }
         }
     }

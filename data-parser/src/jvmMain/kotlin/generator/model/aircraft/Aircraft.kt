@@ -4,25 +4,26 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class AircraftModel(
-    val code: String,
-    val text: String
+    var code: String,
+    var text: String
 )
 
 @Serializable
 data class AircraftImage(
-    val src: String,
-    val link: String,
-    val copyright: String,
-    val source: String
+    var src: String,
+    var link: String,
+    var copyright: String,
+    var source: String
 )
 
 @Serializable
-data class FlightHistory(val flightId: String)
+data class FlightHistory(var flightId: String)
 
 @Serializable
 data class Aircraft(
-    val model: AircraftModel,
-    val registration: String,
-    val images: List<AircraftImage>,
-    val flightHistory: List<FlightHistory>
+    var id: Int,
+    var model: AircraftModel,
+    var registration: String,
+    var images: List<AircraftImage>,
+    var flightHistory: List<FlightHistory>
 )

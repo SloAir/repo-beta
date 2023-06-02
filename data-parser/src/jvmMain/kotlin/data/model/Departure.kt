@@ -4,6 +4,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 class Departure(
+    override var id: Int,
     override var date: String,
     override var planned: String,
     override var expected: String,

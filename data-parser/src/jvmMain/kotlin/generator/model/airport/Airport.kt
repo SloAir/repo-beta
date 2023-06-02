@@ -34,6 +34,7 @@ data class AirportTimezone(
 
 @Serializable
 data class Airport(
+    val id: Int,
     val name: String,
     val code: Code,
     val position: AirportPostion,
