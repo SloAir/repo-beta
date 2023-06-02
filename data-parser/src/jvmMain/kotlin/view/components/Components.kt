@@ -42,7 +42,7 @@ object Components {
         onChange: (String) -> Unit,
         label: String
     ) {
-        var text by remember { mutableStateOf(TextFieldValue("0")) }
+        var text by remember { mutableStateOf(TextFieldValue("")) }
 
         OutlinedTextField(
             value = text,
@@ -50,10 +50,6 @@ object Components {
                 if(it.text.matches(Regex("\\d+"))) {
                     text = it
                     onChange(it.text)
-                }
-                if(it.text.matches(Regex(""))) {
-                    text = TextFieldValue("0")
-                    onChange("0")
                 }
             },
             label = { Text(text = label) },
@@ -72,18 +68,14 @@ object Components {
         onChange: (String) -> Unit,
         label: String
     ) {
-        var text by remember { mutableStateOf(TextFieldValue("0")) }
+        var text by remember { mutableStateOf(TextFieldValue("")) }
 
         OutlinedTextField(
             value = text,
             onValueChange = {
-                if(it.text.matches(Regex("\\d+(\\.\\d+)?"))) {
+                if(it.text.matches(Regex("-?\\d*\\.?\\d*"))) {
                     text = it
                     onChange(it.text)
-                }
-                if(it.text.matches(Regex(""))) {
-                    text = TextFieldValue("0")
-                    onChange("0")
                 }
             },
             label = { Text(text = label) },

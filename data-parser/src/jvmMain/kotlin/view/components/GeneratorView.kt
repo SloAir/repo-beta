@@ -7,11 +7,8 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Delete
-import androidx.compose.material.icons.rounded.Edit
 import androidx.compose.material.icons.rounded.List
 import androidx.compose.runtime.*
 import androidx.compose.runtime.snapshots.SnapshotStateList
@@ -20,23 +17,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.max
-import androidx.compose.ui.unit.min
 import androidx.compose.ui.unit.sp
-import data.serialize
 import generator.Generator
 import generator.model.aircraft.Aircraft
 import generator.model.airline.Airline
 import generator.model.airport.Airport
+import generator.model.flight.Flight
 import view.COLOR_CARD
 import view.COLOR_PRIMARY
 import view.DEFAULT_GENERATOR_ROUTE
-import view.DEFAULT_PARSER_ROUTE
 import view.components.Components.CardText
 import view.components.Components.DeleteButton
 import view.components.Components.EditButton
@@ -149,48 +141,68 @@ object GeneratorView {
             modifier = Modifier
                 .fillMaxWidth()
         ) {
-            InputAmountInt(
-                onChange = { value ->
-                    size = value
-                },
-                label = "Airports"
-            )
-            InputAmountFloat(
-                onChange = { value ->
-                    minLat = value
-                },
-                label = "Min latitude"
-            )
-            InputAmountFloat(
-                onChange = { value ->
-                    maxLat = value
-                },
-                label = "Max latitude"
-            )
-            InputAmountFloat(
-                onChange = { value ->
-                    minLng = value
-                },
-                label = "Min longitude"
-            )
-            InputAmountFloat(
-                onChange = { value ->
-                    maxLng = value
-                },
-                label = "Max longitude"
-            )
-            InputAmountInt(
-                onChange = { value ->
-                    minAlt = value
-                },
-                label = "Min altitude"
-            )
-            InputAmountInt(
-                onChange = { value ->
-                    maxAlt = value
-                },
-                label = "Max altitude"
-            )
+            Row {
+                InputAmountInt(
+                    onChange = { value ->
+                        size = value
+                    },
+                    label = "Airports"
+                )
+            }
+            Row {
+                InputAmountFloat(
+                    onChange = { value ->
+                        minLat = value
+                    },
+                    label = "Min latitude"
+                )
+                Spacer(
+                    modifier = Modifier
+                        .width(16.dp)
+                )
+                InputAmountFloat(
+                    onChange = { value ->
+                        maxLat = value
+                    },
+                    label = "Max latitude"
+                )
+            }
+            Row {
+                InputAmountFloat(
+                    onChange = { value ->
+                        minLng = value
+                    },
+                    label = "Min longitude"
+                )
+                Spacer(
+                    modifier = Modifier
+                        .width(16.dp)
+                )
+                InputAmountFloat(
+                    onChange = { value ->
+                        maxLng = value
+                    },
+                    label = "Max longitude"
+                )
+            }
+            Row {
+                InputAmountInt(
+                    onChange = { value ->
+                        minAlt = value
+                    },
+                    label = "Min altitude"
+                )
+                Spacer(
+                    modifier = Modifier
+                        .width(16.dp)
+                )
+                InputAmountInt(
+                    onChange = { value ->
+                        maxAlt = value
+                    },
+                    label = "Max altitude"
+                )
+            }
             GenerateButton(
                 onClick = {
                     onGenerate(
@@ -204,6 +216,26 @@ object GeneratorView {
                     )
                 }
             )
+        }
+    }
+
+    @Composable
+    fun GenerateFlights(onGenerate: (Int) -> Unit) {
+        var size by remember { mutableStateOf("") }
+
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Top,
+            modifier = Modifier
+                .fillMaxWidth()
+        ) {
+            InputAmountInt(
+                onChange = { value ->
+                    size = value
+                },
+                label = "Flights"
+            )
+            GenerateButton(onClick = { onGenerate(size.toInt()) })
         }
     }
 
@@ -422,11 +454,189 @@ object GeneratorView {
         ) {
             CardText(
                 text = airport.website,
-                weight = 0.33f,
+                weight = 0.7f,
                 label = "Website",
                 isEditing = isEditing,
                 onTextChange = {
                     airport.website = it
+                }
+            )
+        }
+    }
+
+    @Composable
+    fun RenderFlightData(
+        flight: Flight,
+        isEditing: Boolean
+    ) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .padding(10.dp)
+        ) {
+            CardText(
+                text = flight.identification.id,
+                weight = 0.33f,
+                label = "ID",
+                isEditing = isEditing,
+                onTextChange = {
+                    flight.identification.id = it
+                }
+            )
+            CardText(
+                text = flight.identification.callsign,
+                weight = 0.33f,
+                label = "Callsign",
+                isEditing = isEditing,
+                onTextChange = {
+                    flight.identification.callsign = it
+                }
+            )
+        }
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .padding(10.dp)
+        ) {
+            CardText(
+                text = flight.owner.name,
+                weight = 0.25f,
+                label = "Airline name",
+                isEditing = isEditing,
+                onTextChange = {
+                    flight.owner.name = it
+                }
+            )
+            CardText(
+                text = flight.owner.short,
+                weight = 0.25f,
+                label = "Short airline name",
+                isEditing = isEditing,
+                onTextChange = {
+                    flight.owner.short = it
+                }
+            )
+            CardText(
+                text = flight.owner.code.iata,
+                weight = 0.25f,
+                label = "Airline IATA",
+                isEditing = isEditing,
+                onTextChange = {
+                    flight.owner.code.iata = it
+                }
+            )
+            CardText(
+                text = flight.owner.code.icao,
+                weight = 0.25f,
+                label = "Airline ICAO",
+                isEditing = isEditing,
+                onTextChange = {
+                    flight.owner.code.icao = it
+                }
+            )
+        }
+        Row {
+            CardText(
+                text = flight.time.scheduled.arrival.toString(),
+                weight = 0.25f,
+                label = "Scheduled arrival",
+                isEditing = isEditing,
+                onTextChange = {
+                    flight.time.scheduled.arrival = it.toLong()
+                }
+            )
+            CardText(
+                text = flight.time.scheduled.departure.toString(),
+                weight = 0.25f,
+                label = "Scheduled departure",
+                isEditing = isEditing,
+                onTextChange = {
+                    flight.time.scheduled.departure = it.toLong()
+                }
+            )
+            CardText(
+                text = flight.time.real.arrival.toString(),
+                weight = 0.25f,
+                label = "Real arrival",
+                isEditing = isEditing,
+                onTextChange = {
+                    flight.time.real.arrival = it.toLong()
+                }
+            )
+            CardText(
+                text = flight.time.real.departure.toString(),
+                weight = 0.25f,
+                label = "Real departure",
+                isEditing = isEditing,
+                onTextChange = {
+                    flight.time.real.departure = it.toLong()
+                }
+            )
+        }
+        Row {
+            CardText(
+                text = flight.time.estimated.arrival.toString(),
+                weight = 0.25f,
+                label = "Estimated arrival",
+                isEditing = isEditing,
+                onTextChange = {
+                    flight.time.estimated.arrival = it.toLong()
+                }
+            )
+            CardText(
+                text = flight.time.estimated.departure.toString(),
+                weight = 0.25f,
+                label = "Estimated departure",
+                isEditing = isEditing,
+                onTextChange = {
+                    flight.time.estimated.departure = it.toLong()
+                }
+            )
+            CardText(
+                text = flight.time.other.eta.toString(),
+                weight = 0.25f,
+                label = "ETA",
+                isEditing = isEditing,
+                onTextChange = {
+                    flight.time.other.eta = it.toLong()
+                }
+            )
+            CardText(
+                text = flight.time.other.updated.toString(),
+                weight = 0.25f,
+                label = "Updated",
+                isEditing = isEditing,
+                onTextChange = {
+                    flight.time.other.updated = it.toLong()
+                }
+            )
+        }
+        Row {
+            CardText(
+                text = flight.time.historical.flighttime,
+                weight = 0.33f,
+                label = "Flight time",
+                isEditing = isEditing,
+                onTextChange = {
+                    flight.time.historical.flighttime = it
+                }
+            )
+            CardText(
+                text = flight.time.historical.delay,
+                weight = 0.33f,
+                label = "Delay",
+                isEditing = isEditing,
+                onTextChange = {
+                    flight.time.historical.delay = it
+                }
+            )
+            CardText(
+                text = flight.firstTimestamp.toString(),
+                weight = 0.33f,
+                label = "First timestamp",
+                isEditing = isEditing,
+                onTextChange = {
+                    flight.firstTimestamp = it.toLong()
                 }
             )
         }
@@ -569,6 +779,51 @@ object GeneratorView {
             }
         }
     }
+    @Composable
+    fun FlightCard(
+        flight: Flight,
+        onDelete: (Flight) -> Unit
+    ) {
+        var isEditing by remember { mutableStateOf(false) }
+
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .padding(10.dp)
+                .border(
+                    width = 1.dp,
+                    color = Color(COLOR_PRIMARY),
+                    shape = RoundedCornerShape(5.dp)
+                )
+                .background(color = Color(COLOR_CARD))
+                .fillMaxWidth(0.67f)
+        ) {
+            Icon(
+                imageVector = Icons.Rounded.List,
+                contentDescription = null,
+                modifier = Modifier
+                    .size(128.dp)
+                    .weight(0.15f)
+            )
+            Column(
+                modifier = Modifier
+                    .weight(0.6f)
+            ) {
+                RenderFlightData(
+                    flight = flight,
+                    isEditing = isEditing
+                )
+            }
+            Row(
+                horizontalArrangement = Arrangement.Center,
+                modifier = Modifier
+                    .weight(0.25f)
+            ) {
+                EditButton(onClick = { isEditing = !isEditing })
+                DeleteButton(onClick = { onDelete(flight) })
+            }
+        }
+    }
 
     @Composable
     fun RenderAircrafts() {
@@ -626,9 +881,9 @@ object GeneratorView {
     fun RenderAirlines() {
         var airlines: SnapshotStateList<Airline> = remember { mutableStateListOf() }
 
-        GenerateAirlines(onGenerate = { len ->
+        GenerateAirlines(onGenerate = { size ->
             airlines.clear()
-            airlines.addAll(Generator.AirlineGenerator.generate(len))
+            airlines.addAll(Generator.AirlineGenerator.generate(size))
         })
 
         Column(
@@ -722,6 +977,51 @@ object GeneratorView {
     }
 
     @Composable
+    fun RenderFlights() {
+        var flights: SnapshotStateList<Flight> = remember { mutableStateListOf() }
+
+        GenerateFlights(
+            onGenerate = { size ->
+                flights.clear()
+                flights.addAll(Generator.FlightGenerator.generate(size))
+            }
+        )
+
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center,
+            modifier = Modifier
+                .fillMaxWidth()
+        ) {
+            Box(
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxWidth()
+            ) {
+                LazyColumn(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                ) {
+                    items(flights, key = { flight -> flight.id }) { flight ->
+                        FlightCard(flight, onDelete = {
+                            flights.remove(flight)
+                        })
+                    }
+                }
+            }
+            if(!flights.isEmpty()) {
+                SendButton(
+                    onClick = {
+                        println(Generator.FlightGenerator.serialize(flights))
+                    }
+                )
+            }
+        }
+    }
+
+    @Composable
     fun GeneratorNavigation(
         elements: List<GeneratorNavigation>,
         currentRoute: String,
@@ -786,7 +1086,7 @@ object GeneratorView {
                 aircraftsRoute -> RenderAircrafts()
                 airlinesRoute -> RenderAirlines()
                 airportsRoute -> RenderAirports()
-                flightsRoute -> println("Flights")
+                flightsRoute -> RenderFlights()
             }
         }
     }

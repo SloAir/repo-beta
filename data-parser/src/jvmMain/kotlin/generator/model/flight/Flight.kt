@@ -5,59 +5,59 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class FlightIdentification(
-    val id: String,
-    val callsign: String
+    var id: String,
+    var callsign: String
 )
 
 @Serializable
-data class FlightStatus(val live: String)
+data class FlightStatus(var live: String)
 
 @Serializable
 data class TimeData(
-    val departure: Long?,
-    val arrival: Long?
+    var departure: Long?,
+    var arrival: Long?
 )
 
 @Serializable
 data class TimeOther(
-    val eta: Long,
-    val updated: Long
+    var eta: Long,
+    var updated: Long
 )
 
 @Serializable
 data class TimeHistorical(
     // has to be spelled 'flighttime' and not 'flightTime' because of API
-    val flighttime: String,
-    val delay: String
+    var flighttime: String,
+    var delay: String
 )
 
 @Serializable
 data class FlightTime(
-    val scheduled: TimeData,
-    val real: TimeData,
-    val estimated: TimeData,
-    val other: TimeOther,
-    val historical: TimeHistorical
+    var scheduled: TimeData,
+    var real: TimeData,
+    var estimated: TimeData,
+    var other: TimeOther,
+    var historical: TimeHistorical
 )
 
 @Serializable
 data class FlightTrail(
-    val lat: Float,
-    val lng: Float,
-    val alt: Int,
-    val spd: Int,
-    val ts: Long,
-    val hd: Int
+    var lat: Float,
+    var lng: Float,
+    var alt: Int,
+    var spd: Int,
+    var ts: Long,
+    var hd: Int
 )
 
 @Serializable
 data class Flight(
     val id: Int,
-    val identification: FlightIdentification,
-    val status: FlightStatus,
-    val owner: Airline? ,
-    val airspace: String? = null,
-    val time: FlightTime,
-    val trail: List<FlightTrail>,
-    val firstTimestamp: Long
+    var identification: FlightIdentification,
+    var status: FlightStatus,
+    var owner: Airline,
+    var airspace: String? = null,
+    var time: FlightTime,
+    var trail: List<FlightTrail>,
+    var firstTimestamp: Long
 )

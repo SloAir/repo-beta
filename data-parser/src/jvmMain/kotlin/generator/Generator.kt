@@ -523,13 +523,8 @@ object Generator {
         }
 
         // generates a random airline for the owner field
-        private fun generateAirline(): Airline? {
-            val random = Random.nextInt(0, 1000)
-
-            return when(random % 5) {
-                0, 1, 2 -> AirlineGenerator.generateOne()
-                else -> null
-            }
+        private fun generateAirline(): Airline {
+            return AirlineGenerator.generateOne()
         }
 
         private fun generateTimeData(str: String): TimeData {
@@ -712,7 +707,7 @@ object Generator {
 
                 flights.add(
                     Flight(
-                        id = IdGenerator.id,
+                        id = IdGenerator.setId(),
                         identification = generateFlightIdentification(),
                         status = generateStatus(),
                         owner = generateAirline(),
