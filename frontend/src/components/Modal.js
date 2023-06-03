@@ -1,5 +1,6 @@
-import React, { Component } from 'react'
-import './Modal.css'
+import React, { Component } from 'react';
+import axios from 'axios';
+import './Modal.css';
 
 export default class Modal extends Component {
 
@@ -35,9 +36,37 @@ export default class Modal extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        const { onSubmit } = this.props;
+        const { onSubmit, object } = this.props;
         const { formData } = this.state;
-        onSubmit(formData);
+
+        const updatedObject = { ...object };
+
+        const mergeProperties = (target, source) => {
+            for (const key in source) {
+              if (source.hasOwnProperty(key)) {
+                const sourceValue = source[key];
+          
+                if (sourceValue !== null && sourceValue !== '') {
+                  if (typeof sourceValue === 'object' && !Array.isArray(sourceValue)) {
+                    target[key] = mergeProperties(target[key] || {}, sourceValue);
+                  } else {
+                    target[key] = sourceValue;
+                  }
+                } else if (target.hasOwnProperty(key)) {
+                  target[key] = target[key];
+                }
+              }
+            }
+          
+            return target;
+          };
+          
+        mergeProperties(updatedObject, formData);
+        
+        console.log(updatedObject);
+
+        onSubmit(updatedObject);
+        this.props.closeModal();
     };
 
     generateFormField = (fieldName, fieldValue, index1, index2, index3) => {

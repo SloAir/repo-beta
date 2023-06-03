@@ -13,12 +13,13 @@ class Table extends React.Component {
 
     handleEdit = id => {
         this.setState({ editRow: id });
-        console.log(`Editing object with ID: ${id} ...`)
+        console.log(`Editing object with ID: ${id} ...`);
     }
 
     handleDelete = id => {
-        console.log(this.generatePropertyCalls(this.state.formData));
-        console.log(`Deleting object with ID: ${id} ...`)
+        const { onDelete } = this.props;
+        console.log(`Deleting object with ID: ${id} ...`);
+        onDelete(id);
     }
 
     generateTableHeader = (fieldName, index) => {

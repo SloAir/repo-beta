@@ -3,6 +3,7 @@ import json
 import requests
 import time
 
+from bson import ObjectId
 from rest.settings import db
 from django.http import *
 
@@ -70,20 +71,26 @@ def update_airline(request):
 
     data['modified'] = int(time.time())
 
-    db.airlines.update_one(
-        {'code.icao': data['code']['icao']},
-        {'$set': data}
-    )
+    airline_id = data.pop('_id', None)
+    if airline_id:
+        airline_id = ObjectId(airline_id)
 
-    return JsonResponse({'message': 'Airline updated successfully!'})
+        db.airlines.update_one(
+            {'_id': airline_id},
+            {'$set': data}
+        )
+
+        return JsonResponse({'message': 'Airline updated successfully!'})
+    else:
+        return JsonResponse({'error': 'Invalid airline ID.'})
 
 
 # function deletes an airline with a matching ICAO code from the database
-def delete_airline(request, airline_icao):
+def delete_airline(request, airline_id):
     if request.method != 'DELETE':
         return JsonResponse({'error': 'Unsupported request method.'})
 
-    if not db.airlines.delete_one({'code.icao': airline_icao}):
+    if not db.airlines.delete_one({'_id': airline_id}):
         return JsonResponse({'error': 'Could not delete'})
 
     return JsonResponse({'message': 'Airline deleted successfully.'})

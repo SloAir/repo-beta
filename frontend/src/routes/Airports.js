@@ -45,15 +45,44 @@ class Airlines extends React.Component {
       this.setState({ modalOpen: false, editRow: null });
     }  
 
-    handleSubmit = formData => {
-      // Handle the form submission here (e.g., axios.put request)
-      console.log('Submitting form:', formData);
-      // Update the state or make API call to update the data in the table
-      // ...
-  
-      // Close the modal
-      this.handleCloseModal();
+    handleDelete = id => {
+      const deletedIndex = this.state.details.findIndex(
+        obj => obj._id === id
+      );
+
+      const deletedObject = this.state.details[deletedIndex];
+
+      axios.delete(`http://localhost:8000/api/airport/delete/${deletedObject._id}/`)
+      .then((response) => {
+          console.log(response);
+
+          const updatedData = [...this.state.details];
+          updatedData.splice(deletedIndex, 1);
+          this.setState({ details: updatedData });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
     }
+
+    handleSubmit = formData => {
+      const editedIndex = this.state.details.findIndex(
+        obj => obj._id == formData._id
+      );
+      
+      axios.put('http://localhost:8000/api/airport/put/', formData)
+      .then((response) => {
+          console.log(response);
+
+          const updatedData = [...this.state.details];
+          updatedData[editedIndex] = formData;
+          this.setState({ details: updatedData });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    }
+
 
     render() {
         const formDataStructure = {
@@ -80,6 +109,7 @@ class Airlines extends React.Component {
               formDataStruct={formDataStructure}
               onEdit={this.handleEdit}
               onSubmit={this.handleSubmit}
+              onDelete={this.handleDelete}
             />
           </div>
         )

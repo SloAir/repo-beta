@@ -7,7 +7,6 @@ function Login(){
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
-    const [sessionId, setSessionId] = useState("");
     const userContext = useContext(UserContext); 
 
     async function handleLogin(e) {
@@ -43,7 +42,7 @@ function Login(){
 
     return (
         <form onSubmit={handleLogin}>
-            {userContext.user ? <Navigate replace to="/" /> : ""}
+            {userContext ? <Navigate replace to="/" /> : ""}
             <input type="text" name="username" placeholder="Username"
              value={username} onChange={(e)=>(setUsername(e.target.value))}/>
              <input type="password" name="password" placeholder="Password"

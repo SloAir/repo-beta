@@ -60,5 +60,5 @@ const MapContainer = ({ google }) => {
 };
 
 export default GoogleApiWrapper({
-    apiKey: 'API_KEY',
+    apiKey: 'AIzaSyD5aGaOCX7ykXOHgQg9zkXwGArsbRrEqi4',
 })(MapContainer);

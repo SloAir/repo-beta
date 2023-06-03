@@ -28,16 +28,44 @@ class Aircrafts extends React.Component {
 
     handleCloseModal = () => {
       this.setState({ modalOpen: false, editRow: null });
-    }  
+    }
+    
+    handleDelete = id => {
+      const deletedIndex = this.state.details.findIndex(
+        obj => obj._id === id
+      );
+
+      const deletedObject = this.state.details[deletedIndex];
+
+      axios.delete(`http://localhost:8000/api/aircraft/delete/${deletedObject.registration}/`)
+      .then((response) => {
+          console.log(response);
+
+          const updatedData = [...this.state.details];
+          updatedData.splice(deletedIndex, 1);
+          this.setState({ details: updatedData });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    }
 
     handleSubmit = formData => {
-      // Handle the form submission here (e.g., axios.put request)
-      console.log('Submitting form:', formData);
-      // Update the state or make API call to update the data in the table
-      // ...
-  
-      // Close the modal
-      this.handleCloseModal();
+      const editedIndex = this.state.details.findIndex(
+        obj => obj._id == formData._id
+      );
+      
+      axios.put('http://localhost:8000/api/aircraft/put/', formData)
+      .then((response) => {
+          console.log(response);
+
+          const updatedData = [...this.state.details];
+          updatedData[editedIndex] = formData;
+          this.setState({ details: updatedData });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
     }
 
     render() {
@@ -56,6 +84,7 @@ class Aircrafts extends React.Component {
               formDataStruct={formDataStructure}
               onEdit={this.handleEdit}
               onSubmit={this.handleSubmit}
+              onDelete={this.handleDelete}
             />
           </div>
         )
@@ -63,50 +92,3 @@ class Aircrafts extends React.Component {
 }
 
 export default Aircrafts;
-
-
-/* 
-
-<button className='btn' onClick={() => this.setState({modalOpen: true})}>Add</button>
-    
-
-state = { details: [], }
-
-    componentDidMount() {
-        let data;
-        axios.get('http://localhost:8000/api/aircraft/get/')
-        .then(res => {
-            data = res.data;
-            this.setState({
-              details: data
-            });
-        })
-        .catch(err => { })
-    }
-
-    render() {
-        return (
-          <div>
-            <h1>Data from the DB</h1>
-            <hr></hr>
-            {this.state.details.map((output, id) => (
-              <div key={id}>
-                <div>
-                  <h3>{output.registration}</h3>
-                </div>
-              </div> 
-            ))}
-          </div>
-        )
-    }
-
-<h1>Data from the DB</h1>
-<hr></hr>
-{this.state.details.map((output, id) => (
-  <div key={id}>
-    <div>
-      <h3>{output.registration}</h3>
-    </div>
-  </div> 
-))}
-*/
