@@ -54,12 +54,13 @@ def insert_airline(request):
         if db.airlines.find_one({'code.icao': data['code']['icao']}):
             requests.put(os.environ.get('SERVER_URL') + 'api/airline/put/', json=data)
             return JsonResponse({'message': 'Redirected to PUT.'})
-    else:
-        data['created'] = int(time.time())
-        data['modified'] = int(time.time())
-        db.airlines.insert_one(data)
+        
+        else:
+            data['created'] = int(time.time())
+            data['modified'] = int(time.time())
+            db.airlines.insert_one(data)
 
-    return JsonResponse({'message': 'Airline inserted successfully!'})
+        return JsonResponse({'message': 'Airline inserted successfully!'})
 
 
 # function updates an airline in the database
@@ -89,7 +90,9 @@ def update_airline(request):
 def delete_airline(request, airline_id):
     if request.method != 'DELETE':
         return JsonResponse({'error': 'Unsupported request method.'})
-
+    
+    airline_id = ObjectId(airline_id)
+    
     if not db.airlines.delete_one({'_id': airline_id}):
         return JsonResponse({'error': 'Could not delete'})
 

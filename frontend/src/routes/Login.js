@@ -17,7 +17,7 @@ function Login(){
             username: username,
             password: password
           }, {
-            withCredentials: true,
+            //withCredentials: true,
             headers: { 'Content-Type': 'application/json' }
           });
     
