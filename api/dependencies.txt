@@ -1,16 +1,16 @@
-Django==4.0.10
+Django
 
-python-dotenv==1.0.0
+python-dotenv
 
-PyMongo==4.3.3
-MongoEngine==0.27.0
-Django_MongoEngine==0.5.4
+PyMongo
+MongoEngine
+Django_MongoEngine
 
-requests==2.26.0
-DjangoRESTFramework==3.14.0
+requests
+DjangoRESTFramework
 DjangoRESTFramework-simpleJWT
-Django-CORS-Headers==3.14.0
+Django-CORS-Headers
 
-BCrypt==4.0.1
+BCrypt
 
 FlightRadarAPI
