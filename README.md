@@ -1,12 +1,31 @@
-# SloAir 
+# SloAir - repo-beta 
 
-1) PROJEKTNE SPECIFIKACIJE (10 TOČK) 
-Dokumentacija študentskega projekta naj v prvem koraku opredeljuje kratek povzetek projektnih specifikacij v naslednji obliki: 
+## PROJECT/REPO GOALS:
+Store and process data about the current status of the Slovenian airspace and serve it to users.
 
-Opredelitev namena študentskega projekta, vključno s skupinami uporabnikov in njihovimi potrebami; 
+NEEDED SERIVCES: 
+  - DATABASE:
+      - Store data
+  - API:
+      - Get data
+      - Process data
+      - Send data to a database
+  - WEB APP:
+      + Authorized users: 
+        - Access/display data 
+        - Interact with data (edit/delete)
+      + Unauthorized users:
+        - Access/display data
+  - DESKTOP APP:
+      - Interact with data (edit/delete)
+      - Generate dummy data
+      - Send data to API
 
-Opis rešitve, vključno z opredelitvijo načina, po katerem projekt naslavlja zgoraj izpostavljene potrebe; in
+SOLUTIONS:
+  - DATABASE: MongoDB Atlas
 
-Funkcionalne zahteve projekta, vključno s ključnimi funkcionalnostmi in sistemskimi zahtevami.
+  - API: [GitWiki](https://github.com/SloAir/repo-beta/wiki/Django-RESTful-API)
 
-GitWiki za API: https://github.com/SloAir/repo-beta/wiki/API---Spletna-storitev
+  - WEB APP: [GitWiki](https://github.com/SloAir/repo-beta/wiki/Kotlin-Desktop-App)
+
+  - DESKTOP APP: [GitWiki](https://github.com/SloAir/repo-beta/wiki/Web-App)
