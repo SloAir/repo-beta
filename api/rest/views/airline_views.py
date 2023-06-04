@@ -90,6 +90,8 @@ def delete_airline(request, airline_id):
     if request.method != 'DELETE':
         return JsonResponse({'error': 'Unsupported request method.'})
 
+    airline_id = ObjectId(airline_id)
+
     if not db.airlines.delete_one({'_id': airline_id}):
         return JsonResponse({'error': 'Could not delete'})
 

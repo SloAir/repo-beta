@@ -22,6 +22,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import data.Request
+import data.model.Arrival
 import generator.Generator
 import generator.model.aircraft.Aircraft
 import generator.model.airline.Airline

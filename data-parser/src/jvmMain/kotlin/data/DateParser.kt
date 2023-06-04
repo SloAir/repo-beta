@@ -43,13 +43,9 @@ object DateParser {
         }
 
         val day = parseDay(dateList[0])
-        val month = parseMonth(dateList[0])
+        val month = parseMonth(dateList[1])
         val year = LocalDate.now().year
 
         return("$year/$month/$day")
     }
-}
-
-fun main() {
-    println(DateParser.parseDate("1. jun."))
 }

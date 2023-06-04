@@ -86,16 +86,6 @@ def update_aircraft(request):
     else:
         return JsonResponse({'error': 'Invalid aircraft ID.'})
 
-    #db.aircrafts.update_one(
-    #    {'registration': data['registration']},
-    #    {
-    #        '$set': {k: v for k, v in data.items() if k != 'flightHistory'},
-    #        '$addToSet': {'flightHistory': {'flightId': data['flightHistory'][0]['flightId']}}
-    #    }
-    #)
-
-    #return JsonResponse({'message': 'Aircraft updated successfully!'})
-
 
 # function deletes an aircraft from the database that matches the aircraft's registration number
 def delete_aircraft(request, aircraft_registration):

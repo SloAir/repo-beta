@@ -96,7 +96,9 @@ def delete_airport(request, airport_id):
     if request.method != 'DELETE':
         return JsonResponse({'error': 'Unsupported request method.'})
 
-    if not db.airports.delete_one({'code.icao': airport_id}):
+    airport_id = ObjectId(airport_id)
+
+    if not db.airports.delete_one({'_id': airport_id}):
         return JsonResponse({'error': 'Could not delete'})
 
     return JsonResponse({'message': 'Airport deleted successfully.'})

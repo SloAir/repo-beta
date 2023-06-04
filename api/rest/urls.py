@@ -21,7 +21,9 @@ from rest.views import (
     airport_views,
     flight_views,
     data_views,
-    user_views
+    user_views,
+    arrival_views,
+    departure_views
 )
 
 from rest import admin
@@ -88,5 +90,19 @@ urlpatterns = [
     path('api/flight/get/<str:flight_id>/', flight_views.get_flight, name='get_flight'),
     path('api/flight/post/', flight_views.insert_flight, name='post_flight'),
     path('api/flight/put/', flight_views.update_flight, name='put_flight'),
-    path('api/flight/delete/<str:flight_id>/', flight_views.delete_flight, name='delete_flight')
+    path('api/flight/delete/<str:flight_id>/', flight_views.delete_flight, name='delete_flight'),
+
+    # API arrivals routes
+    path('api/arrivals/get/', arrival_views.get_all, name='get_all_arrivals'),
+    path('api/arrivals/get/<str:date>', arrival_views.get_arrivals, name='get_arrivals'),
+    path('api/arrivals/post/', arrival_views.insert_arrivals, name='post_arrivals'),
+    path('api/arrivals/put/', arrival_views.update_arrivals, name='put_arrivals'),
+    path('api/arrivals/delete/<str:date>', arrival_views.delete_arrivals, name='delete_arrivals'),
+
+    # API arrivals routes
+    path('api/departures/get/', departure_views.get_all, name='get_all_departures'),
+    path('api/departures/get/<str:date>', departure_views.get_departures, name='get_departures'),
+    path('api/departures/post/', departure_views.insert_departures, name='post_departures'),
+    path('api/departures/put/', departure_views.update_departures, name='put_departures'),
+    path('api/departures/delete/<str:date>', departure_views.delete_departures, name='delete_departures'),
 ]
