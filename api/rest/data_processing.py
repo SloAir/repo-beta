@@ -190,7 +190,7 @@ def validate_flight_data(data):
 
 
 # function returns a processed JSON object of an aircraft as a dictionary
-async def process_aircraft_data(data):
+def process_aircraft_data(data):
     if not data['aircraft']:
         return None
 
@@ -233,7 +233,7 @@ async def process_aircraft_data(data):
 
 
 # function returns a processed JSON object of an airline as a dictionary
-async def process_airline_data(data):
+def process_airline_data(data):
     # return None, if no info
     if not data['airline']:
         return None
@@ -242,7 +242,7 @@ async def process_airline_data(data):
 
 
 # function returns a processed JSON object of the origin airport as a dictionary
-async def process_origin_airport_data(data):
+def process_origin_airport_data(data):
     # return None, if no info
     if not data['airport']['origin']:
         return None
@@ -259,7 +259,7 @@ async def process_origin_airport_data(data):
 
 
 # function returns a processed JSON object of the destination airport as a dictionary
-async def process_destination_airport_data(data):
+def process_destination_airport_data(data):
     # return None, if no info
     if not data['airport']['destination']:
         return None
@@ -276,7 +276,7 @@ async def process_destination_airport_data(data):
 
 
 # function returns a processed JSON object of the flight as a dictionary
-async def process_flight_data(data):
+def process_flight_data(data):
     # return None, if no info
     if not data:
         return None

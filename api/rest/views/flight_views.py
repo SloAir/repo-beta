@@ -14,7 +14,7 @@ def get_all(request):
     flights = db.flights.find({})
 
     if not flights:
-        return JsonResponse({'error': 'Aircrafts collection is empty.'})
+        return JsonResponse({'error': 'Flights collection is empty.'})
 
     flights_list = []
 

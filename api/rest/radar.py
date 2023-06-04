@@ -3,7 +3,6 @@ from mongoengine.connection import get_db
 
 fr = FlightRadar24API()
 
-# def validate_data(data):
 
 def get_data():
     db = get_db()
