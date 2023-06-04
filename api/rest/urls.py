@@ -38,6 +38,7 @@ urlpatterns = [
     # login and register form for users
     path('register/', user_views.register, name='register_user'),
     path('login/', user_views.login, name='login_user'),
+    path('logout/', user_views.logout, name='logout_user'),
 
     # homepage for API administration
     path('api/', admin.homepage, name='index'),
@@ -67,14 +68,14 @@ urlpatterns = [
     path('api/airline/get/<str:airline_icao>/', airline_views.get_airline, name='get_airline'),
     path('api/airline/post/', airline_views.insert_airline, name='post_airline'),
     path('api/airline/put/', airline_views.update_airline, name='put_airline'),
-    path('api/airline/delete/<str:airline_icao>/', airline_views.delete_airline, name='delete_airline'),
+    path('api/airline/delete/<str:airline_id>/', airline_views.delete_airline, name='delete_airline'),
 
     # API airport routes
     path('api/airport/get/', airport_views.get_all, name='get_airports'),
     path('api/airport/get/<str:airport_icao>/', airport_views.get_airport, name='get_airport'),
     path('api/airport/post/', airport_views.insert_airport, name='post_airport'),
     path('api/airport/put/', airport_views.update_airport, name='put_airport'),
-    path('api/airport/delete/<str:airport_icao>/', airport_views.delete_airport, name='delete_airport'),
+    path('api/airport/delete/<str:airport_id>/', airport_views.delete_airport, name='delete_airport'),
 
     # API flight routes
     path('api/flight/get/', flight_views.get_all, name='get_flights'),

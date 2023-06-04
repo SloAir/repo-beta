@@ -3,6 +3,7 @@ import json
 import requests
 import time
 
+from bson import ObjectId
 from rest.settings import db
 from django.http import *
 
@@ -45,7 +46,15 @@ def insert_airport(request):
     if request.method != 'POST':
         return JsonResponse({'error': 'Unsupported request method.'})
 
-    data = json.loads(request.body)
+    if request.body == None:
+        return JsonResponse({'message' : 'request.body is None!'})
+    
+    print(request.body)
+    try:
+        data = json.loads(request.body)    
+    except json.JSONDecodeError:
+        return JsonResponse({'error' : 'Invalid JSON'}, status = 400)
+    
 
     if db.airports.find_one({'code.icao': data['code']['icao']}):
         requests.put(os.environ.get('SERVER_URL') + 'api/airport/put/', json=data)
@@ -67,21 +76,28 @@ def update_airport(request):
 
     data['modified'] = int(time.time())
 
-    db.airports.update_one(
-        {'code.icao': data['code']['icao']},
-        {'$set': data},
-        upsert=True
-    )
+    airport_id = data.pop('_id', None) 
+    if airport_id:
+        # Convert the aircraft_id string to ObjectId
+        airport_id = ObjectId(airport_id)
 
-    return JsonResponse({'message': 'Airport updated successfully!'})
+        db.airports.update_one(
+            {'_id': airport_id},
+            {'$set': data},
+            upsert=True
+        )
+
+        return JsonResponse({'message': 'Aiport updated successfully!'})
+    else:
+        return JsonResponse({'error': 'Invalid airport ID.'})
 
 
 # function deletes an airport with a matching ICAO code from the database
-def delete_airport(request, airport_icao):
+def delete_airport(request, airport_id):
     if request.method != 'DELETE':
         return JsonResponse({'error': 'Unsupported request method.'})
 
-    if not db.airports.delete_one({'code.icao': airport_icao}):
+    if not db.airports.delete_one({'code.icao': airport_id}):
         return JsonResponse({'error': 'Could not delete'})
 
     return JsonResponse({'message': 'Airport deleted successfully.'})
