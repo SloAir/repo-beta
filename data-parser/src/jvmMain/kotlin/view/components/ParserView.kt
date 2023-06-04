@@ -29,12 +29,11 @@ import data.model.Arrival
 import data.model.Departure
 import data.model.Flight
 import data.serialize
-import kotlinx.serialization.json.JsonObject
+import io.github.cdimascio.dotenv.dotenv
 import view.*
 import view.components.Components.CardText
 import view.components.Components.DeleteButton
 import view.components.Components.EditButton
-import view.components.Components.GenericText
 import view.components.Components.SendButton
 
 object ParserView {
@@ -213,7 +212,7 @@ object ParserView {
                     val json = serialize(flights, date)
                     if(checkFlightType<Arrival>(flights)) {
                         Request.sendRequest(
-                            url = "http://127.0.0.1:8000/api/arrivals/post/",
+                            url = "http://$SERVER_URL:$SERVER_PORT/api/arrivals/post/",
                             method = "POST",
                             headers = mapOf(
                                 "Content-Type" to "application/json"
@@ -223,7 +222,7 @@ object ParserView {
                     }
                     else if(checkFlightType<Departure>(flights)) {
                         Request.sendRequest(
-                            url = "http://127.0.0.1:8000/api/departures/post/",
+                            url = "http://$SERVER_URL:$SERVER_PORT/api/departures/post/",
                             method = "POST",
                             headers = mapOf(
                                 "Content-Type" to "application/json"
@@ -300,5 +299,7 @@ object ParserView {
                 departuresRoute -> RenderFlights(departures)
             }
         }
+
+        println(SERVER_URL)
     }
 }
