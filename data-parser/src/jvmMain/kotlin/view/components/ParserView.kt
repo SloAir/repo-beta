@@ -147,7 +147,7 @@ object ParserView {
                     shape = RoundedCornerShape(5.dp)
                 )
                 .background(color = Color(COLOR_CARD))
-                .fillMaxWidth(0.67f)
+                .fillMaxWidth(0.85f)
         ) {
             Icon(
                 imageVector = Icons.Rounded.List,

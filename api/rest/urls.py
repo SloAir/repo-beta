@@ -50,6 +50,12 @@ urlpatterns = [
     # API route for getting all of the FR data
     path('api/get/', data_views.get_from_fr, name='get_data'),
 
+    # API scraper routes
+    path('api/scraper/aircraft/post/', data_views.get_scraper_aircrafts, name='scraper_aircrafts'),
+    path('api/scraper/airline/post/', data_views.get_scraper_airlines, name='scraper_airlines'),
+    path('api/scraper/airport/post/', data_views.get_scraper_airports, name='scraper_airports'),
+    path('api/scraper/flight/post/', data_views.get_scraper_flights, name='scraper_flights'),
+
     # API user routes
     path('api/user/get/<str:username>', user_views.get_user, name='get_user'),
     path('api/user/post/', user_views.insert_user, name='post_user'),

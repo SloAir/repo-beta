@@ -1,6 +1,8 @@
 package generator.model
 
 import java.io.File
+import java.net.HttpURLConnection
+import java.net.URL
 
 fun readFromFile(path: String): List<String> {
     val list: MutableList<String> = mutableListOf()
@@ -11,3 +13,5 @@ fun readFromFile(path: String): List<String> {
 
     return list
 }
+
+

@@ -21,6 +21,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import data.Request
 import generator.Generator
 import generator.model.aircraft.Aircraft
 import generator.model.airline.Airline
@@ -57,31 +58,42 @@ object GeneratorView {
             modifier = Modifier
                 .fillMaxWidth()
         ) {
-            InputAmountInt(
-                onChange = { value ->
-                    size = value
-                },
-                label = "Aircrafts"
-            )
-            InputAmountInt(
-                onChange = { value ->
-                    imagesSize = value
-                },
-                label = "Images"
-            )
-            InputAmountInt(
-                onChange = { value ->
-                    flightHistoryMin = value
-                },
-                label = "Min"
-            )
-            InputAmountInt(
-                onChange = { value ->
-                    flightHistoryMax = value
-                },
-                label = "Max"
-            )
-
+            Row {
+                InputAmountInt(
+                    onChange = { value ->
+                        size = value
+                    },
+                    label = "Aircrafts"
+                )
+                Spacer(
+                    modifier = Modifier
+                        .width(16.dp)
+                )
+                InputAmountInt(
+                    onChange = { value ->
+                        imagesSize = value
+                    },
+                    label = "Number of images"
+                )
+            }
+            Row {
+                InputAmountInt(
+                    onChange = { value ->
+                        flightHistoryMin = value
+                    },
+                    label = "Min trail size"
+                )
+                Spacer(
+                    modifier = Modifier
+                        .width(16.dp)
+                )
+                InputAmountInt(
+                    onChange = { value ->
+                        flightHistoryMax = value
+                    },
+                    label = "Max trail size"
+                )
+            }
             GenerateButton(
                 onClick = {
                     onGenerateAircrafts(
@@ -162,17 +174,27 @@ object GeneratorView {
                 )
                 InputAmountFloat(
                     onChange = { value ->
-                        maxLat = value
+                        minLng = value
                     },
-                    label = "Max latitude"
+                    label = "Min longitude"
+                )
+                Spacer(
+                    modifier = Modifier
+                        .width(16.dp)
+                )
+                InputAmountInt(
+                    onChange = { value ->
+                        minAlt = value
+                    },
+                    label = "Min altitude"
                 )
             }
             Row {
                 InputAmountFloat(
                     onChange = { value ->
-                        minLng = value
+                        maxLat = value
                     },
-                    label = "Min longitude"
+                    label = "Max latitude"
                 )
                 Spacer(
                     modifier = Modifier
@@ -183,14 +205,6 @@ object GeneratorView {
                         maxLng = value
                     },
                     label = "Max longitude"
-                )
-            }
-            Row {
-                InputAmountInt(
-                    onChange = { value ->
-                        minAlt = value
-                    },
-                    label = "Min altitude"
                 )
                 Spacer(
                     modifier = Modifier
@@ -476,7 +490,7 @@ object GeneratorView {
         ) {
             CardText(
                 text = flight.identification.id,
-                weight = 0.33f,
+                weight = 0.25f,
                 label = "ID",
                 isEditing = isEditing,
                 onTextChange = {
@@ -485,7 +499,7 @@ object GeneratorView {
             )
             CardText(
                 text = flight.identification.callsign,
-                weight = 0.33f,
+                weight = 0.25f,
                 label = "Callsign",
                 isEditing = isEditing,
                 onTextChange = {
@@ -535,7 +549,11 @@ object GeneratorView {
                 }
             )
         }
-        Row {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .padding(10.dp)
+        ) {
             CardText(
                 text = flight.time.scheduled.arrival.toString(),
                 weight = 0.25f,
@@ -573,7 +591,11 @@ object GeneratorView {
                 }
             )
         }
-        Row {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .padding(10.dp)
+        ) {
             CardText(
                 text = flight.time.estimated.arrival.toString(),
                 weight = 0.25f,
@@ -611,10 +633,14 @@ object GeneratorView {
                 }
             )
         }
-        Row {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .padding(10.dp)
+        ) {
             CardText(
                 text = flight.time.historical.flighttime,
-                weight = 0.33f,
+                weight = 0.25f,
                 label = "Flight time",
                 isEditing = isEditing,
                 onTextChange = {
@@ -623,7 +649,7 @@ object GeneratorView {
             )
             CardText(
                 text = flight.time.historical.delay,
-                weight = 0.33f,
+                weight = 0.25f,
                 label = "Delay",
                 isEditing = isEditing,
                 onTextChange = {
@@ -632,7 +658,7 @@ object GeneratorView {
             )
             CardText(
                 text = flight.firstTimestamp.toString(),
-                weight = 0.33f,
+                weight = 0.25f,
                 label = "First timestamp",
                 isEditing = isEditing,
                 onTextChange = {
@@ -659,7 +685,7 @@ object GeneratorView {
                     shape = RoundedCornerShape(5.dp)
                 )
                 .background(color = Color(COLOR_CARD))
-                .fillMaxWidth(0.67f)
+                .fillMaxWidth(0.85f)
         ) {
             Icon(
                 imageVector = Icons.Rounded.List,
@@ -705,7 +731,7 @@ object GeneratorView {
                     shape = RoundedCornerShape(5.dp)
                 )
                 .background(color = Color(COLOR_CARD))
-                .fillMaxWidth(0.67f)
+                .fillMaxWidth(0.85f)
         ) {
             Icon(
                 imageVector = Icons.Rounded.List,
@@ -751,7 +777,7 @@ object GeneratorView {
                     shape = RoundedCornerShape(5.dp)
                 )
                 .background(color = Color(COLOR_CARD))
-                .fillMaxWidth(0.67f)
+                .fillMaxWidth(0.85f)
         ) {
             Icon(
                 imageVector = Icons.Rounded.List,
@@ -779,6 +805,7 @@ object GeneratorView {
             }
         }
     }
+
     @Composable
     fun FlightCard(
         flight: Flight,
@@ -796,7 +823,7 @@ object GeneratorView {
                     shape = RoundedCornerShape(5.dp)
                 )
                 .background(color = Color(COLOR_CARD))
-                .fillMaxWidth(0.67f)
+                .fillMaxWidth(0.85f)
         ) {
             Icon(
                 imageVector = Icons.Rounded.List,
@@ -870,7 +897,16 @@ object GeneratorView {
             if(!aircrafts.isEmpty()) {
                 SendButton(
                     onClick = {
-                        println(Generator.AircraftGenerator.serialize(aircrafts))
+                        val json = Generator.AircraftGenerator.serialize(aircrafts)
+                        Request.sendRequest(
+                            url = "http://127.0.0.1:8000/api/scraper/aircraft/post/",
+                            method = "POST",
+                            headers = mapOf(
+                                "Content-Type" to "application/json"
+                            ),
+                            body = json
+                        )
+                        aircrafts.clear()
                     }
                 )
             }
@@ -913,7 +949,16 @@ object GeneratorView {
             if(!airlines.isEmpty()) {
                 SendButton(
                     onClick = {
-                        println(Generator.AirlineGenerator.serialize(airlines))
+                        val json = Generator.AirlineGenerator.serialize(airlines)
+                        Request.sendRequest(
+                            url = "http://127.0.0.1:8000/api/scraper/airline/post/",
+                            method = "POST",
+                            headers = mapOf(
+                                "Content-Type" to "application/json"
+                            ),
+                            body = json
+                        )
+                        airlines.clear()
                     }
                 )
             }
@@ -969,7 +1014,16 @@ object GeneratorView {
             if(!airports.isEmpty()) {
                 SendButton(
                     onClick = {
-                        println(Generator.AirportGenerator.serialize(airports))
+                        val json = Generator.AirportGenerator.serialize(airports)
+                        Request.sendRequest(
+                            url = "http://127.0.0.1:8000/api/scraper/airport/post/",
+                            method = "POST",
+                            headers = mapOf(
+                                "Content-Type" to "application/json"
+                            ),
+                            body = json
+                        )
+                        airports.clear()
                     }
                 )
             }
@@ -1014,7 +1068,16 @@ object GeneratorView {
             if(!flights.isEmpty()) {
                 SendButton(
                     onClick = {
-                        println(Generator.FlightGenerator.serialize(flights))
+                        val json = Generator.FlightGenerator.serialize(flights)
+                        Request.sendRequest(
+                            url = "http://127.0.0.1:8000/api/scraper/flight/post/",
+                            method = "POST",
+                            headers = mapOf(
+                                "Content-Type" to "application/json"
+                            ),
+                            body = json
+                        )
+                        flights.clear()
                     }
                 )
             }

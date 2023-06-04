@@ -95,26 +95,6 @@ object Generator {
             return aircraftImages
         }
 
-        private fun generateFlightHistory(len: Int): List<FlightHistory> {
-            val flightHistory: MutableList<FlightHistory> = mutableListOf()
-
-            for(i in 0 until len) {
-                var flightId = ""
-
-                val repeat = 8
-                for(j in 0 until repeat) {
-                    val random = listOf('0' .. '9', 'a' .. 'z').flatten().random()
-                    flightId += random
-
-                }
-                flightHistory.add(
-                    FlightHistory(flightId)
-                )
-            }
-
-            return flightHistory
-        }
-
         private fun generateFlightHistory(
             min: Int,
             max: Int
@@ -146,7 +126,7 @@ object Generator {
                 model = generateAircraftModel(),
                 registration = generateRandomRegistrationNumber(),
                 images = generateAircraftImages(5),
-                flightHistory = generateFlightHistory(5)
+                flightHistory = generateFlightHistory(5, 10)
             )
         }
 

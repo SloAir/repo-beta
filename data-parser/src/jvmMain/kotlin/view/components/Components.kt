@@ -121,9 +121,7 @@ object Components {
     }
 
     @Composable
-    fun GenerateButton(
-        onClick: () -> Unit
-    ) {
+    fun GenerateButton(onClick: () -> Unit) {
         Button(
             onClick = onClick,
             colors = ButtonDefaults.buttonColors(

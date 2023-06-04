@@ -1,5 +1,6 @@
 import os
 import requests
+import json
 from django.views.decorators.csrf import csrf_exempt
 
 import rest.radar as radar
@@ -71,3 +72,75 @@ def get_from_fr(request):
     response = JsonResponse(data_array, safe=False)
 
     return response
+
+
+def get_scraper_aircrafts(request):
+    if request.method != 'POST':
+        return JsonResponse({'error': 'Unsupported request method.'})
+
+    aircrafts = json.loads(request.body)
+
+    for aircraft in aircrafts:
+        if 'id' in aircraft:
+            del aircraft['id']
+
+        requests.post(
+            os.environ.get('SERVER_URL') + 'api/aircraft/post/',
+            json=aircraft
+        )
+
+    return JsonResponse({'message': 'Aircrafts inserted successfully.'})
+
+
+def get_scraper_airlines(request):
+    if request.method != 'POST':
+        return JsonResponse({'error': 'Unsupported request method.'})
+
+    airlines = json.loads(request.body)
+
+    for airline in airlines:
+        if 'id' in airline:
+            del airline['id']
+
+        requests.post(
+            os.environ.get('SERVER_URL') + 'api/airline/post/',
+            json=airline
+        )
+
+    return JsonResponse({'message': 'Airlines inserted successfully.'})
+
+
+def get_scraper_airports(request):
+    if request.method != 'POST':
+        return JsonResponse({'error': 'Unsupported request method.'})
+
+    airports = json.loads(request.body)
+
+    for airport in airports:
+        if 'id' in airport:
+            del airport['id']
+
+        requests.post(
+            os.environ.get('SERVER_URL') + 'api/airport/post/',
+            json=airport
+        )
+
+    return JsonResponse({'message': 'Airports inserted successfully.'})
+
+
+def get_scraper_flights(request):
+    if request.method != 'POST':
+        return JsonResponse({'error': 'Unsupported request method.'})
+
+    flights = json.loads(request.body)
+
+    for flight in flights:
+        if 'id' in flight:
+            del flight['id']
+
+        requests.post(
+            os.environ.get('SERVER_URL') + 'api/flight/post/',
+            json=flight
+        )
+
+    return JsonResponse({'message': 'Flights inserted successfully.'})
