@@ -53,7 +53,6 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -61,7 +60,7 @@ MIDDLEWARE = [
 ]
 
 #CORS_ALLOW_ALL_ORIGINS = True
-CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_CREDENTIALS = False
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000',
 ]
@@ -97,7 +96,6 @@ load_dotenv()
 
 db_name = os.environ.get('DB_NAME')
 db_host = os.environ.get('DB_HOST')
-db_port = int(os.environ.get('DB_PORT'))
 
 DATABASES = {
     'default': {
@@ -110,14 +108,12 @@ MONGODB_DATABASES = {
     'default': {
         'NAME': db_name,
         'HOST': db_host,
-        'PORT': db_port
     },
 }
 
 mongoengine.connect(
     db=db_name,
     host=db_host,
-    port=db_port
 )
 
 db = get_db()

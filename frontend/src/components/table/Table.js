@@ -1,14 +1,16 @@
 import React from 'react'
 import { BsFillTrashFill, BsFillPencilFill } from "react-icons/bs";
 import './Table.css';
-import Modal from './Modal';
+import Modal from '../modal_form/Modal';
+import { UserContext } from '../../userContext';
 
 class Table extends React.Component {
+    static contextType = UserContext;
 
     state = {
         editRow: null,
         formData: this.props.formDataStruct,
-        propertyCalls: []
+        propertyCalls: [],
     }
 
     handleEdit = id => {
@@ -53,6 +55,7 @@ class Table extends React.Component {
         const { editRow } = this.state;
         const { onSubmit } = this.props;
         const { formData } = this.state;
+        const { user } = this.context;
 
         const tableHeaders = Object.entries(formData).flatMap(([fieldName, fieldValue], index) => {
             if (typeof fieldValue === 'object') {
@@ -82,12 +85,14 @@ class Table extends React.Component {
                 }
                 return <td key={index}>{propertyValue}</td>;
               })}
-              <td>
-                <span className='actions'>
-                  <BsFillPencilFill className='edit-btn' onClick={() => this.handleEdit(object._id)} />
-                  <BsFillTrashFill className='delete-btn' onClick={() => this.handleDelete(object._id)} />
-                </span>
-              </td>
+              { user && user.authenticationKey == process.env.REACT_APP_CLEARANCE_KEY && (
+                <td>
+                    <span className='actions'>
+                    <BsFillPencilFill className='edit-btn' onClick={() => this.handleEdit(object._id)} />
+                    <BsFillTrashFill className='delete-btn' onClick={() => this.handleDelete(object._id)} />
+                    </span>
+                </td>
+              )}
             </tr>
         ));
           
@@ -98,7 +103,20 @@ class Table extends React.Component {
                     <thead>
                         <tr>
                             {tableHeaders}
-                            <th>Action</th>
+                            <UserContext.Consumer>
+                            {context => (
+                                Boolean(context.user !== null) && 
+                                Boolean(context.user.authenticationKey == process.env.REACT_APP_CLEARANCE_KEY))
+                            ?
+                            <>
+                                <th>Action</th>
+                            </>
+                            :
+                            <>
+                                
+                            </>
+                            }
+                            </UserContext.Consumer>
                         </tr>
                     </thead>
                     <tbody>

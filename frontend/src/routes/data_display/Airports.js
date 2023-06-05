@@ -1,8 +1,8 @@
 import React from 'react';
 import axios from 'axios';
-import Table from '../components/Table';
+import Table from '../../components/table/Table';
 
-class Aircrafts extends React.Component {
+class Airlines extends React.Component {
 
     state = { 
       details: [],
@@ -11,16 +11,32 @@ class Aircrafts extends React.Component {
     }
 
     componentDidMount() {
-        let data;
-        axios.get(process.env.REACT_APP_SERVER_URL + '/api/aircraft/get/')
+      axios.get(process.env.REACT_APP_SERVER_URL + '/api/airport/get/')
         .then(res => {
-            data = res.data;
-            this.setState({
-              details: data
-            });
+          const data = res.data;
+          const cleanedData = data.map(entry => {
+            if (entry.website) {
+              //Clean URL
+              const parts = entry.website.split('/');
+              const modifiedWebsite = parts.slice(0, 3).join('/');
+              return {
+                ...entry,
+                website: modifiedWebsite
+              };
+            } else {
+              return entry;
+            }
+          });
+          this.setState({
+            details: cleanedData
+          });
         })
-        .catch(err => { })
+        .catch(err => {
+
+        });
     }
+    
+    
 
     handleEdit = id => {
       this.setState({ editRow: id, modalOpen: true, });
@@ -28,8 +44,8 @@ class Aircrafts extends React.Component {
 
     handleCloseModal = () => {
       this.setState({ modalOpen: false, editRow: null });
-    }
-    
+    }  
+
     handleDelete = id => {
       const deletedIndex = this.state.details.findIndex(
         obj => obj._id === id
@@ -37,7 +53,7 @@ class Aircrafts extends React.Component {
 
       const deletedObject = this.state.details[deletedIndex];
 
-      axios.delete(process.env.REACT_APP_SERVER_URL + `/api/aircraft/delete/${deletedObject.registration}/`)
+      axios.delete( process.env.REACT_APP_SERVER_URL + `/api/airport/delete/${deletedObject._id}/`)
       .then((response) => {
           console.log(response);
 
@@ -55,7 +71,7 @@ class Aircrafts extends React.Component {
         obj => obj._id == formData._id
       );
       
-      axios.put(process.env.REACT_APP_SERVER_URL + '/api/aircraft/put/', formData)
+      axios.put(process.env.REACT_APP_SERVER_URL + '/api/airport/put/', formData)
       .then((response) => {
           console.log(response);
 
@@ -68,13 +84,23 @@ class Aircrafts extends React.Component {
       });
     }
 
+
     render() {
         const formDataStructure = {
-          registration: '',
-          model: {
-            code: '',
-            text: '',
+          name: '',
+          code: {
+            iata: '',
+            icao: '',
           },
+          position: {
+            country: {
+              name: '',
+            },
+          },
+          timezone: {
+            abbr: '',
+          },
+          website: '',
         };
 
         return (
@@ -91,4 +117,4 @@ class Aircrafts extends React.Component {
     }
 }
 
-export default Aircrafts;
+export default Airlines;

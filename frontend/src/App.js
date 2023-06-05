@@ -2,16 +2,22 @@ import axios from 'axios';
 import { React, useState, useEffect} from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { UserContext } from "./userContext";
-import Header from "./routes/Header";
-import Logout from "./routes/Logout";
-import Login from "./routes/Login";
-import Aircrafts from "./routes/Aircrafts";
-import Airlines from './routes/Airlines';
-import Airports from './routes/Airports';
-import MapContainer from './routes/Map';
-import Register from './routes/Register';
 import './App.css';
-import BarChart from './components/BarChart';
+
+import Header from "./routes/Header";
+
+import Aircrafts from "./routes/data_display/Aircrafts";
+import Airlines from './routes/data_display/Airlines';
+import Airports from './routes/data_display/Airports';
+import MapContainer from './routes/data_display/Map';
+
+import Logout from "./routes/user/Logout";
+import Login from "./routes/user/Login";
+import Register from './routes/user/Register';
+
+import BarChart from './components/charts/BarChart';
+
+
 
 
 function App() {

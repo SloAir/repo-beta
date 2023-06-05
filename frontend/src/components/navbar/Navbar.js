@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { BiPaperPlane } from 'react-icons/bi';
 import { FaTimes, FaBars } from 'react-icons/fa';
-import { UserContext } from "../userContext";
+import { UserContext } from "../../userContext";
 import { Nav, NavbarContainer, NavLogo, Bars, NavMenu, NavBtn, NavBtnLink, MobileIcon, NavItem, NavLinks, NavBtnAlt } from './NavbarElements'
 
 

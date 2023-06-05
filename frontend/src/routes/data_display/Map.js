@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
-import CustomMarker from '../routes/plane.png';
+import CustomMarker from './plane.png';
 import { Chart as ChartJS} from 'chart.js'
 
 const MapContainer = ({ google }) => {

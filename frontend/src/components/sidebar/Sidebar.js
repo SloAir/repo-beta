@@ -1,6 +1,6 @@
 import React from 'react'
 import { SidebarContainer, Icon, CloseIcon, SidebarLink, SideBtnWrap, SidebarRoute, SidebarMenu, SidebarWrapper } from './SidebarElements'
-import { UserContext } from '../userContext';
+import { UserContext } from '../../userContext';
 
 const Sidebar = ({isOpen, toggle}) => {
     return (

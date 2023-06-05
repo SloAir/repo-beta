@@ -4,6 +4,7 @@ import requests
 import time
 
 from django.contrib.auth.decorators import login_required
+from bson import ObjectId
 
 from rest.settings import db
 from django.http import *
@@ -83,13 +84,15 @@ def update_airline(request):
     return JsonResponse({'message': 'Airline updated successfully!'})
 
 
-# function deletes an airline with a matching ICAO code from the database
 @csrf_exempt
-def delete_airline(request, airline_icao):
+# function deletes an airline with a matching ICAO code from the database
+def delete_airline(request, airline_id):
     if request.method != 'DELETE':
         return JsonResponse({'error': 'Unsupported request method.'})
-
-    if not db.airlines.delete_one({'code.icao': airline_icao}):
+    
+    airline_id = ObjectId(airline_id)
+    
+    if not db.airlines.delete_one({'_id': airline_id}):
         return JsonResponse({'error': 'Could not delete'})
 
     return JsonResponse({'message': 'Airline deleted successfully.'})
