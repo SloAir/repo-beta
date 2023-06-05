@@ -1,24 +1,26 @@
 import json
 import os
 import time
-
+import string
+import secrets
 import requests
 
 from bson import json_util
 from bson import ObjectId
 
 from django.http import JsonResponse
-from django.middleware.csrf import get_token
 from dotenv import load_dotenv
 
 from rest.settings import db
-from django import forms
 from django.contrib.auth.hashers import check_password, make_password
-from django.shortcuts import render, redirect
-from django.views.decorators.csrf import csrf_protect
 
 load_dotenv()
 
+
+def generate_random_string(length):
+    characters = string.ascii_letters + string.digits
+    random_string = ''.join(secrets.choice(characters) for _ in range(length))
+    return random_string
 
 def username_exists(username):
     user = db.users.find_one({'username': username})
@@ -47,65 +49,25 @@ def find_by_username(username):
     return user
 
 
-class LoginForm(forms.Form):
-    username = forms.CharField()
-    password = forms.CharField(widget=forms.PasswordInput)
-
-
-def login_view(request):
-    form = LoginForm()
-
-    return render(request, '/user/login.html', {'form': form})
-
-
-class RegisterForm(forms.Form):
-    username = forms.CharField()
-    email = forms.CharField()
-    password = forms.CharField(widget=forms.PasswordInput)
-    repeat_password = forms.CharField(widget=forms.PasswordInput)
-
-
 def match_password(password, repeat_password):
     return password == repeat_password
 
 
-def register_view(request):
-    form = RegisterForm()
-
-    return render(request, 'user/register.html', {'form': form})
-
-
 def register(request):
     if request.method != 'POST':
-        form = RegisterForm()
-        return render(request, 'user/register.html', {'form': form})
+        return JsonResponse({'error': 'Unsupported request method.'})
 
-    form = RegisterForm(json.loads(request.body))
+    data = json.loads(request.body)
 
-    if not form.is_valid():
-        return JsonResponse({'error' : 'Invalid inputs'})
-        #return render(request, 'user/register.html', {'form': form})
-
-    username = form.cleaned_data['username']
-    email = form.cleaned_data['email']
-    password = form.cleaned_data['password']
-    repeat_password = form.cleaned_data['repeat_password']
-
-    print(username)
-    print(email)
-    print(password)
-
+    username = data['username']
+    email = data['email']
+    password = data['password']
+    repeat_password = data['repeat_password']
     if username_exists(username) or email_exists(email):
-        form = RegisterForm()
-        print('exists')
         return JsonResponse({'error' : 'Username exists'})
-        #return render(request, 'user/register.html', {'form': form})
 
     if not match_password(password, repeat_password):
-        form = RegisterForm()
-        print('no match')
         return JsonResponse({'error' : 'Pass no match'})
-        #return render(request, 'user/register.html', {'form': form})
 
     user = create_user(
         username,
@@ -113,15 +75,9 @@ def register(request):
         password
     )
 
-    csrf_token = get_token(request)
-    headers = {
-        'X-CSRFToken': csrf_token
-    }
-
     response = requests.post(
         os.environ.get('SERVER_URL') + 'api/user/post/',
-        json=user,
-        headers=headers
+        json=user
     )
 
     return JsonResponse(response.json())
@@ -190,10 +146,13 @@ def create_user(username, email, password):
 
     hashed_password = make_password(password)
 
+    authentication_key = generate_random_string(64)
+
     user = {
         'username': username,
         'email': email,
-        'password': hashed_password
+        'password': hashed_password,
+        'authenticationKey': authentication_key
     }
 
     return user
