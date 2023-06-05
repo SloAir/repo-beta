@@ -9,7 +9,6 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-from datetime import timedelta
 from pathlib import Path
 import os
 import mongoengine
@@ -19,6 +18,7 @@ from mongoengine import get_db
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+load_dotenv()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -53,7 +53,6 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -61,7 +60,7 @@ MIDDLEWARE = [
 ]
 
 #CORS_ALLOW_ALL_ORIGINS = True
-CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_CREDENTIALS = False
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000',
 ]
@@ -97,7 +96,6 @@ load_dotenv()
 
 db_name = os.environ.get('DB_NAME')
 db_host = os.environ.get('DB_HOST')
-db_port = int(os.environ.get('DB_PORT'))
 
 DATABASES = {
     'default': {
@@ -110,14 +108,12 @@ MONGODB_DATABASES = {
     'default': {
         'NAME': db_name,
         'HOST': db_host,
-        'PORT': db_port
     },
 }
 
 mongoengine.connect(
     db=db_name,
-    host=db_host,
-    port=db_port
+    host=db_host
 )
 
 db = get_db()
