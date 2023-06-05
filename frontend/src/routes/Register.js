@@ -14,7 +14,7 @@ function Register() {
         e.preventDefault();
         
         try {
-            const response = await axios.post("http://localhost:8000/register/", {
+            const response = await axios.post(process.env.REACT_APP_SERVER_URL +'/register/', {
                 username: username,
                 email: email,
                 password: password,

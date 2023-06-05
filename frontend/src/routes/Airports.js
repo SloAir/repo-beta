@@ -11,19 +11,20 @@ class Airlines extends React.Component {
     }
 
     componentDidMount() {
-      axios.get('http://localhost:8000/api/airport/get/')
+      axios.get(process.env.REACT_APP_SERVER_URL + '/api/airport/get/')
         .then(res => {
           const data = res.data;
           const cleanedData = data.map(entry => {
             if (entry.website) {
-              const parts = entry.website.split('/'); // Split the URL into parts using forward slash as the separator
-              const modifiedWebsite = parts.slice(0, 3).join('/'); // Join the first three parts back together with forward slashes
+              //Clean URL
+              const parts = entry.website.split('/');
+              const modifiedWebsite = parts.slice(0, 3).join('/');
               return {
                 ...entry,
                 website: modifiedWebsite
               };
             } else {
-              return entry; // Skip entries without a website
+              return entry;
             }
           });
           this.setState({
@@ -52,7 +53,7 @@ class Airlines extends React.Component {
 
       const deletedObject = this.state.details[deletedIndex];
 
-      axios.delete(`http://localhost:8000/api/airport/delete/${deletedObject._id}/`)
+      axios.delete( process.env.REACT_APP_SERVER_URL + `/api/airport/delete/${deletedObject._id}/`)
       .then((response) => {
           console.log(response);
 
@@ -70,7 +71,7 @@ class Airlines extends React.Component {
         obj => obj._id == formData._id
       );
       
-      axios.put('http://localhost:8000/api/airport/put/', formData)
+      axios.put(process.env.REACT_APP_SERVER_URL + '/api/airport/put/', formData)
       .then((response) => {
           console.log(response);
 

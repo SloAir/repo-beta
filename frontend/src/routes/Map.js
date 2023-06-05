@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 import CustomMarker from '../routes/plane.png';
+import { Chart as ChartJS} from 'chart.js'
 
 const MapContainer = ({ google }) => {
     const [details, setDetails] = useState([]);
@@ -16,7 +17,7 @@ const MapContainer = ({ google }) => {
     const fetchData = async () => {
         try {
             console.log("axios");
-            const res = await axios.get('http://localhost:8000/api/get/');
+            const res = await axios.get(process.env.REACT_APP_SERVER_URL +'/api/get/');
             setDetails(res.data);
             setLoading(false);
         } catch (error) {
@@ -64,10 +65,9 @@ const MapContainer = ({ google }) => {
                             position={{ lat: lastTrail.lat, lng: lastTrail.lng }}
                             options={{ icon: markerIcon }}
                             onClick={handleMarkerClick}
-                            name={detail.flight.identification.id} // Assuming `detail` has a `name` property
-                            description={
-                                detail.flight.trail[0].lat + ", " + detail.flight.trail[0].lng
-                            } // Assuming `detail` has a `description` property
+                            name={detail.flight.identification.id}
+                            callsign={detail.flight.identification.callsign}
+                            coordinates={detail.flight.trail[0].lat + ", " + detail.flight.trail[0].lng}
                         />
                     )
                 );
@@ -79,8 +79,10 @@ const MapContainer = ({ google }) => {
                 onClose={handleCloseInfoWindow}
             >
                 <div>
-                    <p>{selectedPlace && selectedPlace.name}</p>
-                    <p>{selectedPlace && selectedPlace.description}</p>
+                    <p>Flight ID: {selectedPlace && selectedPlace.name}</p>
+                    <p>Callsign: {selectedPlace && selectedPlace.callsign}</p>
+                    <p>Lat: {selectedPlace && selectedPlace.position.lat}</p>
+                    <p>Lng:{selectedPlace && selectedPlace.position.lng}</p>
                 </div>
             </InfoWindow>
         </Map>
@@ -88,5 +90,5 @@ const MapContainer = ({ google }) => {
 };
 
 export default GoogleApiWrapper({
-    apiKey: 'AIzaSyD5aGaOCX7ykXOHgQg9zkXwGArsbRrEqi4',
+    apiKey: process.env.REACT_APP_MAP_KEY,
 })(MapContainer);

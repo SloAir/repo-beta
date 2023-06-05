@@ -67,6 +67,7 @@ export const SidebarLink = styled(LinkR)`
 export const SideBtnWrap = styled.div`
     display: flex;
     justify-content: center;
+    padding: 15px;
 `;
 
 export const SidebarRoute = styled(LinkR)`

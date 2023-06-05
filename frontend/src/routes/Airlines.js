@@ -12,7 +12,7 @@ class Airlines extends React.Component {
 
     componentDidMount() {
         let data;
-        axios.get('http://localhost:8000/api/airline/get/')
+        axios.get(process.env.REACT_APP_SERVER_URL + '/api/airline/get/')
         .then(res => {
             data = res.data;
             this.setState({
@@ -37,7 +37,7 @@ class Airlines extends React.Component {
 
       const deletedObject = this.state.details[deletedIndex];
 
-      axios.delete(`http://localhost:8000/api/airline/delete/${deletedObject._id}/`)
+      axios.delete(process.env.REACT_APP_SERVER_URL + `/api/airline/delete/${deletedObject._id}/`)
       .then((response) => {
           console.log(response);
 
@@ -55,7 +55,7 @@ class Airlines extends React.Component {
         obj => obj._id == formData._id
       );
       
-      axios.put('http://localhost:8000/api/airline/put/', formData)
+      axios.put(process.env.REACT_APP_SERVER_URL + '/api/airline/put/', formData)
       .then((response) => {
           console.log(response);
 

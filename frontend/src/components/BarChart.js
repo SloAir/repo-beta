@@ -12,7 +12,7 @@ export default class BarChart extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:8000/api/flight/get/')
+        axios.get(process.env.REACT_APP_SERVER_URL + '/api/flight/get/')
         .then(res => {
             const details = res.data;
             const flightsPerDate = this.flightsByDate(details)
@@ -74,13 +74,3 @@ export default class BarChart extends Component {
         )
     }
 }
-/*
-{Object.entries(flightsPerDate).map(([date, count]) => (
-<div key={date}>
-    <div>
-    <h3>Date: {date}</h3>
-    <p>Flights: {count}</p>
-    </div>
-</div> 
-))}
-*/ 
