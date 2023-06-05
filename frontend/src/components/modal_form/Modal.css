@@ -1,4 +1,4 @@
-.modal-container {
+.my-modal-container {
     position: fixed;
     z-index: 1;
     left: 0;
@@ -11,34 +11,34 @@
     justify-content: center;
 }
 
-.modal {
+.my-modal {
     border-radius: 5px;
     padding: 2rem;
     background-color: white;
     width: 25em;
 }
 
-.modal .btn {
+.my-modal .my-modal-btn {
     display: block;
     margin: auto;
 }
 
-.form-group {
+.form-group-modal {
     display: flex;
     flex-direction: column;
     margin-bottom: 1rem;
 }
 
-.form-group input,
-.form-group textarea,
-.form-group select {
+.form-group-modal input,
+.form-group-modal textarea,
+.form-group-modal select {
     border: 1px solid black;
     border-radius: 0.3rem;
     padding: 0.3rem;
     font-size: 1rem;
 }
 
-.form-group label {
+.form-group-modal label {
     margin-bottom: 0.2rem;
     }
 

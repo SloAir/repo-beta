@@ -17,9 +17,6 @@ import Register from './routes/user/Register';
 
 import BarChart from './components/charts/BarChart';
 
-
-
-
 function App() {
   const [user, setUser] = useState(null);
 

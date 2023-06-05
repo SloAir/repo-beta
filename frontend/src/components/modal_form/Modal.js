@@ -9,7 +9,7 @@ export default class Modal extends Component {
     }
 
     closeContainerClick = (e) => {
-        if (e.target.className === 'modal-container') {
+        if (e.target.className === 'my-modal-container') {
             this.props.closeModal();
             this.setState({ formData: {}, });
         }
@@ -74,7 +74,7 @@ export default class Modal extends Component {
         const key = `${fieldName}-${index1}-${index2}-${index3}`;
       
         return (
-          <div className="form-group" key={key}>
+          <div className="form-group-modal" key={key}>
             <label htmlFor={key}>{capitalizedFieldName}</label>
             <input
               type="text"
@@ -116,44 +116,14 @@ export default class Modal extends Component {
           
 
         return (
-            <div className='modal-container' onClick={this.closeContainerClick}>
-                <div className='modal'>
+            <div className='my-modal-container' onClick={this.closeContainerClick}>
+                <div className='my-modal'>
                     <form>
                         {formFields}
-                        <button type='submit' className='btn' onClick={this.handleSubmit}>Edit</button>
+                        <button type='submit' className='my-modal-btn' onClick={this.handleSubmit}>Edit</button>
                     </form>
                 </div>
             </div>
         )
     }
 }
-
-/*
-                        <div className='form-group'>
-                            <label htmlFor='registration'>Registration Number</label>
-                            <input 
-                                type='text'
-                                name='registration'
-                                value={formData.registration || object.registration || ''}
-                                onChange={this.handleChange}
-                            />
-                        </div>
-                        <div className='form-group'>
-                            <label htmlFor='code'>Model Code</label>
-                            <input
-                                type='text'
-                                name='code'
-                                value={formData.model.code || object.model.code || ''}
-                                onChange={this.handleChange}
-                            />
-                        </div>
-                        <div className='form-group'>
-                            <label htmlFor='text'>Model Text</label>
-                            <input
-                                type='text'
-                                name='text'
-                                value={formData.model.text || object.model.text || ''}
-                                onChange={this.handleChange}
-                            />
-                        </div>
-*/
