@@ -26,8 +26,8 @@ function Login() {
           console.log(data);
 
           if (data.user) {
-            const { _id, username, password } = data.user
-            userContext.setUserContext({ _id, username, password });
+            const { _id, username, password, authenticationKey } = data.user
+            userContext.setUserContext({ _id, username, password, authenticationKey });
           }
           else {
             setUsername("");
