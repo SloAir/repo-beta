@@ -21,15 +21,14 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import data.model.Request
+import data.Request
 import generator.Generator
 import generator.model.aircraft.Aircraft
 import generator.model.airline.Airline
 import generator.model.airport.Airport
 import generator.model.flight.Flight
-import view.COLOR_CARD
-import view.COLOR_PRIMARY
-import view.DEFAULT_GENERATOR_ROUTE
+import io.github.cdimascio.dotenv.dotenv
+import view.*
 import view.components.Components.CardText
 import view.components.Components.DeleteButton
 import view.components.Components.EditButton
@@ -899,13 +898,14 @@ object GeneratorView {
                     onClick = {
                         val json = Generator.AircraftGenerator.serialize(aircrafts)
                         Request.sendRequest(
-                            url = "http://127.0.0.1:8000/api/scraper/aircraft/post/",
+                            url = "http://$SERVER_URL:$SERVER_PORT/api/scraper/aircraft/post/",
                             method = "POST",
                             headers = mapOf(
                                 "Content-Type" to "application/json"
                             ),
                             body = json
                         )
+                        aircrafts.clear()
                     }
                 )
             }
@@ -950,13 +950,14 @@ object GeneratorView {
                     onClick = {
                         val json = Generator.AirlineGenerator.serialize(airlines)
                         Request.sendRequest(
-                            url = "http://127.0.0.1:8000/api/scraper/airline/post/",
+                            url = "http://$SERVER_URL:$SERVER_PORT/api/scraper/airline/post/",
                             method = "POST",
                             headers = mapOf(
                                 "Content-Type" to "application/json"
                             ),
                             body = json
                         )
+                        airlines.clear()
                     }
                 )
             }
@@ -1014,13 +1015,14 @@ object GeneratorView {
                     onClick = {
                         val json = Generator.AirportGenerator.serialize(airports)
                         Request.sendRequest(
-                            url = "http://127.0.0.1:8000/api/scraper/airport/post/",
+                            url = "http://$SERVER_URL:$SERVER_PORT/api/scraper/airport/post/",
                             method = "POST",
                             headers = mapOf(
                                 "Content-Type" to "application/json"
                             ),
                             body = json
                         )
+                        airports.clear()
                     }
                 )
             }
@@ -1067,13 +1069,14 @@ object GeneratorView {
                     onClick = {
                         val json = Generator.FlightGenerator.serialize(flights)
                         Request.sendRequest(
-                            url = "http://127.0.0.1:8000/api/scraper/flight/post/",
+                            url = "http://$SERVER_URL:$SERVER_PORT/api/scraper/flight/post/",
                             method = "POST",
                             headers = mapOf(
                                 "Content-Type" to "application/json"
                             ),
                             body = json
                         )
+                        flights.clear()
                     }
                 )
             }

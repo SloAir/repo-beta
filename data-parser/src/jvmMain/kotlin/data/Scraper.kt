@@ -7,8 +7,17 @@ import data.model.Flight
 import data.model.IdGenerator
 import it.skrape.core.*
 import it.skrape.fetcher.*
+import kotlinx.serialization.Serializable
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
+
+@Serializable
+data class JsonObject(
+    val date: String,
+    val schedule: List<Flight>
+)
+
+inline fun <reified T> checkFlightType(flights: SnapshotStateList<*>): Boolean = flights.firstOrNull() is T
 
 fun scrapeData(): Pair<SnapshotStateList<Flight>, SnapshotStateList<Flight>>
 {
@@ -108,13 +117,22 @@ fun scrapeData(): Pair<SnapshotStateList<Flight>, SnapshotStateList<Flight>>
 
 // function serializes each flight object into a JSON string
 // returns a list of all of the serialized objects
-fun serialize(flights: SnapshotStateList<Flight>): List<String> {
-    val list: MutableList<String> = mutableListOf()
+fun serialize(
+    flights: SnapshotStateList<Flight>,
+    date: String
+): String {
+    val list: MutableList<Flight> = mutableListOf()
 
     flights.forEach { flight ->
-        list.add(Json.encodeToString(flight))
-        println(Json.encodeToString(flight))
+        list.add(flight)
     }
 
-    return list
+    val jsonObject = JsonObject(date, list)
+
+    return Json.encodeToString(jsonObject)
+}
+
+fun main() {
+    val arrivals = scrapeData().first
+    println(serialize(arrivals, "1. jun."))
 }

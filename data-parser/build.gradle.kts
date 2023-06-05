@@ -28,6 +28,7 @@ kotlin {
                 implementation(compose.desktop.currentOs)
                 implementation("it.skrape:skrapeit:1.2.2")
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
+                implementation("io.github.cdimascio:dotenv-kotlin:6.4.1")
             }
         }
         val jvmTest by getting

@@ -22,14 +22,18 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import data.DateParser
+import data.Request
+import data.checkFlightType
+import data.model.Arrival
 import data.model.Departure
 import data.model.Flight
 import data.serialize
+import io.github.cdimascio.dotenv.dotenv
 import view.*
 import view.components.Components.CardText
 import view.components.Components.DeleteButton
 import view.components.Components.EditButton
-import view.components.Components.GenericText
 import view.components.Components.SendButton
 
 object ParserView {
@@ -204,7 +208,29 @@ object ParserView {
             }
             SendButton(
                 onClick = {
-                    println(serialize(flights))
+                    val date = DateParser.parseDate(flights[0].date)
+                    val json = serialize(flights, date)
+                    if(checkFlightType<Arrival>(flights)) {
+                        Request.sendRequest(
+                            url = "http://$SERVER_URL:$SERVER_PORT/api/arrivals/post/",
+                            method = "POST",
+                            headers = mapOf(
+                                "Content-Type" to "application/json"
+                            ),
+                            body = json
+                        )
+                    }
+                    else if(checkFlightType<Departure>(flights)) {
+                        Request.sendRequest(
+                            url = "http://$SERVER_URL:$SERVER_PORT/api/departures/post/",
+                            method = "POST",
+                            headers = mapOf(
+                                "Content-Type" to "application/json"
+                            ),
+                            body = json
+                        )
+                    }
+                    flights.clear()
                 }
             )
         }
@@ -273,5 +299,7 @@ object ParserView {
                 departuresRoute -> RenderFlights(departures)
             }
         }
+
+        println(SERVER_URL)
     }
 }

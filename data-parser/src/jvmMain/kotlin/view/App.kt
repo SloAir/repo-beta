@@ -15,7 +15,15 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.*
 import data.scrapeData
+import io.github.cdimascio.dotenv.dotenv
 import view.components.*
+
+
+val dotenv = dotenv()
+
+val SERVER_URL = dotenv["SERVER_URL"]
+val SERVER_PORT = dotenv["SERVER_PORT"]
+
 
 const val COLOR_PRIMARY = 0XFFDDE6ED
 const val COLOR_BACKGROUND = 0xFF27374D
