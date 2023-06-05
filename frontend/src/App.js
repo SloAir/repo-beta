@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { React, useState, useEffect} from 'react'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { UserContext } from "./userContext";
 import Header from "./routes/Header";
 import Logout from "./routes/Logout";
@@ -15,20 +15,14 @@ import BarChart from './components/BarChart';
 
 
 function App() {
-  const [user, setUser] = useState(localStorage.user ? JSON.parse(localStorage.user) : null);
+  const [user, setUser] = useState(null);
 
   const updateUserData = (userInfo) => {
-    localStorage.setItem("user", JSON.stringify(userInfo));
-    setUser(userInfo);
-  }
-
-  const resetUserData = () => {
-    localStorage.removeItem("user");
-    setUser(null);
+      setUser(userInfo)
   }
 
   return (
-    <Router>
+    <BrowserRouter>
       <UserContext.Provider value={{
         user: user,
         setUserContext: updateUserData
@@ -45,7 +39,7 @@ function App() {
         <Route path="/register" exact element={<Register />}/>
       </Routes>
       </UserContext.Provider>
-    </Router>
+    </BrowserRouter>
   );
 }
 

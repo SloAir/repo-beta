@@ -7,12 +7,6 @@ import { Nav, NavbarContainer, NavLogo, Bars, NavMenu, NavBtn, NavBtnLink, Mobil
 
 const Navbar = ({ toggle }) => {
 
-    const { resetUserContext } = useContext(UserContext);
-
-    const handleLogout = () => {
-        resetUserContext();
-    }
-
     return (
         <>
         <Nav>
@@ -37,7 +31,7 @@ const Navbar = ({ toggle }) => {
                     </NavMenu>
                     <UserContext.Consumer>
                     {context => (
-                        Boolean(!context.user)
+                        Boolean(context.user === null)
                         ?
                         <>
                             <NavBtn>
@@ -50,7 +44,7 @@ const Navbar = ({ toggle }) => {
                         :
                         <>
                             <NavBtn>
-                                <NavBtnLink to="/logout" onClick={handleLogout} >Log out</NavBtnLink>
+                                <NavBtnLink to="/logout">Log out</NavBtnLink>
                             </NavBtn>
                         </>
                     )}

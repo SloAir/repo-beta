@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import Sidebar from '../components/Sidebar'
-import { UserContext } from "../userContext";
 import Navbar from '../components/Navbar'
 
 const Header = () => {
