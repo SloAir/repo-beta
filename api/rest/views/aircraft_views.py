@@ -3,14 +3,11 @@ import json
 import requests
 import time
 
-from django.contrib.auth.decorators import login_required
-
+from bson import ObjectId
 from rest.settings import db
 from django.http import *
-from django.views.decorators.csrf import csrf_exempt
 
 
-@csrf_exempt
 def get_all(request):
     if request.method != 'GET':
         return JsonResponse({'error': 'Unsupported request method.'})
@@ -30,7 +27,6 @@ def get_all(request):
 
 
 # function gets all of the aircraft data from the database
-@csrf_exempt
 def get_aircraft(request, aircraft_registration):
     if request.method != 'GET':
         return JsonResponse({'error': 'Unsupported request method.'})
@@ -46,7 +42,6 @@ def get_aircraft(request, aircraft_registration):
 
 
 # function inserts an aircraft into the database
-@csrf_exempt
 def insert_aircraft(request):
     if request.method != 'POST':
         return JsonResponse({'error': 'Unsupported request method.'})
@@ -66,27 +61,43 @@ def insert_aircraft(request):
 
 
 # function updates an aircraft in the database
-@csrf_exempt
 def update_aircraft(request):
     if request.method != 'PUT':
         return JsonResponse({'error': 'Unsupported request method.'})
 
     data = json.loads(request.body)
+    print(data)
     data['modified'] = int(time.time())
 
-    db.aircrafts.update_one(
-        {'registration': data['registration']},
-        {
-            '$set': {k: v for k, v in data.items() if k != 'flightHistory'},
-            '$addToSet': {'flightHistory': {'flightId': data['flightHistory'][0]['flightId']}}
-        }
-    )
+    aircraft_id = data.pop('_id', None) 
+    if aircraft_id:
+        # Convert the aircraft_id string to ObjectId
+        aircraft_id = ObjectId(aircraft_id)
 
-    return JsonResponse({'message': 'Aircraft updated successfully!'})
+        db.aircrafts.update_one(
+            {'_id': aircraft_id},
+            {
+                '$set': {k: v for k, v in data.items() if k != 'flightHistory'},
+                '$addToSet': {'flightHistory': {'flightId': data['flightHistory'][0]['flightId']}}
+            }
+        )
+
+        return JsonResponse({'message': 'Aircraft updated successfully!'})
+    else:
+        return JsonResponse({'error': 'Invalid aircraft ID.'})
+
+    #db.aircrafts.update_one(
+    #    {'registration': data['registration']},
+    #    {
+    #        '$set': {k: v for k, v in data.items() if k != 'flightHistory'},
+    #        '$addToSet': {'flightHistory': {'flightId': data['flightHistory'][0]['flightId']}}
+    #    }
+    #)
+
+    #return JsonResponse({'message': 'Aircraft updated successfully!'})
 
 
 # function deletes an aircraft from the database that matches the aircraft's registration number
-@csrf_exempt
 def delete_aircraft(request, aircraft_registration):
     if request.method != 'DELETE':
         return JsonResponse({'error': 'Unsupported request method.'})

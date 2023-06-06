@@ -3,16 +3,11 @@ import json
 import requests
 import time
 
-from django.contrib.auth.decorators import login_required
 from bson import ObjectId
-
 from rest.settings import db
 from django.http import *
-from django.middleware.csrf import get_token
-from django.views.decorators.csrf import csrf_protect, csrf_exempt
 
 
-@csrf_exempt
 def get_all(request):
     if request.method != 'GET':
         return JsonResponse({'error': 'Unsupported request method.'})
@@ -32,7 +27,6 @@ def get_all(request):
 
 
 # function returns a JSON object of an airline that matches the given ICAO code
-@csrf_exempt
 def get_airline(request, airline_icao):
     if request.method != 'GET':
         return JsonResponse({'error': 'Unsupported request method.'})
@@ -48,26 +42,28 @@ def get_airline(request, airline_icao):
 
 
 # function inserts an airline into the database
-@csrf_exempt
 def insert_airline(request):
     if request.method != 'POST':
         return JsonResponse({'error': 'Unsupported request method.'})
 
     data = json.loads(request.body)
 
-    if db.airlines.find_one({'code.icao': data['code']['icao']}):
-        requests.put(os.environ.get('SERVER_URL') + 'api/airline/put/', json=data)
-        return JsonResponse({'message': 'Redirected to PUT.'})
-    else:
-        data['created'] = int(time.time())
-        data['modified'] = int(time.time())
-        db.airlines.insert_one(data)
+    print(data)
 
-    return JsonResponse({'message': 'Airline inserted successfully!'})
+    if data['code'] is not None:
+        if db.airlines.find_one({'code.icao': data['code']['icao']}):
+            requests.put(os.environ.get('SERVER_URL') + 'api/airline/put/', json=data)
+            return JsonResponse({'message': 'Redirected to PUT.'})
+        
+        else:
+            data['created'] = int(time.time())
+            data['modified'] = int(time.time())
+            db.airlines.insert_one(data)
+
+        return JsonResponse({'message': 'Airline inserted successfully!'})
 
 
 # function updates an airline in the database
-@csrf_exempt
 def update_airline(request):
     if request.method != 'PUT':
         return JsonResponse({'error': 'Unsupported request method.'})
@@ -76,15 +72,20 @@ def update_airline(request):
 
     data['modified'] = int(time.time())
 
-    db.airlines.update_one(
-        {'code.icao': data['code']['icao']},
-        {'$set': data}
-    )
+    airline_id = data.pop('_id', None)
+    if airline_id:
+        airline_id = ObjectId(airline_id)
 
-    return JsonResponse({'message': 'Airline updated successfully!'})
+        db.airlines.update_one(
+            {'_id': airline_id},
+            {'$set': data}
+        )
+
+        return JsonResponse({'message': 'Airline updated successfully!'})
+    else:
+        return JsonResponse({'error': 'Invalid airline ID.'})
 
 
-@csrf_exempt
 # function deletes an airline with a matching ICAO code from the database
 def delete_airline(request, airline_id):
     if request.method != 'DELETE':
