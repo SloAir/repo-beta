@@ -3,7 +3,7 @@
 ## PROJECT/REPO GOALS:
 Store and process data about the current status of the Slovenian airspace and serve it to users.
 
-NEEDED SERIVCES: 
+SERIVCES: 
   - DATABASE:
       - Store data
   - API:
